@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../..node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+            <script src="../../frontend/nav_jss/nav.js"></script>
+    <link rel="stylesheet" href="../../frontend/css/nav_css.css">
+
+    <title>Add new Car</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="../admin_dashboard/admin_dashboard.html">Admin Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li >
+                    <a class="nav-link" href="../admin_dashboard/admin_dashboard.html">Home <span
+                            class="sr-only"></span></a>
+                </li>
+                <li class="nav-item"  class="nav-item active">
+                    <a class="nav-link" href="../admin_car_front_end/add_new_car.html">Add Car</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../admin_office_front_end/add_new_office.html">Add Office</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container mt-4">
+        <h3>Add new Car</h3>
+        <form id="addCarForm" method="POST" enctype='multipart/form-data'>
+            <div class="mb-3">
+                <label for="OfficeCountry" class="form-label">Office Country</label>
+                <select class="form-select" id="OfficeCountry" name="OfficeCountry">
+                    <!-- Options will be loaded dynamically via AJAX -->
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="OfficeCity" class="form-label">Office City</label>
+                <select class="form-select" id="OfficeCity" name="OfficeCity">
+                    <!-- Options will be loaded dynamically via AJAX -->
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="Brand" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="Brand" name="Brand">
+            </div>
+            <div class="mb-3">
+                <label for="CarName" class="form-label">Car Name</label>
+                <input type="text" class="form-control" id="CarName" name="CarName">
+            </div>
+
+            <div class="mb-3">
+                <label for="Year" class="form-label">Year</label>
+                <input type="number" class="form-control" id="Year" name="Year" min="1900">
+            </div>
+
+            <div class="mb-3">
+                <label for="rentValue" class="form-label">rent Value</label>
+                <input type="number" class="form-control" id="rentValue" name="rentValue" min="0">
+            </div>
+
+            <div class="mb-3">
+                <label for="ImageUrl" class="form-label">Image Url</label>
+                <input type="text" class="form-control" id="ImageUrl" name="ImageUrl">
+            </div>
+
+            <div class="mb-3">
+                <label for="carStatus" class="form-label">Car Status</label>
+                <select class="form-select" id="carStatus" name="carStatus">
+                    <option value="active">Active</option>
+                    <option value="out_of_service">Out of Service</option>
+                    <option value="rented">Rented</option>
+                </select>
+            </div>
+
+            <hr>
+            <button type="submit" class="btn btn-primary w-100 p-3 mb-5">Submit</button>
+        </form>
+    </div>
+
+
+
+    <!-- script file -->
+    <script src="../admin_car_front_end/js/add_new_car_logic.js"></script>
+
+</html>

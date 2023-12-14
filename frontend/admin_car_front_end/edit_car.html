@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <title>Edit Car</title>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h3>Edit Car</h3>
+        <form id="editCarForm" method="POST" enctype='multipart/form-data'>
+            <div class="mb-3">
+                <label for="OfficeCountry" class="form-label">Office Country</label>
+                <select class="form-select" id="OfficeCountry" name="OfficeCountry">
+                    <!-- Options will be loaded dynamically via AJAX -->
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="OfficeCity" class="form-label">Office City</label>
+                <select class="form-select" id="OfficeCity" name="OfficeCity">
+                    <!-- Options will be loaded dynamically via AJAX -->
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="Brand" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="Brand" name="Brand">
+            </div>
+            <div class="mb-3">
+                <label for="CarName" class="form-label">Car Name</label>
+                <input type="text" class="form-control" id="CarName" name="CarName">
+            </div>
+
+            <div class="mb-3">
+                <label for="Year" class="form-label">Year</label>
+                <input type="number" class="form-control" id="Year" min="1900" name="Year" step="1">
+            </div>
+
+            <div class="mb-3">
+                <label for="rentValue" class="form-label">rent Value</label>
+                <input type="number" class="form-control" id="rentValue" name="rentValue" min="0">
+            </div>
+
+            <div class="mb-3">
+                <label for="ImageUrl" class="form-label">Image Url</label>
+                <input type="text" class="form-control" id="ImageUrl" name="ImageUrl">
+            </div>
+
+            <div class="mb-3">
+                <label for="carStatus" class="form-label">Car Status</label>
+                <select class="form-select" id="carStatus" name="carStatus">
+                    <option value="active">Active</option>
+                    <option value="out of service">out of service</option>
+                    <option value="rented">Rented</option>
+                </select>
+            </div>
+
+            <hr>
+            <button type="submit" class="btn btn-primary w-100 p-3 mb-5">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+
+    <!-- script file -->
+    <script src="./js/edit_car_logic.js"></script>
+    <!-- <script>
+  
+    </script> -->
+
+</html>

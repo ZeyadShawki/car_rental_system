@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <title>Add Office</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../admin_dashboard/admin_dashboard.html">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li>
+                        <a class="nav-link" href="../admin_dashboard/admin_dashboard.html">Home <span
+                                class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item" class="nav-item active">
+                        <a class="nav-link" href="../admin_car_front_end/add_new_car.html">Add Car</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admin_office_front_end/add_new_office.html">Add Office</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+
+
+        <h3>Add new office</h3>
+        <form id="OfficeForm" action="" method="POST" enctype='multipart/form-data'>
+            <div class="mb-3">
+                <label for="Country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="Country" name="Country">
+                <div class="invalid-feedback">Please enter the country.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="City" class="form-label">City</label>
+                <input type="text" class="form-control" id="City" name="City">
+                <div class="invalid-feedback">Please enter the city.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 p-3 mb-5">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#OfficeForm').submit(function (e) {
+                e.preventDefault(); // prevent the form from submitting traditionally
+
+                // Remove previous validation styles
+                $('.is-invalid').removeClass('is-invalid');
+
+                // Check if input fields are empty
+                var formValid = true;
+
+                $('#OfficeForm input').each(function () {
+                    console.log($(this).val())
+                    if ($(this).val().trim() === '') {
+                        $(this).addClass('is-invalid');
+                        formValid = false;
+                    }
+                });
+
+                if (!formValid) {
+                    return;
+                }
+
+                // Get form data
+                var formData = $(this).serialize();
+                // Send the data using AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost/final_db_admin/backend/office_controller/add_new_office.php', // Replace with the actual file path
+                    data: formData,
+                    success: function (response) {
+                        // Handle success
+                        console.log(response);
+                        alert('Record inserted successfully');
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle errors
+                        console.error(xhr.responseText);
+
+                        // Display validation errors
+                        var errors = JSON.parse(xhr.responseText);
+                        $.each(errors, function (key, value) {
+                            $('#' + key).addClass('is-invalid');
+                            $('#' + key).next('.invalid-feedback').text(value);
+                        });
+
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
