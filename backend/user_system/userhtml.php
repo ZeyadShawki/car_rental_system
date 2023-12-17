@@ -68,8 +68,9 @@
     <form action="" method="post" id="search-form" >
         <button type="submit">Submit</button>
     </form>
-    <div id="reciveddata">
 
+
+    <div id="reciveddata">
     </div>
 
 

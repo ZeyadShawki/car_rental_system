@@ -178,23 +178,35 @@ if(isset($_POST["search"])){
         die("Query failed: " . mysqli_error($conn));
     }
     
-    // Check if there are any rows in the result set
-    if (mysqli_num_rows($result) > 0) {
-        // Loop through each row and print the data
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "Plate ID: " . $row['plateID'] . "<br>";
-            echo "Office ID: " . $row['OfficeID'] . "<br>";
-            echo "Car Name: " . $row['carname'] . "<br>";
-            echo "Brand: " . $row['brand'] . "<br>";
-            echo "Year: " . $row['Year'] . "<br>";
-            echo "Image URL: " . $row['imageUrl'] . "<br>";
-            echo "Rent Value: " . $row['rentvalue'] . "<br>";
-            echo "------------------------<br>";
-        }
+// Check if there are any rows in the result set
+if (mysqli_num_rows($result) > 0) {
+    // Open a container for the grid
+    echo "<div style='display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;'>";
+
+ // Loop through each row and print the data in a box
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<div style='border: 1px solid #ccc; padding: 10px;'>";
+        echo "Plate ID: " . $row['plateID'] . "<br>";
+        echo "Office ID: " . $row['OfficeID'] . "<br>";
+        echo "Car Name: " . $row['carname'] . "<br>";
+        echo "Brand: " . $row['brand'] . "<br>";
+        echo "Year: " . $row['Year'] . "<br>";
+        echo "Image URL: " . $row['imageUrl'] . "<br>";
+        echo "Rent Value: " . $row['rentvalue'] . "<br>";
+
+        // Add a submission button
+        echo "<form method='post' action='renthtml.php'>";
+        echo "<input type='hidden' name='plateID' value='" . $row['plateID'] . "'>";
+        echo "<input type='submit' value='Rent Now'>";
+        echo "</form>";
+
+        echo "</div>";
+    }
+        // Close the container for the grid
+        echo "</div>";
     } else {
         echo "No results found.";
     }
-    
     // Free the result set
     mysqli_free_result($result);
     
