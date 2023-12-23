@@ -1,5 +1,9 @@
 <?php 
 session_start();
+// if (!isset($_SESSION["SESSION_EMAIL"])) {
+//     header("Location: index.php"); // page 3alaaa w h3dl f kol l emaill l fel page hna
+//   }
+
 if (isset($_POST["update_brand_name"])) {// hsl update f car f 3yzen n update el brand 
                                           // awl hga nshof lw car el selected lw 3ndha brand b esm da
     $new_car_name = $_POST["name_of_new_car"];// new car

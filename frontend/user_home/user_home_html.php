@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>car rent</title>
     <!-- css file-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../frontend/css/style.css">
      <!--include the php backend file-->
    <?php
-            $filename = 'user.php';
+            $filename = '../../backend/user_home/user_home.php';
             if (file_exists($filename)) {
                 include $filename;
             } else {
@@ -17,7 +17,7 @@
     ?>
     <!-- js file-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script type="text/javascript" src="user.js"></script>
+    <script type="text/javascript"  src="./js/user_home.js"></script>
 </head>
 <body>
     <div class="header">

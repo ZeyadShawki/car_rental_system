@@ -1,6 +1,9 @@
 <?php
 if(isset($_POST["search"])){
     include 'connectdb.php';
+    // require('../my_db_cred.php');
+    // $conn = MyConnection::getConnection();
+    
     $email='john.doe@example.com';
 
     $plateid = $_POST["plate_id"];
@@ -112,6 +115,8 @@ if(isset($_POST["search"])){
 
 function get_items_to_select(){
     include 'connectdb.php'; // Using database connection file here
+        // require('../my_db_cred.php');
+    // $conn = MyConnection::getConnection();
     $email='john.doe@example.com';
     $result =mysqli_query($conn, "SELECT r.plateID , r.PickupDate , c.brand
                                 FROM reservations AS r 
@@ -193,6 +198,8 @@ function get_items_to_select(){
 
 function user_info (){
     include 'connectdb.php'; // Using database connection file here
+    // require('../my_db_cred.php');
+    // $conn = MyConnection::getConnection();
     $email='john.doe@example.com';
     $result =mysqli_query($conn, "SELECT FirstName,LastName,PhoneNumber,bdate 
                             FROM `customers` 

@@ -13,7 +13,7 @@ $(document).ready(function(){
 
         $.ajax({
           type: "POST",// hb3t
-          url: "profile.php",// go to this php file
+          url: "../../backend/user_profile/profile.php",// go to this php file
           data: {
             plate_id : plateId ,// el variables l hb3tha b POST
             car_brand : brand ,

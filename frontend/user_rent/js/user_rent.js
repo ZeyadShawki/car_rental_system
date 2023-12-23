@@ -34,7 +34,7 @@ $(document).ready(function(){
 
     $.ajax({
       type: "POST",// hb3t
-      url: "rent.php",// go to this php file
+      url: "../../backend/user_rent/user_rent.php",// go to this php file
       data: {
         pickup_date : formattedNewPickupDate,
         return_date : formattedNewReturnupDate,

@@ -13,7 +13,7 @@ function updateCarNames(selectedBrand) {    // 3yz 2update el car name 3shan ghy
     }
     $.ajax({
         type: "POST",// hb3t
-        url: "user.php",// go to this php file
+        url: "../../backend/user_home/user_home.php",// go to this php file
         data: {
           name_of_new_brand : selectedBrand,
           update_car_name: true
@@ -57,7 +57,7 @@ function updateBrand(selectedCarName) {// hsl update f carname f hnupdate el bra
 
     $.ajax({
         type: "POST",// hb3t
-        url: "user.php",// go to this php file
+        url: "../../backend/user_home/user_home.php",// go to this php file
         data: {
           current_brand : brandSelect,
           name_of_new_car : selectedCarName,
@@ -100,7 +100,7 @@ $(document).ready(function(){
 
         $.ajax({
           type: "POST",// hb3t
-          url: "user.php",// go to this php file
+          url: "../../backend/user_home/user_home.php",// go to this php file
           data: {
             brand_name : brand ,// el variables l hb3tha b POST
             car_name : car ,
