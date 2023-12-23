@@ -1,5 +1,20 @@
 CREATE DATABASE car_rental_system ;
 USE car_rental_system ; 
+
+
+
+CREATE TABLE Admins (
+    AdminId INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    PhoneNumber VARCHAR(20),
+	user_password VARCHAR(50) NOT NULL,
+    sex ENUM('male','female'),
+    bdate date ,
+);
+
+
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY AUTO_INCREMENT,
     FirstName VARCHAR(50) NOT NULL,

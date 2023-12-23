@@ -6,13 +6,6 @@
     /* --text-color: #444; */
    
 }
-
-.password-container {
-  display: flex;
-  align-items: center;
-}
-
-
 * {
     font-family: 'Poppins', sans-serif;
     margin: 0;
