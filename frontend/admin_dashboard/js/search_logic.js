@@ -1,8 +1,7 @@
-
 // import {baseUrl} from "../../api_constants.js" ;
 // console.log(baseUrl);
 
- const baseUrl = "http://localhost/final_db_admin/backend/";
+const baseUrl = "http://localhost/final_db_admin/backend/";
 function search() {
   var searchTerm = document.getElementById("searchTerm").value;
 
@@ -30,17 +29,32 @@ function displayResults(data) {
       '<table class="table table-bordered table-striped"><thead>' +
       "<tr><th>Car Name</th><th>Brand</th><th>Reservation Date</th><th>Customer Name</th></tr></thead><tbody>";
     for (var i = 0; i < data.length; i++) {
+      let ReservationDate = "Not Reserved";
+      let FirstName = "No user Reserved This car";
+            let LastName = "";
+
+      if (data[i].ReservationDate) {
+        ReservationDate = data[i].ReservationDate;
+      }
+
+      if (data[i].FirstName) {
+        FirstName = data[i].FirstName;
+      }
+        if (data[i].LastName) {
+          LastName = data[i].LastName;
+        }
+
       table +=
         "<tr><td>" +
         data[i].carname +
         "</td><td>" +
         data[i].brand +
         "</td><td>" +
-        data[i].ReservationDate +
+        ReservationDate +
         "</td><td>" +
-        data[i].FirstName +
+       FirstName +
         " " +
-        data[i].LastName +
+       LastName +
         "</td></tr>";
     }
     table += "</tbody></table>";
@@ -49,4 +63,3 @@ function displayResults(data) {
     resultsDiv.innerHTML = "No results found.";
   }
 }
-

@@ -5,12 +5,12 @@
 require('../my_db_cred.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn=MyConnection::getConnection();
+    $conn = MyConnection::getConnection();
     $searchTerm = $_POST["searchTerm"];
 
-$query = "SELECT * FROM Cars
-              JOIN Reservations ON Cars.plateID = Reservations.plateID
-              JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
+    $query = "SELECT * FROM Cars
+              LEFT JOIN Reservations ON Cars.plateID = Reservations.plateID
+              LEFT JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
               WHERE carname LIKE '%$searchTerm%'
                  OR brand LIKE '%$searchTerm%'
                  OR FirstName LIKE '%$searchTerm%'
