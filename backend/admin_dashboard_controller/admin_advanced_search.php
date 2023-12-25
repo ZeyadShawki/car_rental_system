@@ -15,7 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                  OR brand LIKE '%$searchTerm%'
                  OR FirstName LIKE '%$searchTerm%'
                  OR LastName LIKE '%$searchTerm%'
-                 OR ReservationDate = '$searchTerm'";
+                 OR ReservationDate = '$searchTerm'
+                --   AND Cars.carStatus = 'rented'
+                 "
+                
+                 ;
 
     // Execute the query and fetch results
     // Assuming $conn is your database connection

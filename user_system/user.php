@@ -59,7 +59,7 @@ function retrive_all_data_required(){
 
     if (mysqli_num_rows($result) > 0) {
         echo '<label for="country">Select a Country:</label>';
-        echo '<select id="country" name="country">';
+        echo '<select class="form-control mb-2" id="country" name="country">';
         
         // Loop through the result set to generate options
         while ($row = mysqli_fetch_assoc($result)) {
@@ -73,7 +73,7 @@ function retrive_all_data_required(){
     mysqli_free_result($result);
 
     
-    echo '<p>Speces</p>';
+    // echo '<p>Speces</p>';
     $result = mysqli_query($conn, "SELECT DISTINCT c.brand, c.carname FROM cars AS c WHERE c.carStatus = 'active';");
 
      // Check for query execution success
@@ -113,7 +113,7 @@ function retrive_all_data_required(){
 
     // Display the HTML select for carname
     echo "Select Car Name: ";
-    echo "<select id='carNamesSelect' name='carname' onchange='updateBrand(this.value)'>";
+    echo "<select class='form-control' id='carNamesSelect' name='carname' onchange='updateBrand(this.value)'>";
     echo $optionsCarName;
     echo "</select>";
     echo "<br>";
@@ -180,33 +180,57 @@ if(isset($_POST["search"])){
     
 // Check if there are any rows in the result set
 if (mysqli_num_rows($result) > 0) {
-    // Open a container for the grid
-    echo "<div style='display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;'>";
+    // Open a container for the table with Bootstrap classes
+    echo "<div class='table-responsive'>";
+    echo "<table class='table table-bordered'>";
+    
+    // Table header
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>Plate ID</th>";
+    echo "<th>Office ID</th>";
+    echo "<th>Car Name</th>";
+    echo "<th>Brand</th>";
+    echo "<th>Year</th>";
+    echo "<th>Image URL</th>";
+    echo "<th>Rent Value</th>";
+    echo "<th>Action</th>";
+    echo "</tr>";
+    echo "</thead>";
 
- // Loop through each row and print the data in a box
+    // Table body
+    echo "<tbody>";
+
+    // Loop through each row and print the data in a table row
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div style='border: 1px solid #ccc; padding: 10px;'>";
-        echo "Plate ID: " . $row['plateID'] . "<br>";
-        echo "Office ID: " . $row['OfficeID'] . "<br>";
-        echo "Car Name: " . $row['carname'] . "<br>";
-        echo "Brand: " . $row['brand'] . "<br>";
-        echo "Year: " . $row['Year'] . "<br>";
-        echo "Image URL: " . $row['imageUrl'] . "<br>";
-        echo "Rent Value: " . $row['rentvalue'] . "<br>";
+        echo "<tr>";
+        echo "<td>" . $row['plateID'] . "</td>";
+        echo "<td>" . $row['OfficeID'] . "</td>";
+        echo "<td>" . $row['carname'] . "</td>";
+        echo "<td>" . $row['brand'] . "</td>";
+        echo "<td>" . $row['Year'] . "</td>";
+        echo "<td>" . $row['imageUrl'] . "</td>";
+        echo "<td>" . $row['rentvalue'] . "</td>";
 
-        // Add a submission button
+        // Add a submission button in the last column
+        echo "<td>";
         echo "<form method='post' action='renthtml.php'>";
         echo "<input type='hidden' name='plateID' value='" . $row['plateID'] . "'>";
-        echo "<input type='submit' value='Rent Now'>";
+        echo "<input type='submit' class='btn btn-primary' value='Rent Now'>";
         echo "</form>";
+        echo "</td>";
 
-        echo "</div>";
+        echo "</tr>";
     }
-        // Close the container for the grid
-        echo "</div>";
-    } else {
-        echo "No results found.";
-    }
+
+    // Close the table body and table container
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>";
+} else {
+    echo "No results found.";
+}
+
     // Free the result set
     mysqli_free_result($result);
     

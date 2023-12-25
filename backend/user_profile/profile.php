@@ -1,10 +1,13 @@
 <?php
+session_start();
+
 if(isset($_POST["search"])){
     include 'connectdb.php';
     // require('../my_db_cred.php');
     // $conn = MyConnection::getConnection();
     
-    $email='john.doe@example.com';
+    $email = $_SESSION[ 'SESSION_EMAIL' ] ;
+
 
     $plateid = $_POST["plate_id"];
     $carbrand = $_POST["car_brand"];
@@ -14,59 +17,13 @@ if(isset($_POST["search"])){
     $carbrand_check=FALSE ;
     $pickdate_check=FALSE ;
 
-    // if ($plateid == 'nth') {
-    //     $plateid=1; // 3shan wna bkaren
-    //     $plateid_check = TRUE;
-    // }
-
-    // if ($carbrand == 'nth') {
-    //     $carbrand_check = TRUE;
-    // }    
-
-    // if ($pickdate == 'nth') {
-    //     $pickdate_check = TRUE;
-    // }
-
-    // lesa 3yz ahandel htt l email
-    // $result =mysqli_query($conn, "SELECT c.carname , c.brand , c.rentvalue , r.plateID , r.ReservationDate , r.PickupDate , r.ReturnDate 
-    //                             FROM reservations AS r
-    //                             JOIN cars AS c ON r.plateID=c.plateID
-    //                             JOIN customers AS cu ON cu.CustomerID = r.CustomerID
-    //                             WHERE  cu.Email='john.doe@example.com' AND  
-    //                             (    ((r.plateID=1) or $plateid_check) 
-    //                             or ((c.brand='Tyota') or $carbrand_check) 
-    //                             or ((r.PickupDate='dsada') or $plateid_check)
-    //                             );
-    // ");
-
-//     $result =mysqli_query($conn, "SELECT c.carname , c.brand , c.rentvalue , r.plateID , r.ReservationDate , r.PickupDate , r.ReturnDate 
-//                                     FROM reservations AS r
-//                                     JOIN cars AS c ON r.plateID=c.plateID
-//                                     JOIN customers AS cu ON cu.CustomerID = r.CustomerID
-//                                     WHERE  cu.Email='john.doe@example.com' AND  
-//                                     (    ((r.plateID=$plateid) or $plateid_check) 
-//                                     or ((c.brand='$carbrand') or $carbrand_check) 
-//                                     or ((r.PickupDate='$pickdate') or $pickdate_check)
-//                                     );
-// ");
-
-// $result = mysqli_query($conn, "SELECT c.carname, c.brand, c.rentvalue, r.plateID, r.ReservationDate, r.PickupDate, r.ReturnDate 
-//                                 FROM reservations AS r
-//                                 JOIN cars AS c ON r.plateID = c.plateID
-//                                 JOIN customers AS cu ON cu.CustomerID = r.CustomerID
-//                                 WHERE cu.Email = 'john.doe@example.com' AND  
-//                                 (
-//                                     (r.plateID = '$plateid' OR '$plateid' = 'nth')
-//                                     OR (c.brand = '$carbrand' OR '$carbrand' = 'nth')
-//                                     OR (r.PickupDate = '$pickdate' OR '$pickdate' = 'nth')
-//                                 );
-// ");
+ 
 
     $result = mysqli_query($conn, "SELECT c.carname, c.brand, c.rentvalue, r.plateID, r.ReservationDate, r.PickupDate, r.ReturnDate 
     FROM reservations AS r
     JOIN cars AS c ON r.plateID = c.plateID
     JOIN customers AS cu ON cu.CustomerID = r.CustomerID
-    WHERE cu.Email = 'john.doe@example.com' AND  
+    WHERE cu.Email ='$email' AND  
     (
         (
             (r.plateID = '$plateid') AND (c.brand = '$carbrand') AND (r.PickupDate = '$pickdate')
@@ -117,12 +74,12 @@ function get_items_to_select(){
     include 'connectdb.php'; // Using database connection file here
         // require('../my_db_cred.php');
     // $conn = MyConnection::getConnection();
-    $email='john.doe@example.com';
+    $email = $_SESSION[ 'SESSION_EMAIL' ] ;
     $result =mysqli_query($conn, "SELECT r.plateID , r.PickupDate , c.brand
                                 FROM reservations AS r 
                                 JOIN cars AS c ON c.plateID = r.plateID 
                                 JOIN customers AS cu ON cu.CustomerID = r.CustomerID
-                                WHERE cu.Email='john.doe@example.com';
+                                WHERE cu.Email='$email';
     ");
     
     // Check for query execution errors
@@ -159,8 +116,8 @@ function get_items_to_select(){
     echo '</select>';
 
     // Select for Brands
-    echo '<select name="brand" id="brandSelect">';
-    echo '<option value="nth">Select a Brand</option>';
+    echo '<select class="form-control" name="brand" id="brandSelect">';
+    echo '<option  value="nth">Select a Brand</option>';
     foreach ($brands as $brand) {
         echo '<option value="' . $brand . '">' . $brand . '</option>';
     }

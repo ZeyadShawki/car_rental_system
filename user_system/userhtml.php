@@ -39,7 +39,7 @@
   
 
     <!--do all select-->
-    <div class="choose"> 
+    <div class="container mt-4"> 
         <?php retrive_all_data_required() ?>
 
     <!-- Before Year Selection -->
@@ -75,4 +75,5 @@
 
 
     </div>
+    
 </body>

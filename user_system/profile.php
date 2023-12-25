@@ -154,8 +154,8 @@ function get_items_to_select(){
     echo '</select>';
 
     // Select for Brands
-    echo '<select name="brand" id="brandSelect">';
-    echo '<option value="nth">Select a Brand</option>';
+    echo '<select  name="brand" id="brandSelect">';
+    echo '<option  value="nth">Select a Brand</option>';
     foreach ($brands as $brand) {
         echo '<option value="' . $brand . '">' . $brand . '</option>';
     }

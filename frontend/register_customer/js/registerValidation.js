@@ -138,7 +138,8 @@ function validate() {
        console.log(response);
 
        if (response === "success") {
-         window.location.href = "login.html";
+            window.location.href =
+              "http://localhost/final_db_admin/frontend/user_home/user_home_html.php";
        } else if (response === "email") {
          showError(document.getElementById("Email"), "Email Already Exists");
        } else if (response === "sqlfailure") {

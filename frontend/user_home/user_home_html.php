@@ -7,7 +7,11 @@
     <!-- css file-->
     <link rel="stylesheet" href="../css/style.css">
      <!--include the php backend file-->
-   <?php
+     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../..node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+ 
+ <?php
             $filename = '../../backend/user_home/user_home.php';
             if (file_exists($filename)) {
                 include $filename;
@@ -22,12 +26,12 @@
 <body>
     <div class="header">
     <div class="container">
-        <div class="logo">LOGO IMAGE</div>
+        <div class="logo">LOGO ssssssssssIMAGE</div>
 
         <div class="links">
             <ul class="navbar">
                 <li><a href="homepage.html" >Home</a></li> <!--3alaa-->
-                <li><a href="#">Profile</a></li>
+                <li><a href="../user_profile/profilehtml.php">Profile</a></li>
             </ul>
         </div>
         <div class="header-btn">
@@ -39,12 +43,12 @@
   
 
     <!--do all select-->
-    <div class="choose"> 
+    <div class="container mt-4"> 
         <?php retrive_all_data_required() ?>
 
     <!-- Before Year Selection -->
     <label for="beforeYear">Before Year:</label>
-    <select id="beforeYear" name="beforeYear">
+    <select class="form-control mb-2" id="beforeYear" name="beforeYear">
         <?php
         for ($year = 2000; $year <= 2024; $year++) {
             $selected = ($year == 2024) ? 'selected' : '';
@@ -55,7 +59,7 @@
 
     <!-- After Year Selection -->
     <label for="afterYear">After Year:</label>
-    <select id="afterYear" name="afterYear">
+    <select  class="form-control" id="afterYear" name="afterYear">
         <?php
         for ($year = 2000; $year <= 2024; $year++) {
             echo '<option value="' . $year . '">' . $year . '</option>';
@@ -66,7 +70,7 @@
 
     
     <form action="" method="post" id="search-form" >
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary w-100 mt-2 p-3 mb-5">Search</button>
     </form>
 
 

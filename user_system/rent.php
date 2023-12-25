@@ -1,7 +1,7 @@
 <?php 
 function get_data($plate_id){
   include 'connectdb.php'; // Using database connection file here
-  $email='john.doe@email.com';
+$email = $_SESSION["SESSION_EMAIL"];
 
   $result = mysqli_query($conn, "SELECT c.FirstName, c.LastName, c.Email, c.PhoneNumber
   FROM customers AS c
