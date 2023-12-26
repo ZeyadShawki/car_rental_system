@@ -16,7 +16,8 @@
 
 
 
-    <script  src="./js/search_logic.js"></script>
+    <script src="./js/search_logic.js"></script>
+    <script src="./js/get_all_car_logic.js"></script>
 
     <title>Admin Dashboard</title>
 </head>
@@ -46,6 +47,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../admin_office_front_end/add_new_office.html">Add Office</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="../admin_dashboard/admin_reports/car_reservation_report.html">Reservation Report
+                            Search</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -56,16 +63,17 @@
 
         <h1>Advanced Search</h1>
         <div class="row">
-    <div class="col-sm">
+            <div class="col-sm">
 
-        <input type="text" id="searchTerm" class="form-control  " placeholder="Enter search term">
-        </div>
+                <input type="text" id="searchTerm" class="form-control  " placeholder="Enter search term">
+            </div>
             <div class="col-sm">
                 <button class="btn btn-primary" onclick="search()">Search</button>
                 <div class="p-2"></div>
-</div>
+            </div>
 
-    </div>
+
+        </div>
         <div id="results"></div>
 
         <h3 class="pt-5">All Cars</h3>
@@ -84,6 +92,17 @@
                 <!-- Cars will be dynamically added here through AJAX -->
             </tbody>
         </table>
+        <div id="results_Resv"></div>
+
+        <table class="table 1">
+
+
+
+
+
+
+        </table>
+
     </div>
 
 
@@ -91,97 +110,7 @@
 
 
 
-<script>
-    $(document).ready(function () {
-        // Fetch car data using AJAX
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost/final_db_admin/backend/admin_dashboard_controller/admin_get_all_cars.php', // Replace with the actual file path
-            dataType: 'json',
-            success: function (data) {
-                // Populate the car table
-                var carTableBody = $('#carTableBody');
-                carTableBody.empty();
-                $.each(data, function (index, car) {
-                    var editButton = '<button class="btn btn-primary" onclick="editCar(' + car.id + ')">Edit</button>';
-                    var deleteButton = '<button class="btn btn-danger" onclick="deleteCar(' + car.id + ')">Delete</button>';
-                    var row = '<tr><td>' + car.carname + '</td><td>' + car.brand + '</td><td>' + car.year + '</td><td><img src="' + car.imageUrl + '" alt="Car Image" style="max-width: 100px; max-height: 100px;"></td><td>' + car.carStatus + '</td><td>' + editButton + ' ' + deleteButton + '</td></tr>';
-                    carTableBody.append(row);
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-                alert('Error loading cars: ' + xhr.responseText);
-            },
-        });
 
-
-        window.editCar = function (carId) {
-            // Redirect to the edit car page with the car ID
-            window.location.href = '../admin_car_front_end/edit_car.html?carId=' + carId;
-        };
-
-        // Function to handle deleting a car
-        window.deleteCar = function (carId) {
-            // Display SweetAlert2 confirmation dialog
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Once deleted, you won't be able to recover this car record!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // If user confirms, send AJAX request to delete the car
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://localhost/final_db_admin/backend/admin_car_controller/admin_delete_car.php', // Replace with the actual file path
-                        data: { carId: carId },
-                        success: function (response) {
-                            // Reload the table after successful deletion
-                            fetchCarData();
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(xhr.responseText);
-                            alert('Error deleting car: ' + xhr.responseText);
-                        },
-                    });
-                }
-            });
-        };
-
-        // Function to fetch car data
-        function fetchCarData() {
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost/final_db_admin/backend/admin_dashboard_controller/admin_get_all_cars.php', // Replace with the actual file path
-                dataType: 'json',
-                success: function (data) {
-                    // Populate the car table
-                    var carTableBody = $('#carTableBody');
-                    carTableBody.empty();
-                    $.each(data, function (index, car) {
-                        var editButton = '<button class="btn btn-primary" onclick="editCar(' + car.id + ')">Edit</button>';
-                        var deleteButton = '<button class="btn btn-danger" onclick="deleteCar(' + car.id + ')">Delete</button>';
-                        var row = '<tr><td>' + car.carname + '</td><td>' + car.brand + '</td><td>' + car.year + '</td><td><img src="' + car.imageUrl + '" alt="Car Image" style="max-width: 100px; max-height: 100px;"></td><td>' + car.carStatus + '</td><td>' + editButton + ' ' + deleteButton + '</td></tr>';
-                        carTableBody.append(row);
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                    alert('Error loading cars: ' + xhr.responseText);
-                },
-            });
-        }
-
-        // Initial fetch when the page loads
-        $(document).ready(function () {
-            fetchCarData();
-        });
-    });
-</script>
 </body>
 
 </html>

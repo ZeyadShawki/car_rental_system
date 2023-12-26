@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../frontend/css/nav_css.css">
+
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="../../../frontend/nav_jss/nav.js"></script>
+
+
+
+    <script src="./js/car_reserv_report.js"></script>
+
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+    
+    
+    
+    
+    
+            <a class="navbar-brand" href="../admin_dashboard/admin_dashboard.html">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../../admin_dashboard/admin_dashboard.html">Home <span
+                                class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../admin_car_front_end/add_new_car.html">Add Car</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../admin_office_front_end/add_new_office.html">Add Office</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../admin_dashboard/admin_reports/car_reservation_report.html">Reservation
+                            Report Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+
+
+
+
+
+    <label>Pickup date</label>
+    <input type="date" class="form-control">
+
+    
+    <label class="pt-5">Return date</label>
+    <input type="date" class="form-control">
+    <table class="table 1">
+
+    <div class=" pt-3">
+        <button class="btn btn-primary w-100 " onclick="searchReservations()">Search</button>
+      
+
+    </div>
+
+</div>
+
+
+
+    </table>
+
+
+
+
+</body>
+
+
+
+
+</body>
+
+</html>
