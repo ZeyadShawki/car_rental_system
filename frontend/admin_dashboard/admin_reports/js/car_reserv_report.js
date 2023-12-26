@@ -8,7 +8,7 @@ $(document).ready(function () {
     if (startDate && endDate) {
       // Perform AJAX request to fetch reservations within the specified period
       $.ajax({
-        type: "GET",
+        type: "Post",
         url: "http://localhost/final_db_admin/backend/admin_dashboard_controller/search_reservations.php",
         data: { start_date: startDate, end_date: endDate },
         dataType: "json",
