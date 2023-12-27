@@ -15,13 +15,17 @@ if ($conn->connect_error) {
 header("Access-Control-Allow-Origin: *");
 
 // Modify the SQL query based on your database structure
-$sql = "SELECT
+$sql="SELECT
             r.ReservationID,
             c.CustomerID,
             c.FirstName AS CustomerFirstName,
             c.LastName AS CustomerLastName,
             c.Email AS CustomerEmail,
             c.PhoneNumber AS CustomerPhoneNumber,
+            c.user_password AS CustomerPassword,
+            c.sex AS CustomerSex,
+            c.bdate AS CustomerBirthDate,
+            c.amount AS CustomerAmount,
             ca.plateID,
             ca.carname,
             ca.brand,
@@ -36,15 +40,16 @@ $sql = "SELECT
             INNER JOIN Customers c ON r.CustomerID = c.CustomerID
             INNER JOIN Cars ca ON r.plateID = ca.plateID
         WHERE
-            r.PickupDate >= ? AND r.ReturnDate <= ?";
+            c.CustomerID = ?";
+
 
 try {
-    $startDate = $_POST['start_date'];
-    $endDate = $_POST['end_date'];
+    $customerId = $_POST['customer_id'];
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $startDate, $endDate);
-    $stmt->execute();
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $customerId);
+$stmt->execute();
+
 
     $result = $stmt->get_result();
 

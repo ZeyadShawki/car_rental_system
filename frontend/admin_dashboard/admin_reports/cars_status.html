@@ -5,19 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../frontend/css/nav_css.css">
+    <link rel="stylesheet" href="../../../frontend/css/nav_css.css">
 
-    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <script src="../../frontend/nav_jss/nav.js"></script>
+    <script src="../../../frontend/nav_jss/nav.js"></script>
 
 
 
-    <script src="./js/search_logic.js"></script>
-    <script src="./js/get_all_car_logic.js"></script>
+    <script src="./js/cars_status.js"></script>
 
     <title>Admin Dashboard</title>
 </head>
@@ -25,11 +24,11 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-
-
-
-
-
+    
+    
+    
+    
+    
             <a class="navbar-brand" href="../admin_dashboard/admin_dashboard.html">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,19 +37,18 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../admin_dashboard/admin_dashboard.html">Home <span
+                        <a class="nav-link" href="../../admin_dashboard/admin_dashboard.html">Home <span
                                 class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin_car_front_end/add_new_car.html">Add Car</a>
+                        <a class="nav-link" href="../../admin_car_front_end/add_new_car.html">Add Car</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin_office_front_end/add_new_office.html">Add Office</a>
+                        <a class="nav-link" href="../../admin_office_front_end/add_new_office.html">Add Office</a>
                     </li>
-
+    
                     <li class="nav-item">
-                        <a class="nav-link"
-                            href="../admin_dashboard/admin_reports/car_reservation_report.html">Reservation customer information</a>
+                        <a class="nav-link" href="../../admin_dashboard/admin_reports/car_reservation_report.html">Reservation customer information</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
@@ -73,52 +71,33 @@
         </div>
     </nav>
 
-
     <div class="container mt-4">
 
-        <h1>Advanced Search</h1>
-        <div class="row">
-            <div class="col-sm">
-
-                <input type="text" id="searchTerm" class="form-control  " placeholder="Enter search term">
-            </div>
-            <div class="col-sm">
-                <button class="btn btn-primary" onclick="search()">Search</button>
-                <div class="p-2"></div>
-            </div>
-
-
-        </div>
-        <div id="results"></div>
-
-        <h3 class="pt-5">All Cars</h3>
-        <table class="table ">
-            <thead>
-                <tr>
-                    <th>Car Name</th>
-                    <th>Brand</th>
-                    <th>Year</th>
-                    <th>Image</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="carTableBody">
-                <!-- Cars will be dynamically added here through AJAX -->
-            </tbody>
-        </table>
-        <div id="results_Resv"></div>
-
-        <table class="table 1">
 
 
 
 
 
+    <label>day</label>
+    <input type="date" class="form-control" id="startDate">
 
-        </table>
+    
+    
+    <table class="table 1">
+
+    <div class=" pt-3">
+        <button class="btn btn-primary w-100 " onclick="searchStatus()">Search</button>
+      
 
     </div>
+
+</div>
+
+
+
+    </table>
+
+
 
 
 </body>

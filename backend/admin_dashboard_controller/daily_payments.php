@@ -15,28 +15,11 @@ if ($conn->connect_error) {
 header("Access-Control-Allow-Origin: *");
 
 // Modify the SQL query based on your database structure
-$sql = "SELECT
-            r.ReservationID,
-            c.CustomerID,
-            c.FirstName AS CustomerFirstName,
-            c.LastName AS CustomerLastName,
-            c.Email AS CustomerEmail,
-            c.PhoneNumber AS CustomerPhoneNumber,
-            ca.plateID,
-            ca.carname,
-            ca.brand,
-            ca.Year AS carYear,
-            ca.imageUrl AS carImageUrl,
-            ca.rentvalue AS carRentValue,
-            r.ReservationDate,
-            r.PickupDate,
-            r.ReturnDate
-        FROM
-            Reservations r
-            INNER JOIN Customers c ON r.CustomerID = c.CustomerID
-            INNER JOIN Cars ca ON r.plateID = ca.plateID
-        WHERE
-            r.PickupDate >= ? AND r.ReturnDate <= ?";
+$sql="SELECT DATE(PaymentDate) AS PaymentDay, SUM(Amount) AS TotalDailyPayment FROM Payments WHERE PaymentDate BETWEEN ? AND ? GROUP BY(PaymentDate)";
+
+
+
+
 
 try {
     $startDate = $_POST['start_date'];

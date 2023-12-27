@@ -15,35 +15,29 @@ if ($conn->connect_error) {
 header("Access-Control-Allow-Origin: *");
 
 // Modify the SQL query based on your database structure
-$sql = "SELECT
-            r.ReservationID,
-            c.CustomerID,
-            c.FirstName AS CustomerFirstName,
-            c.LastName AS CustomerLastName,
-            c.Email AS CustomerEmail,
-            c.PhoneNumber AS CustomerPhoneNumber,
-            ca.plateID,
-            ca.carname,
-            ca.brand,
-            ca.Year AS carYear,
-            ca.imageUrl AS carImageUrl,
-            ca.rentvalue AS carRentValue,
-            r.ReservationDate,
-            r.PickupDate,
-            r.ReturnDate
+
+$sql="SELECT
+            c.plateID,
+            c.carname,
+            c.brand,
+            c.Year AS carYear,
+            c.imageUrl AS carImageUrl,
+            c.rentvalue AS carRentValue,
+        CASE WHEN 
+            r.PickupDate <= ? AND r.ReturnDate >= ? THEN 'rented'
+        ELSE c.carStatus
+        END AS CarStatusOnSpecificDay
         FROM
-            Reservations r
-            INNER JOIN Customers c ON r.CustomerID = c.CustomerID
-            INNER JOIN Cars ca ON r.plateID = ca.plateID
-        WHERE
-            r.PickupDate >= ? AND r.ReturnDate <= ?";
+            Cars c
+        LEFT JOIN Reservations r 
+        ON c.plateID = r.plateID AND ? BETWEEN r.PickupDate AND r.ReturnDate";
+
 
 try {
     $startDate = $_POST['start_date'];
-    $endDate = $_POST['end_date'];
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $startDate, $endDate);
+    $stmt->bind_param("sss", $startDate, $startDate, $startDate);
     $stmt->execute();
 
     $result = $stmt->get_result();
