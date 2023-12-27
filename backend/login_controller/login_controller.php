@@ -1,12 +1,18 @@
 <?php
 session_start();
-if (isset($_SESSION["SESSION_EMAIL"])) {
-header("Location: ../../frontend/user_home/user_home_html.php");// to test this case , make it if (true)
-}else if (isset($_SESSION["SESSION_ADMIN"])) {
-// header("Location: adminpage.php"); // zeyad 
+if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
+    header( 'Location: ../../frontend/user_home/user_home_html.php' );
+    // to test this case, make it if ( true )
+} else if ( isset( $_SESSION[ 'SESSION_ADMIN' ] ) ) {
+    header( 'Location: ../../frontend/admin_dashboard/admin_dashboard.html' );
+    // zeyad
 }
 
-require('C:/xampp/htdocs/final_db_admin/backend/my_db_cred.php');
+// sheel comment a  jordi ama tegrab
+// require( 'B:/xampp/htdocs/final_db_admin/' );
+
+require( __DIR__ . '/../my_db_cred.php' );
+
 $conn = MyConnection::getConnection();
 
 function authenticateUser( $email, $password ) {
@@ -31,7 +37,7 @@ function authenticateUser( $email, $password ) {
 
         // Verify password
         if ( $password === $hashedPasswordFromDB ) {
-            
+
             return array( 'is_admin' => false, 'user_data' => $row );
         } else {
             // echo 'Verification failed';
@@ -71,17 +77,14 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
 
     if ( $authResult ) {
 
-        $_SESSION[ 'SESSION_EMAIL' ] = $email;
-
-  $_SESSION[ 'SESSION_EMAIL' ];
-
-
         if ( $authResult[ 'is_admin' ] ) {
+
+            $_SESSION[ 'SESSION_ADMIN' ] = $email;
+
             echo json_encode( array( 'status' => 'success', 'isAdmin' => true, 'userData' => $authResult[ 'user_data' ] ) );
 
-
-
         } else {
+            $_SESSION[ 'SESSION_EMAIL' ] = $email;
             echo json_encode( array( 'status' => 'success', 'isAdmin' => false, 'userData' => $authResult[ 'user_data' ] ) );
         }
 

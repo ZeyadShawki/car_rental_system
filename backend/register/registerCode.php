@@ -1,10 +1,12 @@
 <?php
 session_start();
-if (isset($_SESSION["SESSION_EMAIL"])) {
-    header("Location: ../../frontend/user_home/user_home_html.php");// to test this case , make it if (true)
-  }else if (isset($_SESSION["SESSION_ADMIN"])) {
-    // header("Location: adminpage.php"); // zeyad 
-  }
+if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
+    header( 'Location: ../../frontend/user_home/user_home_html.php' );
+    // to test this case, make it if ( true )
+} else if ( isset( $_SESSION[ 'SESSION_ADMIN' ] ) ) {
+    header( 'Location: ../../frontend/admin_dashboard/admin_dashboard.html' );
+    // zeyad
+}
 
 
 if ( isset( $_POST[ 'register' ] ) ) {

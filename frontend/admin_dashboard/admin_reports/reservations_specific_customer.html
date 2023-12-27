@@ -15,6 +15,8 @@
     <script src="../../../frontend/nav_jss/nav.js"></script>
 
 
+<link rel='stylesheet' href='../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'>
+<link rel="stylesheet" href="../../../frontend/nav_jss/navbar-pure-css/dist/style.css">
 
     <script src="./js/reservations_specific_customer.js"></script>
 
@@ -22,54 +24,39 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-    
-    
-    
-    
-    
-            <a class="navbar-brand" href="../admin_dashboard/admin_dashboard.html">Admin Dashboard</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../../admin_dashboard/admin_dashboard.html">Home <span
-                                class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../admin_car_front_end/add_new_car.html">Add Car</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../admin_office_front_end/add_new_office.html">Add Office</a>
-                    </li>
-    
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../admin_dashboard/admin_reports/car_reservation_report.html">Reservation customer information</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            href="../admin_dashboard/admin_reports/car_reservation_report2.html">Reservation car information</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            href="../admin_dashboard/admin_reports/cars_status.html">cars status</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            href="../admin_dashboard/admin_reports/reservations_specific_customer.html">reservations_specific_customer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            href="../admin_dashboard/admin_reports/daily_payments.html">daily payments</a>
-                    </li>
-                </ul>
-            </div>
+ 
+
+    <div id="nav-bar">
+        <input id="nav-toggle" type="checkbox" />
+        <div id="nav-header"><a id="nav-title" target="_blank"><i></i>Admin System</a>
+            <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+            <hr />
         </div>
-    </nav>
+        <div id="nav-content">
+            <div class="nav-button"><i class="fas fa-home"></i><span><a
+                        href="../../admin_dashboard/admin_dashboard.html">Home</a></span></div>
+            <div class="nav-button"><i class="fas fa-car"></i><span><a href="../../admin_car_front_end/add_new_car.html">Add
+                        Car</a></span></div>
+            <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a
+                        href="../../admin_office_front_end/add_new_office.html">Add Office</a></span></div>
+            <hr />
+    
+    
+            <div class="nav-button"><i class="fas fa-bookmark"></i><span><a
+                        href="../../admin_dashboard/admin_reports/car_reservation_report2.html">Reservation car
+                        information</a></span></div>
+    
+    
+            <div class="nav-button"><i class="fas fa-chart-line"></i><span><a
+                        href="../../admin_dashboard/admin_reports/reservations_specific_customer.html">reservations specific
+                        customer</a></span></div>
+            <div class="nav-button"><i class="fas fa-money-bill"></i><span><a
+                        href="../../admin_dashboard/admin_reports/daily_payments.html">daily payments</a></span></div>
+    
+            <div id="nav-content-highlight"></div>
+        </div>
+    </div>
+
 
     <div class="container mt-4">
 
