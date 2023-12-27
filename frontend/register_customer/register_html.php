@@ -3,12 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Register</title>
+    <!--css code-->
     <link rel="stylesheet" href="../css/style.css">
+    <!--php file to check if is set session email-->
+    <?php
+            $filename = '../../backend/register/registerCode.php';
+            if (file_exists($filename)) {
+                include $filename;
+            } else {
+                echo "Error: File $filename not found.";
+            }
+    ?>
   </head>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> 
-     <script type="text/javascript" src="./js/registerValidation.js"></script>
+    <script type="text/javascript" src="./js/registerValidation.js"></script>
 
   <body>
     <!--header section-->
@@ -17,7 +27,7 @@
               <div class="logo">LOGO IMAGE</div>
     
                 <div class="header-btn">
-                    <a href="logout.php" class="sign-in">return to home page</a>
+                    <a href="../guest/index.php" class="sign-in">return to home page</a>
                 </div>
             </div>
         </div>
@@ -82,9 +92,8 @@
 
         <hr>
         <button name="register" class="btn btn-primary w-100 p-3 mb-5" type="submit">Sign Up</button>
-
       </form>
-      <p>Have an account? <a href="login.php">Sign In</a>.</p>
+      <p>Have an account? <a href="../login_customer/login_html.php">Sign In</a>.</p>
     </div>
   </body>
 </html>

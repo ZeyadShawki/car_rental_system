@@ -8,6 +8,14 @@
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/login.js"></script>
+    <?php
+            $filename = '../../backend/login_controller/login_controller.php';
+            if (file_exists($filename)) {
+                include $filename;
+            } else {
+                echo "Error: File $filename not found.";
+            }
+    ?>
 </head>
 <body>
     <div class="container">

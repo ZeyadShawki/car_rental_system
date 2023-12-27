@@ -1,9 +1,11 @@
 <?php
 session_start();
+if (isset($_SESSION["SESSION_EMAIL"])) {
+    header("Location: ../../frontend/user_home/user_home_html.php");// to test this case , make it if (true)
+  }else if (isset($_SESSION["SESSION_ADMIN"])) {
+    // header("Location: adminpage.php"); // zeyad 
+  }
 
-// if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
-//     header( 'Location: http://localhost/final_db_admin/frontend/user_home/user_home_html.php' );
-// }
 
 if ( isset( $_POST[ 'register' ] ) ) {
     require( '../my_db_cred.php' );
@@ -36,8 +38,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
             $_SESSION[ 'SESSION_EMAIL' ] = $Email;
             echo 'success';
 
-            
-
+        
         } else {
             echo 'sqlfailure';
         }

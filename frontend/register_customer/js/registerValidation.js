@@ -68,14 +68,14 @@ function validate() {
     }
   }
 
-  // Add this event listener to handle password toggle
-  $(document).on("click", ".toggle-password", function () {
-    const targetId = $(this).data("target");
-    const passwordInput = document.getElementById(targetId);
-    const type = passwordInput.type === "password" ? "text" : "password";
-    passwordInput.type = type;
-    $(this).text(type === "password" ? "Show" : "Hide");
-  });
+  // // Add this event listener to handle password toggle  JORDI : T2rebn dy mlhash lzma
+  // $(document).on("click", ".toggle-password", function () {
+  //   const targetId = $(this).data("target");
+  //   const passwordInput = document.getElementById(targetId);
+  //   const type = passwordInput.type === "password" ? "text" : "password";
+  //   passwordInput.type = type;
+  //   $(this).text(type === "password" ? "Show" : "Hide");
+  // });
 
   // Password and confirm password validation
   if (pass != confirmpassword) {

@@ -1,7 +1,12 @@
 <?php
 session_start();
+if (isset($_SESSION["SESSION_EMAIL"])) {
+header("Location: ../../frontend/user_home/user_home_html.php");// to test this case , make it if (true)
+}else if (isset($_SESSION["SESSION_ADMIN"])) {
+// header("Location: adminpage.php"); // zeyad 
+}
 
-require( '../my_db_cred.php' );
+require('C:/xampp/htdocs/final_db_admin/backend/my_db_cred.php');
 $conn = MyConnection::getConnection();
 
 function authenticateUser( $email, $password ) {
@@ -26,6 +31,7 @@ function authenticateUser( $email, $password ) {
 
         // Verify password
         if ( $password === $hashedPasswordFromDB ) {
+            
             return array( 'is_admin' => false, 'user_data' => $row );
         } else {
             // echo 'Verification failed';
