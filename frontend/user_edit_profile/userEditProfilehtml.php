@@ -56,9 +56,14 @@
         </div>
         <div id="nav-content">
             <div class="nav-button"><i class="fas fa-home"></i><span><a  href="../admin_dashboard/admin_dashboard.html">Home</a></span></div>
-            <div class="nav-button"><i class="fas fa-car"></i><span><a href="../admin_car_front_end/add_new_car.html">Edit profile</a></span></div>
+            <div class="nav-button"><i class="fas fa-user"></i><span><a href="../admin_car_front_end/add_new_car.html">Edit profile</a></span></div>
             <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php"> log out</a></span></div>
             <hr />
+
+                        <div class="nav-button"><i class="fas fa-key"></i><span><a href="../../frontend/change_customer_password/change_customer_password.html">Change Password</a></span></div>
+                        <div class="nav-button"><i class="fas fa-car"></i><span><a href="../../frontend/show_all_customer_reservation/show_all_customer_reservation.php">My reservation</a></span></div>
+
+
  
             <div id="nav-content-highlight"></div>        </div>
         <input id="nav-footer-toggle" type="checkbox" />
@@ -77,10 +82,16 @@
 
     <!-- OSSMA PUT YOU DATA  INSIDE container col-->
     <div class="content-of-page">
-        <div class="container col-sm mt-5" >
+      
+    
+    <div class="container col-sm mt-5" >
             
 
-    
+<!-- Display the current image -->
+<img id="avatarImage" alt="Avatar" class="avatar" onclick="openFileInput()">
+
+<!-- Hidden file input for selecting a new image -->
+<input type="file" id="fileInput" style="display: none" accept="image/*" onchange="displaySelectedImage()">
 
             <div class="text-start">
             <label >First name</label>
@@ -102,30 +113,23 @@
 
 
         
+
+
+        <div class="text-start">
+            <label >Email</label>
+            <label id="email" type="date" class="form-control"  ></label>
+        </div>
+
+        
        <div class="text-start">
             <label >Phone number</label>
             <input id="phoneNumber"  class="form-control" ></input>
         </div>
-
-            <!-- Display the phone number with the edit button -->
-            <div id="phoneNumberDisplayDiv">
-                Phone Number
-                <span id="phoneNumberDisplay">111-222-3333</span>
-                <button onclick="editPhoneNumber()" id="editButton">Edit</button>
-            </div>
+    <hr>
+            <button type="submit" onclick="editCustomerProfile()" class="btn btn-primary w-100 p-3 mb-5">Edit Profile</button>
 
 
-            <!-- Input field for editing the phone number (hidden initially) -->
-            <!-- Input field for editing the phone number -->
-            <div id="phoneNumberEdit" style="display:none;">
-                New Phone Number: 
-                <input type="text" id="newPhoneNumber" value="111-222-3333">
-                <span id="phoneNumberError" style="color:red; display:none;">Invalid phone number format!</span> <!-- Error span -->
-                <form action="" method="post" id="changePhoneNumber" required>
-                    <button onclick="savePhoneNumber()">Save</button>
-                </form>
-                <button onclick="cancelEdit()">Cancel</button>
-            </div>
+
 
 
 

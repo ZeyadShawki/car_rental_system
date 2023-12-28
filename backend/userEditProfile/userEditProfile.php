@@ -45,4 +45,43 @@ echo json_encode($customerData);
 
 
 
+
+if (isset($_POST['edit_customer_profile'])) {
+    $conn = MyConnection::getConnection();
+
+    // Check connection
+    if ($conn->connect_error) {
+        die('Connection failed: ' . $conn->connect_error);
+    }
+
+    // Retrieve form data
+    $email = $_SESSION['SESSION_EMAIL'];
+    $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
+    $phoneNumber = mysqli_real_escape_string($conn, $_POST['phoneNumber']);
+    $bdate = mysqli_real_escape_string($conn, $_POST['bdate']);
+
+    
+    // Validate required fields
+    if (empty($firstName) || empty($lastName) || empty($phoneNumber) || empty($bdate)) {
+        echo json_encode(['success' => false, 'message' => 'All fields are required']);
+        exit();
+    }
+
+    // Update customer profile
+    $result = mysqli_query($conn, "UPDATE Customers
+                                    SET FirstName = '$firstName',
+                                        LastName = '$lastName',
+                                        PhoneNumber = '$phoneNumber',
+                                        bdate = '$bdate'
+                                    WHERE Email = '$email'");
+
+    if ($result) {
+        echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error updating profile']);
+    }
+}
+
+
 ?>

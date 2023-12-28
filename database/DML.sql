@@ -80,3 +80,7 @@ INSERT INTO Reservations (plateID, CustomerID, PaymentID, ReservationDate, Picku
 VALUES
     (1, 1, 1, '2023-12-02', '2023-12-05', '2023-12-10'),
     (3, 3, 3, '2023-12-01', '2023-12-04', '2023-12-09');
+
+
+ALTER TABLE Customers
+ADD ImageLink VARCHAR(255); 
