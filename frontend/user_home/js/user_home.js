@@ -33,6 +33,18 @@ console.log(response);
       // Remove all existing options
       selectCarElement.innerHTML = "";
 
+
+
+       // Create a new option element
+       var option = document.createElement("option");
+       console.log("jordiiii");
+       option.value = 'Any';
+       option.text = 'Any';
+
+       // Append the option to the select element
+       selectCarElement.appendChild(option);
+
+
       // Loop through the car names array and add options to the select element
       for (var i = 0; i < carNamesArray.length; i++) {
         var carName = carNamesArray[i];
