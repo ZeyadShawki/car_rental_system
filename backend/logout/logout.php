@@ -2,5 +2,5 @@
     session_start();
     session_unset();
     session_destroy();
-    // header("Location: .php"); //page 3alaa
+    header("Location: ../../frontend/guest/index.php"); 
 ?>

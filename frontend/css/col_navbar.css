@@ -2,7 +2,7 @@
 #nav-bar {
     position: sticky; /* This will make it sticky */
     top: 0; /* Stick it to the top */
-    right: 0; /* Stick it to the right */
+    right: auto; /* Stick it to the right */
     width: fit-content; /* Set width to 100% */
     height: 100vh;
     z-index: 1000; /* To ensure it stays above other elements */
@@ -11,13 +11,11 @@
 /* Add this new CSS */
 .flex-container {
     display: flex;
+    text-align: center;
 }
 .content-of-page {
 
     margin-left: 5%;
     width: calc(100% - 25%); /* Adjusted width */
+    overflow-x: hidden;
 }
-
-
-
-

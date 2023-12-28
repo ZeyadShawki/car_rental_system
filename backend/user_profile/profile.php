@@ -74,7 +74,7 @@ function get_items_to_select(){
     include 'connectdb.php'; // Using database connection file here
         // require('../my_db_cred.php');
     // $conn = MyConnection::getConnection();
-    $email = $_SESSION[ 'SESSION_EMAIL' ] ;
+    // $email = $_SESSION[ 'SESSION_EMAIL' ] ;
     $result =mysqli_query($conn, "SELECT r.plateID , r.PickupDate , c.brand
                                 FROM reservations AS r 
                                 JOIN cars AS c ON c.plateID = r.plateID 
@@ -99,16 +99,16 @@ function get_items_to_select(){
     
     // html code 
     // hbtdy a3ml l options
-    // Select for Plate IDs
-    echo '<select name="plateID" id="plateIDSelect">';
-    echo '<option value="nth">Select a Plate ID</option>'; //<!--nth dy l value el httb3t lel php-->
+    //Select for plates ID
+    echo '<select name="plateID" id="plateIDSelect" style="display: inline-block; width: 200px;">';
+    echo '<option value="nth">Select a Plate ID</option>';
     foreach ($plateIDs as $plateID) {
         echo '<option value="' . $plateID . '">Plate ID ' . $plateID . '</option>';
     }
     echo '</select>';
 
     // Select for Pickup Dates
-    echo '<select name="pickupDate" id="pickupDateSelect">';
+    echo '<select name="pickupDate" id="pickupDateSelect" style="display: inline-block; width: 200px;">';
     echo '<option value="nth">Select a Pickup Date</option>';
     foreach ($pickupDates as $pickupDate) {
         echo '<option value="' . $pickupDate . '">' . $pickupDate . '</option>';
@@ -116,35 +116,12 @@ function get_items_to_select(){
     echo '</select>';
 
     // Select for Brands
-    echo '<select class="form-control" name="brand" id="brandSelect">';
-    echo '<option  value="nth">Select a Brand</option>';
+    echo '<select class="form-control" name="brand" id="brandSelect" style="display: inline-block; width: 200px;">';
+    echo '<option value="nth">Select a Brand</option>';
     foreach ($brands as $brand) {
         echo '<option value="' . $brand . '">' . $brand . '</option>';
     }
     echo '</select>';
-
-    // echo '<select name="plateID">';
-    // echo '<option value="nth">Select a Plate ID</option>'; //<!--nth dy l value el httb3t lel php-->
-    // foreach ($plateIDs as $plateID) {
-    //     echo '<option value="' . $plateID . '">Plate ID ' . $plateID . '</option>';
-    // }
-    // echo '</select>';
-
-    // // Select for Pickup Dates
-    // echo '<select name="pickupDate">';
-    // echo '<option value="nth">Select a Pickup Date</option>'; //<!--nth dy l value el httb3t lel php-->
-    // foreach ($pickupDates as $pickupDate) {
-    //     echo '<option value="' . $pickupDate . '">' . $pickupDate . '</option>';
-    // }
-    // echo '</select>';
-
-    // // Select for Brands
-    // echo '<select name="brand">';
-    // echo '<option value="nth">Select a Brand</option>'; //<!--nth dy l value el httb3t lel php-->
-    // foreach ($brands as $brand) {
-    //     echo '<option value="' . $brand . '">' . $brand . '</option>';
-    // }
-    // echo '</select>';
 
     // Free the result set
     mysqli_free_result($result);

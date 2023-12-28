@@ -15,9 +15,15 @@
     <script src="./js/get_all_car_logic.js"></script>
     <link rel='stylesheet' href='../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'>
     <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  
     <!-- php file-->
            <?php
-            $filename = '../../backend/user_profile/profile.php';
+            $filename = '../../backend/userEditProfile/userEditProfile.php';
             if (file_exists($filename)) {
                 include $filename;
             } else {
@@ -26,14 +32,14 @@
     ?>
 
     <!-- css file-->
-    <link rel="stylesheet" href="../../frontend/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/col_navbar.css">
     <link rel="stylesheet" href="../css/user_profile.css">
 
 
     <!-- js file-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script type="text/javascript" src="./js/profile.js"></script>
+    <script type="text/javascript" src="./js/userEditProfile.js"></script>
     
 
     <title>Profile</title>
@@ -51,7 +57,7 @@
         </div>
         <div id="nav-content">
             <div class="nav-button"><i class="fas fa-home"></i><span><a  href="../admin_dashboard/admin_dashboard.html">Home</a></span></div>
-            <div class="nav-button"><i class="fas fa-car"></i><span><a href="../user_edit_profile/userEditProfilehtml.php">Edit profile</a></span></div>
+            <div class="nav-button"><i class="fas fa-car"></i><span><a href="../admin_car_front_end/add_new_car.html">Edit profile</a></span></div>
             <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php"> log out</a></span></div>
             <hr />
  
@@ -72,23 +78,58 @@
 
     <!-- OSSMA PUT YOU DATA  INSIDE container col-->
     <div class="content-of-page">
-        <div class="container col-sm mt-5">
-            <!--user section-->
-
-                <?php user_info(); ?>
-
-            <!--search section-->
-            <div class="search">
-                 <?php get_items_to_select() ?>
-            </div>
+        <div class="container col-sm mt-5" >
             
-            <form action="" method="post" id="search-form" >
-                <button type="submit">Submit</button>
-            </form>
+            <!-- Displaying the user info -->
+            <p>First Name: Alice</p>
+            <p>Last Name: Johnson</p>
+            <p>Birth Date: 1995-06-20</p>
 
-            <div id="reservationData">
 
+            <!-- Display the phone number with the edit button -->
+            <div id="phoneNumberDisplayDiv">
+                Phone Number
+                <span id="phoneNumberDisplay">111-222-3333</span>
+                <button onclick="editPhoneNumber()" id="editButton">Edit</button>
             </div>
+
+
+            <!-- Input field for editing the phone number (hidden initially) -->
+            <!-- Input field for editing the phone number -->
+            <div id="phoneNumberEdit" style="display:none;">
+                New Phone Number: 
+                <input type="text" id="newPhoneNumber" value="111-222-3333">
+                <span id="phoneNumberError" style="color:red; display:none;">Invalid phone number format!</span> <!-- Error span -->
+                <form action="" method="post" id="changePhoneNumber" required>
+                    <button onclick="savePhoneNumber()">Save</button>
+                </form>
+                <button onclick="cancelEdit()">Cancel</button>
+            </div>
+
+
+
+            <!-- Change Password section -->
+            <div id="changePasswordSection">
+                <button id="buttonOfPassword" onclick="showChangePasswordFields()">Change Password</button>
+
+                <!-- Fields for changing password (initially hidden) -->
+                <div id="passwordFields" style="display:none;">
+                    old password :
+                    <input type="password" id="oldPassword" placeholder="Old Password"><br><br>
+                    new password :
+                    <input type="password" id="newPassword" placeholder="New Password"><br><br>
+                    confirm new password :
+                    <input type="password" id="confirmNewPassword" placeholder="Confirm New Password"><br><br>
+                    <button onclick="saveNewPassword()">Save Password</button>
+                    <button onclick="cancelPasswordChange()">Cancel</button>
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
     </div>
 </div>
