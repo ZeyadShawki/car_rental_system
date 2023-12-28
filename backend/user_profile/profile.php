@@ -157,10 +157,10 @@ function user_info (){
     include 'connectdb.php'; // Using database connection file here
     // require('../my_db_cred.php');
     // $conn = MyConnection::getConnection();
-    $email='john.doe@example.com';
+    $email='alice.j@example.com';
     $result =mysqli_query($conn, "SELECT FirstName,LastName,PhoneNumber,bdate 
                             FROM `customers` 
-                            WHERE Email='john.doe@example.com'");
+                            WHERE Email='alice.j@example.com'");
 
     // Check for query execution errors
     if (!$result) {
