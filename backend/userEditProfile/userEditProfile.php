@@ -12,7 +12,6 @@ if ( isset( $_POST[ 'changePhoneNumber' ] ) ) {
     if ( $conn->connect_error ) {
         die( 'Connection failed: ' . $conn->connect_error );
     }
-    echo 'hiiii';
 
     $email=$_SESSION[ 'SESSION_EMAIL' ];
     $new_phone_number = $_POST[ 'newPhoneNumber' ];
@@ -23,8 +22,9 @@ if ( isset( $_POST[ 'changePhoneNumber' ] ) ) {
     
 }
 
-$conn = MyConnection::getConnection();
+if(isset( $_GET[ 'get_user_data' ] ) ){
 
+$conn = MyConnection::getConnection();
 // Check connection
 if ($conn->connect_error) {
     die('Connection failed: ' . $conn->connect_error);
@@ -41,5 +41,8 @@ $result = mysqli_query($conn, $query);
 $customerData = mysqli_fetch_assoc($result);
 
 echo json_encode($customerData);
+}
+
+
 
 ?>

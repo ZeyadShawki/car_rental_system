@@ -3,10 +3,16 @@ function getAllCustomerData() {
   $.ajax({
     url: "http://localhost/final_db_admin/backend/userEditProfile/userEditProfile.php",
     method: "GET",
+    data: {
+      get_user_data: true
+    },
     dataType: "json",
+
     success: function (data) {
       // Update input values based on user interactions
+      console.log(data);
       populateFields(data);
+      
     },
     error: function (error) {
       console.error("Error fetching customer data:", error);
