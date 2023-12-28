@@ -60,7 +60,7 @@
             <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php"> log out</a></span></div>
             <hr />
 
-                        <div class="nav-button"><i class="fas fa-key"></i><span><a href="../../frontend/change_customer_password/change_customer_password.html">Change Password</a></span></div>
+                        <div class="nav-button"><i class="fas fa-key"></i><span><a href="../../frontend/change_customer_password/change_customer_password_html.php">Change Password</a></span></div>
                         <div class="nav-button"><i class="fas fa-car"></i><span><a href="../../frontend/show_all_customer_reservation/show_all_customer_reservation.php">My reservation</a></span></div>
 
 

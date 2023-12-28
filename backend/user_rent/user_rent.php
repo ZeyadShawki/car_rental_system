@@ -1,6 +1,6 @@
 <?php
 
-set_include_path( 'B:\xamp\htdocs\final_db_admin\backend' );
+set_include_path( 'C:\xamp\htdocs\final_db_admin\backend' );
 require( 'my_db_cred.php' );
 
 session_start();

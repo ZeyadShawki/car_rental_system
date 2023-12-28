@@ -12,12 +12,10 @@ if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
 if ( isset( $_POST[ 'register' ] ) ) {
     require( '../my_db_cred.php' );
     $conn = MyConnection::getConnection();
-
     // Check connection
     if ( $conn->connect_error ) {
         die( 'Connection failed: ' . $conn->connect_error );
     }
-
     // Retrieve POST data
     $FirstName = $_POST[ 'FirstName' ];
     $LastName = $_POST[ 'LastName' ];

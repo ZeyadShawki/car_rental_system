@@ -9,7 +9,7 @@ if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
 }
 
 // sheel comment a  jordi ama tegrab
-// require( 'B:/xampp/htdocs/final_db_admin/' );
+// require( 'c:/xampp/htdocs/final_db_admin/' );
 
 require( __DIR__ . '/../my_db_cred.php' );
 
