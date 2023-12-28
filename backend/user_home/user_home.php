@@ -57,7 +57,7 @@ if ( isset( $_POST[ 'update_car_name' ] ) ) {
 function retrive_all_data_required() {
     include 'connectdb.php';
     // Using database connection file here
-    $email = $_SESSION[ 'SESSION_EMAIL' ];
+
     // join l2n 3ndi ofiices m3ndhash cars
     $result = mysqli_query( $conn, "SELECT DISTINCT o.country
                                     FROM offices AS o 
@@ -103,22 +103,23 @@ function retrive_all_data_required() {
     $uniqueBrands = array();
     $uniqueCarNames = array();
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $brand = $row['brand'];
-    $carname = $row['carname'];
+    while ( $row = mysqli_fetch_assoc( $result ) ) {
+        $brand = $row[ 'brand' ];
+        $carname = $row[ 'carname' ];
 
-    // Check if brand is not already added
-    if (!isset($arr[$brand])) {
-        $arr[$brand] = array(); // Initialize the array for the brand
-        $optionsBrand .= "<option value='{$brand}'>{$brand}</option>";
-    }
+        // Check if brand is not already added
+        if ( !isset( $arr[ $brand ] ) ) {
+            $arr[ $brand ] = array();
+            // Initialize the array for the brand
+            $optionsBrand .= "<option value='{$brand}'>{$brand}</option>";
+        }
 
-    // Check if car name is not already added to the brand
-    if (!in_array($carname, $arr[$brand])) {
-        $arr[$brand][] = $carname;
-        $optionsCarName .= "<option value='{$carname}'>{$carname}</option>";
+        // Check if car name is not already added to the brand
+        if ( !in_array( $carname, $arr[ $brand ] ) ) {
+            $arr[ $brand ][] = $carname;
+            $optionsCarName .= "<option value='{$carname}'>{$carname}</option>";
+        }
     }
-}
 
     $selectedBrand = 'Any';
     $selectedCarName = 'Any';
@@ -153,7 +154,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 if ( isset( $_POST[ 'search' ] ) ) {
     include 'connectdb.php';
-    $email = $_SESSION[ 'SESSION_EMAIL' ];
 
     $nbrand = $_POST[ 'brand_name' ];
     $ncar = $_POST[ 'car_name' ];
@@ -169,62 +169,84 @@ if ( isset( $_POST[ 'search' ] ) ) {
                   WHERE c.carStatus = 'active' AND ? < c.Year AND ? > c.Year";
 
     // // Check if brand is 'Any'
-    // if ( $nbrand == 'Any' ) {
+    if ( $nbrand == 'Any' ) {
+        $query = "$baseQuery AND o.country = ?";
+        $stmt = mysqli_prepare( $conn, $query );
+        mysqli_stmt_bind_param( $stmt, 'iss', $year_after, $year_before, $country );
+
+        if ( !$stmt ) {
+            die( 'Query preparation failed: ' . mysqli_error( $conn ) );
+        }
+
+        // Execute the prepared statement
+        mysqli_stmt_execute( $stmt );
+
+        // Get the result set
+        $result = mysqli_stmt_get_result( $stmt );
+    } else  if ( $ncar == 'Any' ) {
+        $query = "$baseQuery AND c.brand=?  AND o.country = ?";
+        $stmt = mysqli_prepare( $conn, $query );
+        mysqli_stmt_bind_param( $stmt, 'isss', $year_after, $year_before,$nbrand ,$country );
+
+        if ( !$stmt ) {
+            die( 'Query preparation failed: ' . mysqli_error( $conn ) );
+        }
+
+        // Execute the prepared statement
+        mysqli_stmt_execute( $stmt );
+
+        // Get the result set
+        $result = mysqli_stmt_get_result( $stmt );
+
+    } else {
+        // Brand is not 'Any'
+        $query = "$baseQuery AND c.carname = ? AND c.brand = ?";
+        $stmt = mysqli_prepare( $conn, $query );
+        mysqli_stmt_bind_param( $stmt, 'isss', $year_after, $year_before, $ncar, $nbrand );
+
+        if ( !$stmt ) {
+            die( 'Query preparation failed: ' . mysqli_error( $conn ) );
+        }
+
+        // Execute the prepared statement
+        mysqli_stmt_execute( $stmt );
+
+        // Get the result set
+        $result = mysqli_stmt_get_result( $stmt );
+    }
+    // Check conditions for brand and car name
+    //   ...
+
+    // if ( $nbrand == 'Any' && $ncar == 'Any' ) {
     //     $query = "$baseQuery AND o.country = ?";
     //     $stmt = mysqli_prepare( $conn, $query );
-    //     mysqli_stmt_bind_param( $stmt, 'iss', $year_after, $year_before, $country );
+    //     mysqli_stmt_bind_param( $stmt, 's', $country );
+    // }
 
-    //     if ( !$stmt ) {
-    //         die( 'Query preparation failed: ' . mysqli_error( $conn ) );
-    //     }
-
-    //     // Execute the prepared statement
-    //     mysqli_stmt_execute( $stmt );
-
-    //     // Get the result set
-    //     $result = mysqli_stmt_get_result( $stmt );
-    // } else {
-    //     // Brand is not 'Any'
-    //     $query = "$baseQuery AND c.carname = ? AND c.brand = ?";
+    // elseif ( $nbrand != 'Any' && $ncar == 'Any' ) {
+    //     $query = "$baseQuery AND c.brand = ? AND o.country = ?";
     //     $stmt = mysqli_prepare( $conn, $query );
-    //     mysqli_stmt_bind_param( $stmt, 'isss', $year_after, $year_before, $ncar, $nbrand );
+    //     mysqli_stmt_bind_param( $stmt, 'ss', $nbrand, $country );
+    // }
 
-    //     if ( !$stmt ) {
-    //         die( 'Query preparation failed: ' . mysqli_error( $conn ) );
-    //     }
+    // elseif ( $nbrand == 'Any' && $ncar != 'Any' ) {
+    //     $query = "$baseQuery AND c.carname = ? AND o.country = ?";
+    //     $stmt = mysqli_prepare( $conn, $query );
+    //     mysqli_stmt_bind_param( $stmt, 'ss', $ncar, $country );
+    // }
 
-    //     // Execute the prepared statement
-    //     mysqli_stmt_execute( $stmt );
+    // elseif ( $nbrand != 'Any' && $ncar != 'Any' ) {
+    //     $query = "$baseQuery AND c.carname = ? AND c.brand = ? AND o.country = ?";
+    //     $stmt = mysqli_prepare( $conn, $query );
+    //     mysqli_stmt_bind_param( $stmt, 'sss', $ncar, $nbrand, $country );
+    // }
 
-    //     // Get the result set
-    //     $result = mysqli_stmt_get_result( $stmt );
-    // } // Check conditions for brand and car name
-    if ($nbrand == 'Any' && $ncar == 'Any') {
-        $query = "$baseQuery AND o.country = ?";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, 's', $country);
-    } 
-    elseif ($nbrand != 'Any' && $ncar == 'Any') {
-        $query = "$baseQuery AND c.brand = ? AND o.country = ?";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, 'ss', $nbrand, $country);
-    } 
-    elseif ($nbrand == 'Any' && $ncar != 'Any') {
-        $query = "$baseQuery AND c.carname = ? AND o.country = ?";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, 'ss', $ncar, $country);
-    } 
-    elseif ($nbrand != 'Any' && $ncar != 'Any') {
-        $query = "$baseQuery AND c.carname = ? AND c.brand = ? AND o.country = ?";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, 'sss', $ncar, $nbrand, $country);
-    } 
-    else {
-        // Handle any other cases or add a default behavior if necessary
-    }
-    
-    
-    
+    // else {
+    //     // Handle any other cases or add a default behavior if necessary
+    // }
+
+    // ...
+
     if ( !$result ) {
         die( 'Query failed: ' . mysqli_error( $conn ) );
     }

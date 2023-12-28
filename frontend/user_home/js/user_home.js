@@ -26,6 +26,7 @@ function updateCarNames(selectedBrand) {
     success: function (response) {
       // Parse the JSON response
       var carNamesArray = JSON.parse(response);
+      console.log('55555555');
 console.log(response);
       // Get the select element
       var selectCarElement = document.getElementById("carNamesSelect");
