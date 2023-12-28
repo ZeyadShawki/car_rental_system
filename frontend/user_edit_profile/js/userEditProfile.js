@@ -1,3 +1,34 @@
+
+function getAllCustomerData() {
+  $.ajax({
+    url: "http://localhost/final_db_admin/backend/userEditProfile/userEditProfile.php",
+    method: "GET",
+    dataType: "json",
+    success: function (data) {
+      // Update input values based on user interactions
+      populateFields(data);
+    },
+    error: function (error) {
+      console.error("Error fetching customer data:", error);
+    },
+  });
+}
+
+// Function to update input values based on user interactions
+function populateFields(customerData) {
+  // Sample: Assume you have input fields with the ids 'firstName', 'lastName', etc.
+  $("#firstName").val(customerData.FirstName);
+  $("#lastName").val(customerData.LastName);
+  $("#phoneNumber").val(customerData.PhoneNumber);
+  $("#bdate").val(customerData.bdate);
+}
+
+// Call the function to fetch all customer data when the page loads
+$(document).ready(function () {
+  getAllCustomerData();
+});
+//////////////////joirdi ////////////////////////
+
 let originalPhoneNumber = ""; // To store the original phone number before editing
 
 function editPhoneNumber() {

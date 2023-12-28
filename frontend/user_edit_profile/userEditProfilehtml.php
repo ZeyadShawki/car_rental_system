@@ -11,8 +11,7 @@
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../frontend/nav_jss/nav.js"></script>
-    <script src="./js/search_logic.js"></script>
-    <script src="./js/get_all_car_logic.js"></script>
+  
     <link rel='stylesheet' href='../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'>
     <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
     <!--Google Font-->
@@ -80,11 +79,33 @@
     <div class="content-of-page">
         <div class="container col-sm mt-5" >
             
-            <!-- Displaying the user info -->
-            <p>First Name: Alice</p>
-            <p>Last Name: Johnson</p>
-            <p>Birth Date: 1995-06-20</p>
 
+    
+
+            <div class="text-start">
+            <label >First name</label>
+            <input id="firstName" class="form-control" ></input>
+        </div>
+
+
+               <div class="text-start">
+            <label >Last name</label>
+            <input id="lastName" class="form-control"></input>
+        </div>
+
+
+    
+               <div class="text-start">
+            <label >Birth Date</label>
+            <input id="bdate" type="date" class="form-control" ></input>
+        </div>
+
+
+        
+       <div class="text-start">
+            <label >Phone number</label>
+            <input id="phoneNumber"  class="form-control" ></input>
+        </div>
 
             <!-- Display the phone number with the edit button -->
             <div id="phoneNumberDisplayDiv">
@@ -136,4 +157,12 @@
 
 </body>
 
+
+<script>
+
+// Function to fetch all customer data using AJAX
+
+
+
+</script>
 </html>
