@@ -3,10 +3,7 @@ session_start();
 if ( !isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
     header( 'Location: ../../frontend/guest/index.php' );  
 } 
-set_include_path( 'C:\xamp\htdocs\final_db_admin\backend' );
-require( 'my_db_cred.php' );
-
-session_start();
+require(__DIR__ . '/../my_db_cred.php');
 $email = $_SESSION[ 'SESSION_EMAIL' ] ;
 
 function get_data( $plate_id ) {

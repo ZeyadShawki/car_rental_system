@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>car rent</title>
-    <!-- css file-->
-    <link rel="stylesheet" href="../../frontend/css/style.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <!--include the php backend file-->
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../..node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!--include the php backend file-->
-
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../frontend/nav_jss/nav.js"></script>
+    <link rel='stylesheet' href='../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'>
+    <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
+    <!-- php file-->
     <?php
     $filename = '../../backend/user_rent/user_rent.php';
     if (file_exists($filename)) {
@@ -23,59 +20,81 @@
         echo "Error: File $filename not found.";
     }
     ?>
-
+    <!-- css file-->
+    <link rel="stylesheet" href="../css/col_navbar.css">
     <!-- js file-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src="./js/user_rent.js"></script>
+    <title>Rent Car</title>
 </head>
 
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="logo">LOGO IMAGE</div>
-
-            <div class="header-btn">
-                <!--el tre2ten sghlen-->
-                <!-- <a href="javascript:history.go(-1)">Go Back</a> -->
-                <a href="javascript:void(0);" onclick="history.back();">Go Back</a>
+    <div class="flex-container">
+        <!-- Your nav-bar code remains unchanged -->
+        <div id="nav-bar">
+            <input id="nav-toggle" type="checkbox" />
+            <div id="nav-header"><a id="nav-title" target="_blank"><i></i>Profile</a>
+                <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+                <hr />
             </div>
-
-            <div class="header-btn">
-                <!-- <a href="logout.php" class="sign-in">Logout</a> -->
+            <div id="nav-content">
+                <!--../user_home/user_home_html.php-->
+                <!--msh hhot el link l fo2 da 3shan lma yrg3 yla2i nfs el choises el kan m5trha-->
+                <div class="nav-button"><i class="fas fa-home"></i><span><a href="javascript:void(0);"
+                            onclick="history.back();">Go back</a></span></div>
+                <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
+                            log out</a></span></div>
+                <hr />
+                <div id="nav-content-highlight"></div>
+            </div>
+            <input id="nav-footer-toggle" type="checkbox" />
+            <div id="nav-footer">
+                <div id="nav-footer-heading">
+                    <div id="nav-footer-avatar"><img
+                            src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547" /></div>
+                    <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public"
+                            target="_blank">uahnbu</a><span id="nav-footer-subtitle">Admin</span></div>
+                    <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+                </div>
+                <div id="nav-footer-content">
+                    <Lorem>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et
+                        dolore magna aliqua.</Lorem>
+                </div>
             </div>
         </div>
-    </div>
+        <!--data of page starts from here -->
+        <div class="content-of-page">
+            <div class="container col-sm mt-5">
+                <p>Rent A Car</p>
+                <p id='validation-messages'>
+                </p>
+                <?php
+                $plateID = isset($_POST['plateID']) ? $_POST['plateID'] : null;
+                if ($plateID !== null) {
+                    // echo "You selected Plate ID: " . $plateID;
+                    get_data($plateID);
+                } else {
+                    echo "No Plate ID provided.";
+                }
+                ?>
 
-    <div class="container">
-        <p>Rent A Car</p>
-        <p id='validation-messages'>
-        </p>
-        <?php
-        $plateID = isset($_POST['plateID']) ? $_POST['plateID'] : null;
-        if ($plateID !== null) {
-            // echo "You selected Plate ID: " . $plateID;
-            get_data($plateID);
-        } else {
-            echo "No Plate ID provided.";
-        }
-        ?>
+                <label for='pickupDate'>Pickup Date:</label>
+                <input type='date' id='pickupDate' name='pickupDate'>
+                <br>
+                <label for='returnDate'>Return Date:</label>
+                <input type='date' id='returnDate' name='returnDate'>
 
-        <label for='pickupDate'>Pickup Date:</label>
-        <input type='date' id='pickupDate' name='pickupDate'>
-        <br>
-        <label for='returnDate'>Return Date:</label>
-        <input type='date' id='returnDate' name='returnDate'>
-
-        <form action="" method="post" id="rent-form">
-            <!-- 3shan ab3t el plate id -->
-            <input type="text" id="plateid" value="<?php echo $plateID; ?>" hidden>
-            <button type="submit">Rent</button>
-
-        </form>
-
-        <div id="reciveddata"> <!--if cannot rent car in this period-->
+                <form action="" method="post" id="rent-form">
+                    <!-- 3shan ab3t el plate id -->
+                    <input type="text" id="plateid" value="<?php echo $plateID; ?>" hidden>
+                    <button type="submit">Rent</button>
+                </form>
+                <div id="reciveddata"> <!--if cannot rent car in this period-->
+                </div>
+            </div>
         </div>
-
-
     </div>
 </body>
+
+</html>
