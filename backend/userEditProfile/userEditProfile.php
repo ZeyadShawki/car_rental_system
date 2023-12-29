@@ -4,7 +4,6 @@ if ( !isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
     header( 'Location: ../../frontend/guest/index.php' );  
 } 
 require( __DIR__ . '/../my_db_cred.php' );
-
 if ( isset( $_POST[ 'changePhoneNumber' ] ) ) {
     $conn = MyConnection::getConnection();
 
@@ -43,9 +42,6 @@ $customerData = mysqli_fetch_assoc($result);
 echo json_encode($customerData);
 }
 
-
-
-
 if (isset($_POST['edit_customer_profile'])) {
     $conn = MyConnection::getConnection();
 
@@ -82,6 +78,4 @@ if (isset($_POST['edit_customer_profile'])) {
         echo json_encode(['success' => false, 'message' => 'Error updating profile']);
     }
 }
-
-
 ?>

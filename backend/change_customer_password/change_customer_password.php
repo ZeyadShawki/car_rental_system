@@ -1,11 +1,8 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-session_start(); // Start the session (if not already started)
-
-if (!isset($_SESSION['SESSION_EMAIL'])) {
-    header('Location: ../../frontend/guest/index.php');
-    // Redirect to the login page if the user is not logged in
-}
+session_start(); 
+if ( !isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
+    header( 'Location: ../../frontend/guest/index.php' );  
+} 
 
 require(__DIR__ . '/../my_db_cred.php');
 

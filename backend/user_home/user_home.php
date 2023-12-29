@@ -1,9 +1,8 @@
 <?php
 session_start();
-// if ( !isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
-//     header( 'Location: ../../frontend/login_customer/login_html.php' );
-//     // to test this case, make it if ( true )
-// }
+if ( !isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
+    header( 'Location: ../../frontend/guest/index.php' );  
+} 
 
 if ( isset( $_POST[ 'update_brand_name' ] ) ) {
     // hsl update f car f 3yzen n update el brand

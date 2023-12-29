@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+if ( !isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
+    header( 'Location: ../../frontend/guest/index.php' );  
+} 
 set_include_path( 'C:\xamp\htdocs\final_db_admin\backend' );
 require( 'my_db_cred.php' );
 

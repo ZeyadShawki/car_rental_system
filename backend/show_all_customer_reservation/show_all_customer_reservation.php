@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if ( !isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
+    header( 'Location: ../../frontend/guest/index.php' );  
+} 
 if(isset($_POST["search"])){
 require( __DIR__ . '/../my_db_cred.php' );
     // require('../my_db_cred.php');
