@@ -48,37 +48,48 @@
 
 <div class="flex-container">
     <!-- Your nav-bar code remains unchanged -->
-    <div id="nav-bar">
-        <input id="nav-toggle" type="checkbox" />
-        <div id="nav-header"><a id="nav-title" target="_blank"><i></i>Profile</a>
-            <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-            <hr />
-        </div>
-        <div id="nav-content">
-            <div class="nav-button"><i class="fas fa-home"></i><span><a  href="../admin_dashboard/admin_dashboard.html">Home</a></span></div>
-            <div class="nav-button"><i class="fas fa-user"></i><span><a href="../admin_car_front_end/add_new_car.html">Edit profile</a></span></div>
-            <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php"> log out</a></span></div>
-            <hr />
-
-                        <div class="nav-button"><i class="fas fa-key"></i><span><a href="../../frontend/change_customer_password/change_customer_password_html.php">Change Password</a></span></div>
-                        <div class="nav-button"><i class="fas fa-car"></i><span><a href="../../frontend/show_all_customer_reservation/show_all_customer_reservation.php">My reservation</a></span></div>
-
-
- 
-            <div id="nav-content-highlight"></div>        </div>
-        <input id="nav-footer-toggle" type="checkbox" />
-        <div id="nav-footer">
-            <div id="nav-footer-heading">
-                <div id="nav-footer-avatar"><img src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547" /></div>
-                <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public"
-                        target="_blank">uahnbu</a><span id="nav-footer-subtitle">Admin</span></div>
-                <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+        <div id="nav-bar">
+            <input id="nav-toggle" type="checkbox" />
+            <div id="nav-header"><a id="nav-title" target="_blank"><i></i>Profile</a>
+                <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+                <hr />
             </div>
-            <div id="nav-footer-content">
-                <Lorem>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua.</Lorem>
-            </div>        </div>
-    </div>
+            <div id="nav-content">
+                <div class="nav-button"><i class="fas fa-home"></i><span><a
+                            href="../user_home/user_home_html.php">Home</a></span></div>
+                <div class="nav-button"><i class="fas fa-user"></i><span><a
+                            href="../user_edit_profile/userEditProfilehtml.php">Edit profile</a></span></div>
+                <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
+                            log out</a></span></div>
+                <hr />
+
+                <div class="nav-button"><i class="fas fa-key"></i><span><a
+                            href="../../frontend/change_customer_password/change_customer_password_html.php">Change
+                            Password</a></span></div>
+                <div class="nav-button"><i class="fas fa-car"></i><span><a
+                            href="../../frontend/show_all_customer_reservation/show_all_customer_reservation.php">My
+                            reservation</a></span></div>
+
+
+
+                <div id="nav-content-highlight"></div>
+            </div>
+            <input id="nav-footer-toggle" type="checkbox" />
+            <div id="nav-footer">
+                <div id="nav-footer-heading">
+                    <div id="nav-footer-avatar"><img
+                            src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547" /></div>
+                    <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public"
+                            target="_blank">uahnbu</a><span id="nav-footer-subtitle">Admin</span></div>
+                    <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+                </div>
+                <div id="nav-footer-content">
+                    <Lorem>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et
+                        dolore magna aliqua.</Lorem>
+                </div>
+            </div>
+        </div>
 
     <!-- OSSMA PUT YOU DATA  INSIDE container col-->
     <div class="content-of-page">

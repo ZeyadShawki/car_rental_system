@@ -21,14 +21,7 @@
 
 
     <!-- php file-->
-    <?php
-            $filename = '../../backend/change_customer_password/change_customer_password.php';
-            if (file_exists($filename)) {
-                include $filename;
-            } else {
-                echo "Error: File $filename not found.";
-            }
-    ?>
+
 
     <!-- css file-->
     <link rel="stylesheet" href="../css/style.css">
@@ -56,15 +49,15 @@
             </div>
             <div id="nav-content">
                 <div class="nav-button"><i class="fas fa-home"></i><span><a
-                            href="../admin_dashboard/admin_dashboard.html">Home</a></span></div>
+                            href="../user_home/user_home_html.php">Home</a></span></div>
                 <div class="nav-button"><i class="fas fa-user"></i><span><a
-                            href="../admin_car_front_end/add_new_car.html">Edit profile</a></span></div>
+                            href="../user_edit_profile/userEditProfilehtml.php">Edit profile</a></span></div>
                 <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
                             log out</a></span></div>
                 <hr />
 
                 <div class="nav-button"><i class="fas fa-key"></i><span><a
-                            href="../../frontend/change_customer_password/change_customer_password.html">Change
+                            href="../../frontend/change_customer_password/change_customer_password_html.php">Change
                             Password</a></span></div>
                 <div class="nav-button"><i class="fas fa-car"></i><span><a
                             href="../../frontend/show_all_customer_reservation/show_all_customer_reservation.php">My
@@ -97,39 +90,35 @@
 
             <div class="container col-sm mt-5">
 
+            <div class="text-start">
 
-                <!-- Display the current image -->
-                <img id="avatarImage" alt="Avatar" class="avatar" onclick="openFileInput()">
-
-                <!-- Hidden file input for selecting a new image -->
-                <input type="file" id="fileInput" style="display: none" accept="image/*"
-                    onchange="displaySelectedImage()">
-
-
-
+          <h1>Change user password</h1>
+</div>
+<br>
                 <!-- Change Password section -->
                 
-                <div id="changePasswordSection">
-                    <!-- Fields for changing password (initially hidden) -->
-                    <div id="passwordFields">
-                        old password 
-                        <input type="password" id="oldPassword" placeholder="Old Password"><br><br>
-                        new password 
-                        <input type="password" id="newPassword" placeholder="New Password"><br><br>
-                        confirm new password 
-                        <input type="password" id="confirmNewPassword" placeholder="Confirm New Password"><br><br>
-                        <button onclick="saveNewPassword()">confirm</button>
-                        
-                    </div>
-                </div>
+             <!-- Your HTML and other scripts remain unchanged -->
 
-       
+<div class="text-start">
+    <label for="oldPassword">Old password</label>
+    <input class="form-control" type="password" id="oldPassword" placeholder="Old Password"><br>
+    <div id="oldPassword-error" class="invalid-feedback"></div> <!-- Error message container for Old password -->
+</div>
 
+<div class="text-start">
+    <label for="newPassword">New password</label>
+    <input class="form-control" type="password" id="newPassword" placeholder="New Password"><br>
+    <div id="newPassword-error" class="invalid-feedback"></div> <!-- Error message container for New password -->
+</div>
 
+<div class="text-start">
+    <label for="confirmNewPassword">Confirm new password</label>
+    <input class="form-control" type="password" id="confirmNewPassword" placeholder="Confirm New Password"><br>
+    <div id="confirmNewPassword-error" class="invalid-feedback"></div> <!-- Error message container for Confirm new password -->
+</div>
 
-            </div>
-        </div>
-    </div>
+<button class="btn btn-primary w-100 p-3 mb-5" onclick="saveNewPassword()">confirm</button>
+
 
 </body>
 
