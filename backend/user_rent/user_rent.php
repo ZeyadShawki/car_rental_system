@@ -22,28 +22,22 @@ function get_data( $plate_id ) {
     // Check if there are any rows in the result set
     if ( mysqli_num_rows( $result ) > 0 ) {
         // Loop through each row and print the data
-        while ( $row = mysqli_fetch_assoc( $result ) ) {
-          echo  '<br>';
-            echo '<label>First Name</label>';
-            echo "<label class='form-control'>"  . $row[ 'FirstName' ] . '</label>' . '<br>';
-
-            echo '<label>Last Name</label>';
-
-            echo "<label class='form-control'> " . $row[ 'LastName' ]. '</label>' . '<br>';
-
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo '<br>';
+            echo '<label>Full Name</label>';
+            echo "<label class='form-control'>" . $row['FirstName'] . ' ' . $row['LastName'] . '</label>' . '<br>';
+        
             echo '<label>Email</label>';
-
-            echo "<label class='form-control'> ".'Email' . $row[ 'Email' ] .'</label>'. '<br>';
-           
-           
-                       echo '<label>Phone Number</label>';
-
-            echo "<label class='form-control'> ". $row[ 'PhoneNumber' ]  .'</label>'. '<br>';
-            echo '------------------------<br>';
+            echo "<label class='form-control'>" . $row['Email'] . '</label>' . '<br>';
+        
+            echo '<label>Phone Number</label>';
+            echo "<label class='form-control'>" . $row['PhoneNumber'] . '</label>' . '<br>';
         }
+        
     } else {
         echo 'No results found.';
     }
+    
     $result = mysqli_query( $conn, "SELECT o.country, c.brand, c.carname, c.plateID, c.rentvalue 
                                   FROM cars AS c 
                                   JOIN offices AS o ON c.OfficeID = o.OfficeID

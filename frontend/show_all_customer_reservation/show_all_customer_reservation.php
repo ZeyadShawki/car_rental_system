@@ -13,21 +13,12 @@
 
     <link rel='stylesheet' href='../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'>
     <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
-    <!-- php file-->
-    <?php
-    $filename = '../../backend/show_all_customer_reservation/show_all_customer_reservation.php';
-    if (file_exists($filename)) {
-        include $filename;
-    } else {
-        echo "Error: File $filename not found.";
-    }
-    ?>
+
     <!-- css file-->
     <link rel="stylesheet" href="../css/col_navbar.css">
     <!-- js file-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src="./js/show_all_customer_reservation.js"></script>
-
     <title>Profile</title>
 </head>
 
@@ -76,26 +67,25 @@
         <!--data of page starts from here -->
         <div class="content-of-page">
             <div class="container col-sm mt-5">
-                <!--user section-->
-
-                <?php user_info(); ?>
-
-                <!--search section-->
-                <div class="search">
-                    <?php get_items_to_select() ?>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <input type="text" id="searchTerm" class="form-control" placeholder="Enter search term">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-primary" onclick="search()">Search</button>
+                    </div>
                 </div>
 
-                <form action="" method="post" id="search-form">
-                    <button type="submit">Submit</button>
-                </form>
 
-                <div id="reservationData">
-
-                </div>
+                <h1 class="pt-5">All Reservation</h1>
+                <div id="results"></div>
+                <table class="table "></table>
+                <div id="results_Resv"></div>
+                <table class="table">
+                </table>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

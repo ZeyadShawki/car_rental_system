@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <div class="flex-container">
+    <dBiv class="flex-container">
         <!-- Your nav-bar code remains unchanged -->
         <div id="nav-bar">
             <input id="nav-toggle" type="checkbox" />
@@ -37,8 +37,7 @@
                             href="../user_home/user_home_html.php">Home</a></span></div>
                 <div class="nav-button"><i class="fas fa-user"></i><span><a
                             href="../user_edit_profile/userEditProfilehtml.php">Edit profile</a></span></div>
-                <div class="nav-button"><i class="fas fa-key"></i><span><a
-                            href="#">Change
+                <div class="nav-button"><i class="fas fa-key"></i><span><a href="#">Change
                             Password</a></span></div>
                 <div class="nav-button"><i class="fas fa-car"></i><span><a
                             href="../../frontend/show_all_customer_reservation/show_all_customer_reservation.php">My

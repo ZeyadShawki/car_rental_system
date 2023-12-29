@@ -1,37 +1,61 @@
-$(document).ready(function(){
-    $("#search-form").submit(function(e){
-        e.preventDefault();
-        // Log a message to the console
-        console.log('This message will be displayed in the browser console.');
+// Constants
+const baseUrl = "http://localhost/final_db_admin/backend/";
 
-        var plateId = document.getElementById('plateIDSelect').value;
-        var brand = document.getElementById('brandSelect').value;
-        var date = document.getElementById('pickupDateSelect').value;
-        var reservationData = document.getElementById('reservationData');
-        reservationData.innerHTML = "";
-        console.log(date,brand,plateId)
+// Function to perform the search
+function search() {
+  // Get the search term from the input field
+  var searchTerm = document.getElementById("searchTerm").value;
 
-        $.ajax({
-          type: "POST", // hb3t
-          url: "http://localhost/final_db_admin/backend/show_all_customer_reservation/show_all_customer_reservation.php",
-          data: {
-            plate_id: plateId, // el variables l hb3tha b POST
-            car_brand: brand,
-            pick_date: date,
-            search: true,
-          },
-          dataType: "text",
-          success: function (response) {
-            console.log(response);
-            reservationData.innerHTML = response;
-            // } else if(response === 'invalidPassword'){
-            //   error.innerText = "Invalid Password";
-            // } else if(response === 'invalidEmail'){
-            //   error.innerText = "Invalid Email";
-            // } else {
-            //   error.innerText = "Error";
-            // }
-          },
-        });
-    });
-});
+  // AJAX request to the PHP script
+  $.ajax({
+    type: "POST",
+    url: `${baseUrl}/show_all_customer_reservation/show_all_customer_reservation.php`,
+    data: { searchTerm: searchTerm },
+    dataType: "json",
+    success: function (data) {
+      if (data && data.length > 0) {
+        displayResults(data);
+      } else {
+        console.log("No results found.");
+        // Handle the case where no results are found
+      }
+    },
+    error: function (error) {
+      console.log(error.responseText);
+      console.error("Error in search:", error);
+    },
+  });
+}
+
+// Function to display search results
+function displayResults(data) {
+  var resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+
+  if (data.length > 0) {
+    var table =
+      '<table class="table table-bordered table-striped"><thead>' +
+      "<tr><th>Car Name</th><th>Brand</th><th>Reservation Date</th></tr></thead><tbody>";
+
+    for (var i = 0; i < data.length; i++) {
+      let ReservationDate = "Not Reserved";
+      
+      if (data[i].ReservationDate) {
+        ReservationDate = data[i].ReservationDate;
+      }
+      table +=
+        "<tr><td>" +
+        data[i].carname +
+        "</td><td>" +
+        data[i].brand +
+        "</td><td>" +
+        ReservationDate +
+        "</td></tr>";
+    }
+
+    table += "</tbody></table>";
+    resultsDiv.innerHTML = table;
+  } else {
+    resultsDiv.innerHTML = "No results found.";
+  }
+}
