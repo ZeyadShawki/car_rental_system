@@ -38,9 +38,10 @@ function get_data( $plate_id ) {
         echo 'No results found.';
     }
     
-    $result = mysqli_query( $conn, "SELECT o.country, c.brand, c.carname, c.plateID, c.rentvalue 
+    $result = mysqli_query( $conn, "SELECT o.country, cs.brand, c.carname, c.plateID, c.rentvalue 
                                   FROM cars AS c 
                                   JOIN offices AS o ON c.OfficeID = o.OfficeID
+                                  JOIN category as cs on cs.carname=c.carname
                                   WHERE c.plateID=$plate_id;" );
 
     // Check for query execution success

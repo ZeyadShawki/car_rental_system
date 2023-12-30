@@ -9,13 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $searchTerm = $_POST["searchTerm"];
 
     $query = "SELECT * FROM Cars
-              LEFT JOIN Reservations ON Cars.plateID = Reservations.plateID
-              LEFT JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
-              WHERE carname LIKE '%$searchTerm%'
-                 OR brand LIKE '%$searchTerm%'
-                 OR FirstName LIKE '%$searchTerm%'
-                 OR LastName LIKE '%$searchTerm%'
-                 OR ReservationDate = '$searchTerm'
+    LEFT JOIN Reservations ON Cars.plateID = Reservations.plateID
+    LEFT JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
+  left join category USING(carname)
+    WHERE carname LIKE 'sedan'
+       OR brand LIKE '%$searchTerm%'
+       OR FirstName LIKE '%$searchTerm%'
+       OR LastName LIKE '%$searchTerm%'
+       OR ReservationDate = '$searchTerm'
                 --   AND Cars.carStatus = 'rented'
                  "
                 

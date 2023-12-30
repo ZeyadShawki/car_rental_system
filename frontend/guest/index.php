@@ -8,10 +8,11 @@ if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
     // zeyad
 }
 include "connectdb.php"; // Using database connection file here
-$records = mysqli_query($conn,"SELECT c.plateID, c.OfficeID, c.carname, c.brand, c.Year, c.imageUrl, c.rentvalue
-                                FROM cars AS c
-                                WHERE c.carStatus = 'active'
-                                LIMIT 3;"); // fetch data from database
+$records = mysqli_query($conn,"SELECT c.plateID, c.OfficeID, c.carname, s.brand, c.Year, c.imageUrl, c.rentvalue 
+FROM cars AS c 
+JOIN category as s  USING(carname)
+WHERE c.carStatus = 'active' LIMIT 3;
+"); // fetch data from database
 mysqli_close( $conn );
 ?>
 

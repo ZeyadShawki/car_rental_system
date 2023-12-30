@@ -15,22 +15,22 @@ if ($conn->connect_error) {
 header("Access-Control-Allow-Origin: *");
 
 // Modify the SQL query based on your database structure
-
 $sql="SELECT
-            c.plateID,
-            c.carname,
-            c.brand,
-            c.Year AS carYear,
-            c.imageUrl AS carImageUrl,
-            c.rentvalue AS carRentValue,
-        CASE WHEN 
-            r.PickupDate <= ? AND r.ReturnDate >= ? THEN 'rented'
-        ELSE c.carStatus
-        END AS CarStatusOnSpecificDay
-        FROM
-            Cars c
-        LEFT JOIN Reservations r 
-        ON c.plateID = r.plateID AND ? BETWEEN r.PickupDate AND r.ReturnDate";
+c.plateID,
+c.carname,
+cs.brand,
+c.Year AS carYear,
+c.imageUrl AS carImageUrl,
+c.rentvalue AS carRentValue,
+CASE WHEN 
+    r.PickupDate <= ? AND r.ReturnDate >= ? THEN 'rented'
+ELSE c.carStatus
+END AS CarStatusOnSpecificDay
+FROM
+Cars c
+LEFT JOIN Reservations r ON c.plateID = r.plateID AND ? BETWEEN r.PickupDate AND r.ReturnDate
+LEFT JOIN category cs ON c.carname = cs.carname";
+
 
 
 try {

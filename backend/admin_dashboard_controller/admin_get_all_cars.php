@@ -2,7 +2,10 @@
 require('../my_db_cred.php');
 $conn = MyConnection::getConnection();
 
-$query = "SELECT * FROM cars";
+$query = "SELECT c.plateID, c.carname, ct.brand, c.Year, c.imageUrl, c.carStatus
+FROM cars c
+JOIN category ct ON c.carname = ct.carname";
+
 $result = $conn->query($query);
 
 $cars = array();
@@ -10,7 +13,7 @@ while ($row = $result->fetch_assoc()) {
     $cars[] = array(
         'id' => $row['plateID'],
         'carname' => $row['carname'],
-        'brand' => $row['brand'],
+         'brand' => $row['brand'],
         'year' => $row['Year'],
         'imageUrl' => $row['imageUrl'],
         'carStatus' => $row['carStatus']

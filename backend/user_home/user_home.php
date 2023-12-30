@@ -84,7 +84,9 @@ function retrive_all_data_required() {
     mysqli_free_result( $result );
 
     // echo '<p>Speces</p>';
-    $result = mysqli_query( $conn, "SELECT DISTINCT c.brand, c.carname FROM cars AS c WHERE c.carStatus = 'active';" );
+    $result = mysqli_query( $conn, "SELECT DISTINCT cs.brand, c.carname FROM cars AS c 
+    JOIN category as cs
+    WHERE c.carStatus = 'active';" );
 
     // Check for query execution success
     if ( !$result ) {
@@ -162,9 +164,10 @@ if ( isset( $_POST[ 'search' ] ) ) {
     // Add the country parameter
 
     // Build the base query
-    $baseQuery = "SELECT c.plateID, c.OfficeID, c.carname, c.brand, c.Year, c.imageUrl, c.rentvalue
+    $baseQuery = "SELECT c.plateID, c.OfficeID, c.carname, cs.brand, c.Year, c.imageUrl, c.rentvalue
                   FROM cars AS c
                   JOIN offices AS o ON c.OfficeID = o.OfficeID
+                  JOIN category as cs on cs.carname= c.carname
                   WHERE c.carStatus = 'active' AND ? < c.Year AND ? > c.Year";
 
     // // Check if brand is 'Any'
@@ -183,7 +186,7 @@ if ( isset( $_POST[ 'search' ] ) ) {
         // Get the result set
         $result = mysqli_stmt_get_result( $stmt );
     } else  if ( $ncar == 'Any' ) {
-        $query = "$baseQuery AND c.brand=?  AND o.country = ?";
+        $query = "$baseQuery AND cs.brand=?  AND o.country = ?";
         $stmt = mysqli_prepare( $conn, $query );
         mysqli_stmt_bind_param( $stmt, 'isss', $year_after, $year_before,$nbrand ,$country );
 
@@ -199,7 +202,7 @@ if ( isset( $_POST[ 'search' ] ) ) {
 
     } else {
         // Brand is not 'Any'
-        $query = "$baseQuery AND c.carname = ? AND c.brand = ?";
+        $query = "$baseQuery AND c.carname = ? AND cs.brand = ?";
         $stmt = mysqli_prepare( $conn, $query );
         mysqli_stmt_bind_param( $stmt, 'isss', $year_after, $year_before, $ncar, $nbrand );
 

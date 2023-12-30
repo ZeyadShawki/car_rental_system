@@ -19,7 +19,7 @@ $sql="SELECT
             r.ReservationID,
             c.plateID,
             c.carname,
-            c.brand,
+            cs.brand,
             c.Year AS carYear,
             c.imageUrl AS carImageUrl,
             c.rentvalue AS carRentValue,
@@ -29,6 +29,8 @@ $sql="SELECT
         FROM
             Reservations r
             INNER JOIN Cars c ON r.plateID = c.plateID
+            inner join category cs on cs.carname=c.carname
+
         WHERE
             r.PickupDate >= ? AND r.ReturnDate <= ?";
 

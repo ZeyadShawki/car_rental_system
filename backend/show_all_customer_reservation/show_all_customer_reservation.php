@@ -13,9 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "SELECT * FROM Reservations
               INNER JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
               INNER JOIN Cars ON Reservations.plateID = Cars.plateID
+              INNER JOIN category ON category.carname = cars.carname
+
               WHERE Customers.Email = '$email'
                  AND (Cars.carname LIKE '%$searchTerm%'
-                 OR Cars.brand LIKE '%$searchTerm%'
+                 OR category.brand LIKE '%$searchTerm%'
                  OR Customers.FirstName LIKE '%$searchTerm%'
                  OR Customers.LastName LIKE '%$searchTerm%'
                  OR Reservations.ReservationDate = '$searchTerm')
