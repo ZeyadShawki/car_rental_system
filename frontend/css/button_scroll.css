@@ -1,0 +1,16 @@
+.btn-primary {
+    background-color: #003161;
+}
+/*Scroll Bar*/
+html::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: 003161;
+    border-radius: 5rem;
+}

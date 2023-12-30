@@ -5,6 +5,7 @@
     <title>Register</title>
     <!--css code-->
     <link rel="stylesheet" href="../css/style.css">
+
     <!--php file to check if is set session email-->
     <?php
             $filename = '../../backend/register/registerCode.php';
@@ -24,8 +25,8 @@
     <!--header section-->
       <div class="header">
           <div class="container">
-              <div class="logo">LOGO IMAGE</div>
-    
+              <div class="logo" >LOGO IMAGE</div>
+
                 <div class="header-btn">
                     <a href="../guest/index.php" class="sign-in">return to home page</a>
                 </div>
@@ -91,7 +92,7 @@
 
 
         <hr>
-        <button name="register" class="btn btn-primary w-100 p-3 mb-5" type="submit">Sign Up</button>
+        <button name="register" class="btn btn-primary w-100 p-3 mb-5 xy" type="submit">Sign Up</button>
       </form>
       <p>Have an account? <a href="../login_customer/login_html.php">Sign In</a>.</p>
     </div>

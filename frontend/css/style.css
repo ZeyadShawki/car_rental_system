@@ -2,8 +2,8 @@
   --text-color: #444;
   --gradient: linear-gradient(#1b1919, #3c275d);
   --main-color: #003161;
-  /* --second-color: #ffac38; */
-  /* --text-color: #444; */
+  --navbar-dark-primary: #364352;
+  --navbar-dark-secondary: #2c3e50;
 }
 
 .password-container {
@@ -122,7 +122,7 @@
 }
 
 .header-btn .sign-in {
-  background: #040b5f;
+  background: var(--navbar-dark-primary);
   color: #fff;
   border-radius: 0.5rem;
 }
@@ -198,7 +198,7 @@
 .services-container .box .btn {
   display: flex;
   justify-content: center;
-  background: blue;
+  background: #2c3e50;
   color: #fff;
   padding: 10px;
   boarder-radius: 0.5rem;
@@ -230,3 +230,19 @@
 .about-text p {
   margin: 0.5rem 0 1.4rem;
 }
+
+
+/*Scroll Bar*/
+html::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--navbar-dark-primary);
+  border-radius: 5rem;}
+
+
