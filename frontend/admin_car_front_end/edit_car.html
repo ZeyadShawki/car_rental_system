@@ -6,75 +6,99 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="../../frontend/css/nav_css.css">
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- <script src="../../frontend/nav_jss/nav.js"></script> -->
+    <link rel='stylesheet' href='../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'>
+    <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
+    <link rel="stylesheet" href="../css/col_navbar.css">
+
     <title>Edit Car</title>
 </head>
 
 <body>
-    <div class="container mt-4">
-        <h3>Edit Car</h3>
-        <form id="editCarForm" method="POST" enctype='multipart/form-data'>
-            <div class="mb-3">
-                <label for="OfficeCountry" class="form-label">Office Country</label>
-                <select class="form-select" id="OfficeCountry" name="OfficeCountry">
-                    <!-- Options will be loaded dynamically via AJAX -->
-                </select>
+    <div class="flex-container">
+        <div id="nav-bar">
+            <input id="nav-toggle" type="checkbox" />
+            <div id="nav-header"><a id="nav-title" target="_blank"><i></i>Admin System</a>
+                <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+                <hr />
             </div>
-
-            <div class="mb-3">
-                <label for="OfficeCity" class="form-label">Office City</label>
-                <select class="form-select" id="OfficeCity" name="OfficeCity">
-                    <!-- Options will be loaded dynamically via AJAX -->
-                </select>
+            <div id="nav-content">
+                <div class="nav-button"><i class="fas fa-home"></i><span><a href="javascript:void(0);"
+                            onclick="history.back();">Go back</a></span></div>
+                <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">Log out</a></span></div>
             </div>
+        </div>
+
+        <div class="content-of-page">
+            <div class="container mt-4">
+                <h3>Edit Car</h3>
+                <form id="editCarForm" method="POST" enctype='multipart/form-data'>
+                    <div class="mb-3">
+                        <label for="OfficeCountry" class="form-label">Office Country</label>
+                        <select class="form-select" id="OfficeCountry" name="OfficeCountry">
+                            <!-- Options will be loaded dynamically via AJAX -->
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="OfficeCity" class="form-label">Office City</label>
+                        <select class="form-select" id="OfficeCity" name="OfficeCity">
+                            <!-- Options will be loaded dynamically via AJAX -->
+                        </select>
+                    </div>
 
 
-            <div class="mb-3">
-                <label for="Brand" class="form-label">Brand</label>
-                <input type="text" class="form-control" id="Brand" name="Brand">
+                    <div class="mb-3">
+                        <label for="Brand" class="form-label">Brand</label>
+                        <input type="text" class="form-control" id="Brand" name="Brand">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CarName" class="form-label">Car Name</label>
+                        <input type="text" class="form-control" id="CarName" name="CarName">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Year" class="form-label">Year</label>
+                        <input type="number" class="form-control" id="Year" min="1900" name="Year" step="1">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rentValue" class="form-label">rent Value</label>
+                        <input type="number" class="form-control" id="rentValue" name="rentValue" min="0">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ImageUrl" class="form-label">Image Url</label>
+                        <input type="text" class="form-control" id="ImageUrl" name="ImageUrl">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="carStatus" class="form-label">Car Status</label>
+                        <select class="form-select" id="carStatus" name="carStatus">
+                            <option value="active">Active</option>
+                            <option value="out of service">out of service</option>
+                            <option value="rented">Rented</option>
+                        </select>
+                    </div>
+
+                    <hr>
+                    <button type="submit" class="btn btn-primary w-100 p-3 mb-5">Submit</button>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="CarName" class="form-label">Car Name</label>
-                <input type="text" class="form-control" id="CarName" name="CarName">
-            </div>
-
-            <div class="mb-3">
-                <label for="Year" class="form-label">Year</label>
-                <input type="number" class="form-control" id="Year" min="1900" name="Year" step="1">
-            </div>
-
-            <div class="mb-3">
-                <label for="rentValue" class="form-label">rent Value</label>
-                <input type="number" class="form-control" id="rentValue" name="rentValue" min="0">
-            </div>
-
-            <div class="mb-3">
-                <label for="ImageUrl" class="form-label">Image Url</label>
-                <input type="text" class="form-control" id="ImageUrl" name="ImageUrl">
-            </div>
-
-            <div class="mb-3">
-                <label for="carStatus" class="form-label">Car Status</label>
-                <select class="form-select" id="carStatus" name="carStatus">
-                    <option value="active">Active</option>
-                    <option value="out of service">out of service</option>
-                    <option value="rented">Rented</option>
-                </select>
-            </div>
-
-            <hr>
-            <button type="submit" class="btn btn-primary w-100 p-3 mb-5">Submit</button>
-        </form>
+        </div>
     </div>
 
 </body>
 
 
-    <!-- script file -->
-    <script src="./js/edit_car_logic.js"></script>
-    <!-- <script>
+<!-- script file -->
+<script src="./js/edit_car_logic.js"></script>
+<!-- <script>
   
     </script> -->
 
