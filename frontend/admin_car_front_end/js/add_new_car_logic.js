@@ -1,4 +1,74 @@
 $(document).ready(function () {
+
+
+function populateCarDropdowns() {
+  // Fetch car categories
+  $.ajax({
+    type: "GET",
+    url: "http://localhost/final_db_admin/backend/admin_car_controller/get_car_category.php",
+    dataType: "json",
+    success: function (data) {
+      // console.log(data);
+      // Populate brand dropdown
+      var brandDropdown = $("#Brand");
+      brandDropdown.empty();
+      $.each(data, function (key, value) {
+        brandDropdown.append(
+          '<option value="' + value.brand + '">' + value.brand + "</option>"
+        );
+      });
+
+      // Trigger change to load car names for the initial brand
+      brandDropdown.trigger("change");
+    },
+    error: function (xhr, status, error) {
+      console.error(xhr.responseText);
+      alert("Error loading car categories: " + xhr.responseText);
+    },
+  });
+
+  // Change event for brand dropdown
+  $("#Brand").change(function () {
+    var selectedBrand = $(this).val();
+    $.ajax({
+      type: "GET",
+      url:
+        "http://localhost/final_db_admin/backend/admin_car_controller/get_car_name_from_brand.php?brand=" +
+        selectedBrand,
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        // Populate car name dropdown
+        var carNameDropdown = $("#carName");
+        carNameDropdown.empty();
+        $.each(data, function (key, value) {
+          carNameDropdown.append(
+            '<option value="' +
+              value +
+              '">' +
+              value +
+              "</option>"
+          );
+        });
+      },
+      error: function (xhr, status, error) {
+        console.error(xhr.responseText);
+        alert("Error loading car names: " + xhr.responseText);
+      },
+    });
+  });
+}
+
+// Call the function to populate dropdowns on page load
+$(document).ready(function () {
+  populateCarDropdowns();
+});
+
+
+
+
+
+
   $.ajax({
     type: "GET",
     url: "http://localhost/final_db_admin/backend/office_controller/get_countrys.php",

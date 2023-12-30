@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
     <link rel="stylesheet" href="../css/col_navbar.css">
 
-    <title>Add Office</title>
+    <title>Add category</title>
 </head>
 
 <body>
@@ -35,15 +35,13 @@
                             href="../admin_car_front_end/add_new_car.html">Add
                             Car</a></span></div>
                 <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="#">Add Office</a></span></div>
-          
-          
-          
-                    <div class="nav-button"><i class="fas fa-bookmark"></i><span><a
-                                href="../admin_car_front_end/add_new_car_category.html">Add Category</a></span></div>
+
+                <div class="nav-button"><i class="fas fa-bookmark"></i><span><a
+                            href="../admin_car_front_end/add_new_car_category.html">Add Category</a></span></div>
                 <hr />
 
 
-                <div class="nav-button"><i class="fas fa-search"></i><span><a
+                <div class="nav-button"><i class="fas fa-bookmark"></i><span><a
                             href="../admin_dashboard/admin_reports/car_reservation_report2.html">Reservation car
                             info</a></span></div>
 
@@ -60,10 +58,8 @@
                             customer</a></span></div>
                 <div class="nav-button"><i class="fas fa-money-bill"></i><span><a
                             href="../admin_dashboard/admin_reports/daily_payments.html">daily payments</a></span></div>
-
-
-                            <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
-                                        log out</a></span></div>
+                <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
+                            log out</a></span></div>
                 <div id="nav-content-highlight"></div>
             </div>
         </div>
@@ -71,22 +67,24 @@
         <div class="content-of-page">
 
             <div class="container mt-4 text-start">
+                <!-- Add a div for success message -->
 
-
-                <h3>Add new office</h3>
-                <form id="OfficeForm" action="" method="POST" enctype='multipart/form-data'>
-                    <div class="mb-3">
-                        <label for="Country" class="form-label">Country</label>
-                        <input type="text" class="form-control" id="Country" name="Country">
-                        <div class="invalid-feedback">Please enter the country.</div>
+                <h3>Add new Car Category</h3>
+                <form id="CategoryForm" action="" method="POST" enctype='multipart/form-data'>
+                    <div class="mb-3 text-start">
+                        <label for="barnd" class="form-label">Brand</label>
+                        <input type="text" class="form-control" id="brand" name="brand">
+                        <div class="invalid-feedback">Please enter the barnd.</div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="City" class="form-label">City</label>
-                        <input type="text" class="form-control" id="City" name="City">
-                        <div class="invalid-feedback">Please enter the city.</div>
+                    <div class="mb-3 text-start">
+                        <label for="carName" class="form-label">Car Name</label>
+                        <input type="text" class="form-control" id="carName" name="carName">
+                        <div class="invalid-feedback">Please enter the car Name.</div>
                     </div>
 
+                    <div id="successMessage" class="text-success p-2"></div>
+                    <hr>
                     <button type="submit" class="btn btn-primary w-100 p-3 mb-5">Submit</button>
                 </form>
             </div>
@@ -94,16 +92,19 @@
 
         <script>
             $(document).ready(function () {
-                $('#OfficeForm').submit(function (e) {
+                $('#CategoryForm').submit(function (e) {
                     e.preventDefault(); // prevent the form from submitting traditionally
 
                     // Remove previous validation styles
                     $('.is-invalid').removeClass('is-invalid');
 
+                    // Clear previous success message
+                    $('#successMessage').empty();
+
                     // Check if input fields are empty
                     var formValid = true;
 
-                    $('#OfficeForm input').each(function () {
+                    $('#CategoryForm input').each(function () {
                         console.log($(this).val())
                         if ($(this).val().trim() === '') {
                             $(this).addClass('is-invalid');
@@ -120,12 +121,18 @@
                     // Send the data using AJAX
                     $.ajax({
                         type: 'POST',
-                        url: 'http://localhost/final_db_admin/backend/office_controller/add_new_office.php', // Replace with the actual file path
+                        url: 'http://localhost/final_db_admin/backend/admin_car_controller/add_new_category.php', // Replace with the actual file path
                         data: formData,
                         success: function (response) {
                             // Handle success
-                            console.log(response);
-                            alert('Record inserted successfully');
+                            if (response === 'false') {
+                                $('#carName').addClass('is-invalid');
+                                $('#carName').next('.invalid-feedback').text('This car already exists');
+                            } else {
+                                // Display success message
+                                $('#successMessage').text('Record inserted successfully').addClass('text-success');
+                                console.log(response);
+                            }
                         },
                         error: function (xhr, status, error) {
                             // Handle errors

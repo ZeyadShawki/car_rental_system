@@ -52,6 +52,8 @@ CREATE TABLE `category` (
   PRIMARY KEY(`carname`) 
 );
 ALTER TABLE `Cars` ADD foreign KEY(`carname`) references `category`(`carname`) ON Delete CASCADE ON UPDATE CASCADE;
+
+
 CREATE TABLE Payments (
     PaymentID INT PRIMARY KEY AUTO_INCREMENT,
     PaymentDate DATE NOT NULL,

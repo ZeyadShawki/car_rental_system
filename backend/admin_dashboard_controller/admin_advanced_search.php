@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        OR FirstName LIKE '%$searchTerm%'
        OR LastName LIKE '%$searchTerm%'
        OR ReservationDate = '$searchTerm'
+         OR carname LIKE '%$searchTerm%'
                 --   AND Cars.carStatus = 'rented'
                  "
                 

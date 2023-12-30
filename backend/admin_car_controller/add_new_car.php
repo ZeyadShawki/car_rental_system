@@ -4,7 +4,7 @@ $conn = MyConnection::getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $officeID = $_POST["OfficeCity"]; // Assuming OfficeCity is the ID of the selected office
-    $carName = $_POST["CarName"];
+    $carName = $_POST["carName"];
     // $brand = $_POST["Brand"];
     $year = $_POST["Year"];
     $rentValue = $_POST["rentValue"]; 

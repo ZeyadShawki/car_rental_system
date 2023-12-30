@@ -1,7 +1,7 @@
 :root {
   --background: #fefefe;
-  --navbar-width: 256px;
-  --navbar-width-min: 80px;
+  --navbar-width: 456px;
+  --navbar-width-min: 100px;
   --navbar-dark-primary: #364352;
   --navbar-dark-secondary: #2c3e50;
   --navbar-light-primary: #f5f6fa;
@@ -255,6 +255,24 @@ label[for=nav-toggle] {
 .nav-button:nth-of-type(8):hover ~ #nav-content-highlight {
   top: 394px;
 }
+
+
+.nav-button:nth-of-type(9):hover {
+  color: var(--navbar-dark-primary);
+}
+.nav-button:nth-of-type(9):hover ~ #nav-content-highlight {
+  top: 448px;
+}
+
+
+
+.nav-button:nth-of-type(10):hover {
+  color: var(--navbar-dark-primary);
+}
+.nav-button:nth-of-type(10):hover ~ #nav-content-highlight {
+  top: 498px;
+}
+
 
 #nav-bar .fas {
   min-width: 3rem;
