@@ -68,35 +68,36 @@
         <!-- OSSMA PUT YOU DATA  INSIDE container col-->
         <div class="content-of-page">
             <div class="container col-sm mt-5">
-                <div class="text-start">
-                    <h1>Change user password</h1>
-                </div>
-                <br>
-                <!-- Change Password section -->
-                <!-- Your HTML and other scripts remain unchanged -->
-                <div class="text-start">
-                    <label for="oldPassword">Old password</label>
-                    <input class="form-control" type="password" id="oldPassword" placeholder="Old Password"><br>
-                    <div id="oldPassword-error" class="invalid-feedback"></div>
-                    <!-- Error message container for Old password -->
-                </div>
-                <div class="text-start">
-                    <label for="newPassword">New password</label>
-                    <input class="form-control" type="password" id="newPassword" placeholder="New Password"><br>
-                    <div id="newPassword-error" class="invalid-feedback"></div>
-                    <!-- Error message container for New password -->
-                </div>
+                <div class="border2">
+                    <div class="text-start">
+                        <h1>Change user password</h1>
+                    </div>
+                    <br>
+                    <!-- Change Password section -->
+                    <!-- Your HTML and other scripts remain unchanged -->
+                    <div class="text-start">
+                        <label for="oldPassword">Old password</label>
+                        <input class="form-control" type="password" id="oldPassword" placeholder="Old Password"><br>
+                        <div id="oldPassword-error" class="invalid-feedback"></div>
+                        <!-- Error message container for Old password -->
+                    </div>
+                    <div class="text-start">
+                        <label for="newPassword">New password</label>
+                        <input class="form-control" type="password" id="newPassword" placeholder="New Password"><br>
+                        <div id="newPassword-error" class="invalid-feedback"></div>
+                        <!-- Error message container for New password -->
+                    </div>
 
-                <div class="text-start">
-                    <label for="confirmNewPassword">Confirm new password</label>
-                    <input class="form-control" type="password" id="confirmNewPassword"
-                        placeholder="Confirm New Password"><br>
-                    <div id="confirmNewPassword-error" class="invalid-feedback"></div>
-                    <!-- Error message container for Confirm new password -->
+                    <div class="text-start">
+                        <label for="confirmNewPassword">Confirm new password</label>
+                        <input class="form-control" type="password" id="confirmNewPassword"
+                            placeholder="Confirm New Password"><br>
+                        <div id="confirmNewPassword-error" class="invalid-feedback"></div>
+                        <!-- Error message container for Confirm new password -->
+                    </div>
+                    <button class="btn btn-primary w-100 p-3 mb-5" onclick="saveNewPassword()">confirm</button>
+
                 </div>
-                <button class="btn btn-primary w-100 p-3 mb-5" onclick="saveNewPassword()">confirm</button>
-
-
 </body>
 
 </html>

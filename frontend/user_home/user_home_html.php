@@ -38,14 +38,13 @@
     <div class="flex-container">
         <!-- Your nav-bar code remains unchanged -->
         <div id="nav-bar">
-        <input id="nav-toggle" type="checkbox" />
+            <input id="nav-toggle" type="checkbox" />
             <div id="nav-header"><a id="nav-title" target="_blank"><i></i>Profile</a>
                 <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
                 <hr />
             </div>
             <div id="nav-content">
-                <div class="nav-button"><i class="fas fa-home"></i><span><a
-                            href="#">Home</a></span></div>
+                <div class="nav-button"><i class="fas fa-home"></i><span><a href="#">Home</a></span></div>
                 <div class="nav-button"><i class="fas fa-user"></i><span><a
                             href="../user_edit_profile/userEditProfilehtml.php">Edit profile</a></span></div>
                 <div class="nav-button"><i class="fas fa-key"></i><span><a
@@ -78,39 +77,43 @@
 
         <!--data of page starts from here -->
         <div class="content-of-page">
-        <div class="container col-sm mt-5">
-                <?php retrive_all_data_required() ?>
+            <div class="container col-sm mt-5">
+                <p class="text-start bold" style="font-size: 30px; text-align: center; color: #003161;">Rent a car</p>
+                <div class="border2">
+                    <?php retrive_all_data_required() ?>
 
-                <!-- Before Year Selection -->
-                <label for="beforeYear">Before Year:</label>
-                <select class="form-control mb-2" id="beforeYear" name="beforeYear">
-                    <?php
-                    for ($year = 2000; $year <= 2024; $year++) {
-                        $selected = ($year == 2024) ? 'selected' : '';
-                        echo '<option value="' . $year . '" ' . $selected . '>' . $year . '</option>';
-                    }
-                    ?>
-                </select>
+                    <!-- Before Year Selection -->
+                    <label for="beforeYear">Before Year:</label>
+                    <select class="form-control mb-2" id="beforeYear" name="beforeYear">
+                        <?php
+                        for ($year = 2000; $year <= 2024; $year++) {
+                            $selected = ($year == 2024) ? 'selected' : '';
+                            echo '<option value="' . $year . '" ' . $selected . '>' . $year . '</option>';
+                        }
+                        ?>
+                    </select>
 
-                <!-- After Year Selection -->
-                <label for="afterYear">After Year:</label>
-                <select class="form-control" id="afterYear" name="afterYear">
-                    <?php
-                    for ($year = 2000; $year <= 2024; $year++) {
-                        echo '<option value="' . $year . '">' . $year . '</option>';
-                    }
-                    ?>
-                </select>
+                    <!-- After Year Selection -->
+                    <label for="afterYear">After Year:</label>
+                    <select class="form-control mb-2" id="afterYear" name="afterYear">
+                        <?php
+                        for ($year = 2000; $year <= 2024; $year++) {
+                            echo '<option value="' . $year . '">' . $year . '</option>';
+                        }
+                        ?>
+                    </select>
 
 
 
-                <form action="" method="post" id="search-form">
-                    <button type="submit" class="btn btn-primary w-100 mt-2 p-3 mb-5">Search</button>
-                </form>
+                    <form action="" method="post" id="search-form">
+                        <button type="submit" class="btn btn-primary w-100 mt-4 p-3">Search</button>
+                    </form>
 
-                <div id="reciveddata">
                 </div>
 
+                
+                <div id="reciveddata">
+                    </div>
             </div>
         </div>
     </div>

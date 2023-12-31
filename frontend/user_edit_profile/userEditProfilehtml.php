@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,7 @@
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../frontend/nav_jss/nav.js"></script>
 
-        <link rel="stylesheet" src="../../frontend/css/style.css">
+    <link rel="stylesheet" src="../../frontend/css/style.css">
 
     <link rel='stylesheet' href='../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'>
     <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
@@ -33,6 +34,7 @@
 
     <title>Edit Profile</title>
 </head>
+
 <body>
     <div class="flex-container">
         <!-- Your nav-bar code remains unchanged -->
@@ -45,8 +47,7 @@
             <div id="nav-content">
                 <div class="nav-button"><i class="fas fa-home"></i><span><a
                             href="../user_home/user_home_html.php">Home</a></span></div>
-                <div class="nav-button"><i class="fas fa-user"></i><span><a
-                            href="#">Edit profile</a></span></div>
+                <div class="nav-button"><i class="fas fa-user"></i><span><a href="#">Edit profile</a></span></div>
                 <div class="nav-button"><i class="fas fa-key"></i><span><a
                             href="../../frontend/change_customer_password/change_customer_password_html.php">Change
                             Password</a></span></div>
@@ -77,44 +78,48 @@
         <!--data of page starts from here -->
         <div class="content-of-page">
             <div class="container col-sm mt-5">
-                <!-- Display the current image -->
-                <img id="avatarImage" alt="Avatar" style="height:200px
+                <div class="border2">
+                    <!-- Display the current image -->
+                    
+                    <img id="avatarImage" alt="Avatar" style="height:200px
                 vertical-align: middle;
   width: 330px;
   height: 300px;
-  border-radius: 50%;"
-   class="avatar" onclick="openFileInput()">
+  border-radius: 50%;" class="avatar" onclick="openFileInput()">
 
-   <button type="submit" onclick="openFileInput()" class="btn btn-primary w-50 p-3 m-5 mb-5">Change
-                    Profile Image</button>
-                <!-- Hidden file input for selecting a new image -->
-                <input type="file" id="fileInput" style="display: none" accept="image/*"
-                    onchange="displaySelectedImage()">
-                <div class="text-start">
-                    <label>First name</label>
-                    <input id="firstName" class="form-control"></input>
+                    <button type="submit" onclick="openFileInput()" class="btn btn-primary w-50 p-3 m-5 mb-5">Change
+                        Profile Image</button>
+                    <!-- Hidden file input for selecting a new image -->
+                    <input type="file" id="fileInput" style="display: none" accept="image/*"
+                        onchange="displaySelectedImage()">
+                    <div class="text-start">
+                        <label style="margin-top: 5px; margin-bottom: 5px;">First name</label>
+                        <input id="firstName" class="form-control" style="padding: 10px;"></input>
+                    </div>
+                    <div class="text-start">
+                        <label style="margin-top: 5px; margin-bottom: 5px;">Last name</label>
+                        <input id="lastName" class="form-control" style="padding: 10px;"></input>
+                    </div>
+                    <div class="text-start">
+                        <label style="margin-top: 5px; margin-bottom: 5px;">Birth Date</label>
+                        <input id="bdate" type="date" class="form-control" style="padding: 10px;"></input>
+                    </div>
+                    <div class="text-start">
+                        <label style="margin-top: 5px; margin-bottom: 5px;">Email</label>
+                        <label id="email" type="date" class="form-control"></label>
+                    </div>
+                    <div class="text-start">
+                        <label style="margin-top: 5px; margin-bottom: 5px;">Phone number</label>
+                        <input id="phoneNumber" class="form-control" style="padding: 10px;"></input>
+                    </div>
+
+                    <hr>
+                    <button type="submit" onclick="editCustomerProfile()" class="btn btn-primary w-100 p-3">Edit
+                        Profile</button>
                 </div>
-                <div class="text-start">
-                    <label>Last name</label>
-                    <input id="lastName" class="form-control"></input>
-                </div>
-                <div class="text-start">
-                    <label>Birth Date</label>
-                    <input id="bdate" type="date" class="form-control"></input>
-                </div>
-                <div class="text-start">
-                    <label>Email</label>
-                    <label id="email" type="date" class="form-control"></label>
-                </div>
-                <div class="text-start">
-                    <label>Phone number</label>
-                    <input id="phoneNumber" class="form-control"></input>
-                </div>
-                <hr>
-                <button type="submit" onclick="editCustomerProfile()" class="btn btn-primary w-100 p-3 mb-5">Edit
-                    Profile</button>
             </div>
         </div>
     </div>
 </body>
+
 </html>
