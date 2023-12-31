@@ -138,14 +138,6 @@ function retrive_all_data_required() {
     echo '</select>';
     echo '<br>';
 
-    // echo '<pre>';
-    // print_r( $arr );
-    // echo '</pre>';
-
-    // Echo the selected values
-    // echo 'Selected Brand: ' . htmlspecialchars( $selectedBrand ) . '<br>';
-    // echo 'Selected Car Name: ' . htmlspecialchars( $selectedCarName ) . '<br>';
-
     // After building $arr
     $_SESSION[ 'array' ] = $arr;
 
@@ -216,97 +208,54 @@ if ( isset( $_POST[ 'search' ] ) ) {
         // Get the result set
         $result = mysqli_stmt_get_result( $stmt );
     }
-    // Check conditions for brand and car name
-    //   ...
-
-    // if ( $nbrand == 'Any' && $ncar == 'Any' ) {
-    //     $query = "$baseQuery AND o.country = ?";
-    //     $stmt = mysqli_prepare( $conn, $query );
-    //     mysqli_stmt_bind_param( $stmt, 's', $country );
-    // }
-
-    // elseif ( $nbrand != 'Any' && $ncar == 'Any' ) {
-    //     $query = "$baseQuery AND c.brand = ? AND o.country = ?";
-    //     $stmt = mysqli_prepare( $conn, $query );
-    //     mysqli_stmt_bind_param( $stmt, 'ss', $nbrand, $country );
-    // }
-
-    // elseif ( $nbrand == 'Any' && $ncar != 'Any' ) {
-    //     $query = "$baseQuery AND c.carname = ? AND o.country = ?";
-    //     $stmt = mysqli_prepare( $conn, $query );
-    //     mysqli_stmt_bind_param( $stmt, 'ss', $ncar, $country );
-    // }
-
-    // elseif ( $nbrand != 'Any' && $ncar != 'Any' ) {
-    //     $query = "$baseQuery AND c.carname = ? AND c.brand = ? AND o.country = ?";
-    //     $stmt = mysqli_prepare( $conn, $query );
-    //     mysqli_stmt_bind_param( $stmt, 'sss', $ncar, $nbrand, $country );
-    // }
-
-    // else {
-    //     // Handle any other cases or add a default behavior if necessary
-    // }
-
-    // ...
 
     if ( !$result ) {
         die( 'Query failed: ' . mysqli_error( $conn ) );
     }
     // Check if there are any rows in the result set
     if ( mysqli_num_rows( $result ) > 0 ) {
-        // Open a container for the table with Bootstrap classes
-        echo "<div class='table-responsive'>";
-        echo "<table class='table table-bordered'>";
+        echo '<!-- Services -->';
+        echo '<section class="services" id="services">';
 
-        // Table header
-        echo '<thead>';
-        echo '<tr>';
-        echo '<th>Plate ID</th>';
-        echo '<th>Office ID</th>';
-        echo '<th>Car Name</th>';
-        echo '<th>Brand</th>';
-        echo '<th>Year</th>';
-        echo '<th>Image URL</th>';
-        echo '<th>Rent Value</th>';
-        echo '<th>Action</th>';
-        echo '</tr>';
-        echo '</thead>';
-
-        // Table body
-        echo '<tbody>';
-
-        // Loop through each row and print the data in a table row
-        while ( $row = mysqli_fetch_assoc( $result ) ) {
-            echo '<tr>';
-            echo '<td>' . $row[ 'plateID' ] . '</td>';
-            echo '<td>' . $row[ 'OfficeID' ] . '</td>';
-            echo '<td>' . $row[ 'carname' ] . '</td>';
-            echo '<td>' . $row[ 'brand' ] . '</td>';
-            echo '<td>' . $row[ 'Year' ] . '</td>';
-            echo "<td><img src='" . $row[ 'imageUrl' ] . "' alt='Car Image' style='max-width: 100px; max-height: 100px;'></td>";
-            echo '<td>' . $row[ 'rentvalue' ] . '</td>';
-
-            // Add a submission button in the last column
-            echo '<td>';
+        echo '<div class="services-container">';
+        
+        while ($row = mysqli_fetch_assoc($result)) {
             echo "<form method='post' action='../../frontend/user_rent/user_rent_html.php'>";
-            echo "<input type='hidden' name='plateID' value='" . $row[ 'plateID' ] . "'>";
-            echo "<input type='submit' class='btn btn-primary' value='Rent Now'>";
-            echo '</form>';
-            echo '</td>';
-
-            echo '</tr>';
+            echo "<div class='box'>";
+            
+            // Displaying the image
+            echo '<div class="box-img">';
+            echo "<img src='" . $row['imageUrl'] . "' alt='Car Image'>";
+            echo '</div>';
+            
+            // Displaying the brand
+            echo '<h2>' . $row['brand'] . '</h2>';
+            
+            // Displaying the car name
+            echo '<h3>' . $row['carname'] . '</h3>';
+            
+            // Displaying additional details (plateID, OfficeID, Year, rentvalue)
+            echo '<p>Plate ID: ' . $row['plateID'] . '</p>';
+            echo '<p>Office ID: ' . $row['OfficeID'] . '</p>';
+            echo '<p>Year: ' . $row['Year'] . '</p>';
+            echo '<p>Rent Value: ' . $row['rentvalue'] . '</p>';
+            
+            // Hidden input fields for each car detail
+            echo "<input type='hidden' name='plateID' value='" . $row['plateID'] . "'>";
+           
+            
+            // Button for renting
+            echo "<input type='submit' name='rentNow'style='width: 100%;' value='Rent Now' class='btn btn-primary'>";
+            
+            echo '</div>';
+            echo "</form>";
         }
-
-        // Close the table body and table container
-        echo '</tbody>';
-        echo '</table>';
+        
         echo '</div>';
-    } else {
-        echo 'No results found.';
+        echo '</section>';
     }
     // Free the result set
     mysqli_free_result( $result );
-
     // Close the database connection
     mysqli_close( $conn );
 }

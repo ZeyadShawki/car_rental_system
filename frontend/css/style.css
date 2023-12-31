@@ -33,6 +33,16 @@
   background-color: #eee;
 }
 
+
+.container {
+  /* border: 2px solid #eee; */
+  margin-top: 20px;
+  box-shadow: 0 0 10px 5px rgba(186, 186, 186, 0.853); /* Adjust the values as needed */
+
+  /* You can add more styles if needed */
+}
+
+
 .container {
   padding-left: 15px; /*3shan f mobile yeb2a klam msh bad2 mn awl*/
   padding-right: 15px;
@@ -246,6 +256,8 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
   background: var(--navbar-dark-primary);
   border-radius: 5rem;}
+
+
 
 
 

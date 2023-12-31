@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <title>Login</title>
@@ -11,15 +12,22 @@
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/login.js"></script>
     <?php
-            $filename = '../../backend/login_controller/login_controller.php';
-            if (file_exists($filename)) {
-                include $filename;
-            } else {
-                echo "Error: File $filename not found.";
-            }
+    $filename = '../../backend/login_controller/login_controller.php';
+    if (file_exists($filename)) {
+        include $filename;
+    } else {
+        echo "Error: File $filename not found.";
+    }
     ?>
 </head>
+
 <body>
+    <div class="header">
+        <a href="#" class="logo"><img src="../images/logo.jpeg" alt="website logo"></a>
+        <div class="header-btn">
+            <a href="../guest/index.php" class="sign-in" style="text-decoration: none;">return to home page</a>
+        </div>
+    </div>
     <div class="container">
         <div class="pt-3"></div>
         <h1>Login</h1>
@@ -32,11 +40,15 @@
             </div>
             <div class="inputField">
                 <label for="password" class="labelInput pt-2">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Your Password">
+                <input type="password" class="form-control" name="password" id="password"
+                    placeholder="Enter Your Password">
             </div>
             <hr>
             <button name="login" class="btn btn-primary w-100 p-3 mb-5" type="submit">Login</button>
         </form>
+        <p>Doen not have an account? <a href="../register_customer/register_html.php">Sign up</a>.</p>
+
     </div>
 </body>
+
 </html>

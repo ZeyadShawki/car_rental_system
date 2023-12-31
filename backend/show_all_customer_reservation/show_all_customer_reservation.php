@@ -18,8 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               WHERE Customers.Email = '$email'
                  AND (Cars.carname LIKE '%$searchTerm%'
                  OR category.brand LIKE '%$searchTerm%'
-                 OR Customers.FirstName LIKE '%$searchTerm%'
-                 OR Customers.LastName LIKE '%$searchTerm%'
                  OR Reservations.ReservationDate = '$searchTerm')
                  ";
 

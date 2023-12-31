@@ -1,0 +1,59 @@
+:root {
+    --text-color: #444;
+    --gradient: linear-gradient(#1b1919, #3c275d);
+    --main-color: #003161;
+    --navbar-dark-primary: #364352;
+    --navbar-dark-secondary: #2c3e50;
+  }
+  
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .services-container .box {
+    padding: 10px;
+    border-radius: 1rem;
+    box-shadow: 1px 4px 41px rgba(0, 0, 0, 0.1);
+  }
+  
+  .services-container .box .box-img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .services-container .box .box-img img {
+    width: 250px;
+  }
+  
+  .services-container .box h3 {
+    font-weight: 500;
+  }
+  
+  .services-container .box h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin: 0.2rem 0 0.5rem;
+  }
+  
+  .services-container .box h2 span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  .services-container .box .btn {
+    display: flex;
+    justify-content: center;
+    background: #2c3e50;
+    color: #fff;
+    padding: 10px;
+    boarder-radius: 0.5rem;
+  }
+  
+  .services-container .box .btn:hover {
+    background: var(--main-color);
+  }
