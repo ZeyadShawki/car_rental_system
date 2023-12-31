@@ -11,15 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_SESSION['SESSION_EMAIL']; // Replace with the correct session variable
 
     $query = "SELECT * FROM Reservations
-              INNER JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
-              INNER JOIN Cars ON Reservations.plateID = Cars.plateID
-              INNER JOIN category ON category.carname = cars.carname
+    INNER JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
+    INNER JOIN Cars ON Reservations.plateID = Cars.plateID
+    INNER JOIN category ON category.carname = cars.carname
+    WHERE Customers.Email = '$email'
+    AND (Cars.carname LIKE '%$searchTerm%'
+    OR category.brand LIKE '%$searchTerm%'
+    OR Reservations.ReservationDate LIKE '%$searchTerm%'
+    OR Reservations.PickupDate LIKE '%$searchTerm%'
+    OR Reservations.ReturnDate LIKE '%$searchTerm%')";
 
-              WHERE Customers.Email = '$email'
-                 AND (Cars.carname LIKE '%$searchTerm%'
-                 OR category.brand LIKE '%$searchTerm%'
-                 OR Reservations.ReservationDate = '$searchTerm')
-                 ";
 
     $result = $conn->query($query);
 

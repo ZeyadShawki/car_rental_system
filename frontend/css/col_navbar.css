@@ -47,6 +47,7 @@
     /* border: 2px solid #eee; */
     padding: 20px;
     margin-top: 20px;
+    margin-right: 5%;
     box-shadow: 0 0 10px 5px rgba(186, 186, 186, 0.853);
     /* Adjust the values as needed */
 }
