@@ -1,4 +1,45 @@
 $(document).ready(function () {
+function populateImage(imageUrl) {
+  $("#carImage").attr("src", imageUrl);
+}
+
+function populateCarname() {
+   var selectedBrand = $("#brand").val();
+
+   // Make an AJAX request to fetch car names for the selected brand
+   $.ajax({
+     type: "GET",
+     url: "http://localhost/final_db_admin/backend/admin_car_controller/admin_get_brand_from_car.php",
+     data: { brand: selectedBrand },
+     dataType: "json",
+     success: function (data) {
+       // Populate car name dropdown
+       populateDropdown("#CarName", data.carNames, null);
+     },
+     error: function (xhr, status, error) {
+       console.error(xhr.responseText);
+       alert("Error loading car names: " + xhr.responseText);
+     },
+   });
+}
+  $("#brand").change(function () {
+  populateCarname();
+  });
+
+$("#imageId").change(function () {
+    // Assuming you want to preview the selected image
+    var input = this;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $("#carImage").attr("src", e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+});
+
   // Assume the server endpoint for fetching car data
   const fetchCarDataUrl =
     "http://localhost/final_db_admin/backend/admin_car_controller/admin_edit_car_request_car_details.php"; // Replace with the actual file path
@@ -15,14 +56,17 @@ $(document).ready(function () {
       data: { carId: carId },
       dataType: "json",
       success: function (data) {
+        console.log(data);
         // Unbind change event to prevent recursion
         // $("#OfficeCountry, #OfficeCity").off("change");
+            populateImage(data.carData.imageUrl);
 
-     populateDropdown(
-       "#carStatus",
-       ["active", "out of service", "rented"], // Assuming these are the possible values
-       data.carData.carStatus
-     );
+        populateDropdown(
+          "#carStatus",
+          ["active", "out of service", "rented"], // Assuming these are the possible values
+          data.carData.carStatus
+        );
+
         // Populate Office Country dropdown
         populateDropdownCountry(
           "#OfficeCountry",
@@ -31,6 +75,8 @@ $(document).ready(function () {
         );
 
         // Populate Office City dropdown
+
+        console.log(data.countries);
         populateDropdownCity(
           "#OfficeCity",
           data.countries.map((e) => {
@@ -39,41 +85,65 @@ $(document).ready(function () {
           data.carData.OfficeID
         );
 
+        // Populate Car Name dropdown
+        populateDropdown("#CarName", data.allCarNames, data.carData.carname);
+
+        // Populate Brand dropdown
+        populateDropdown("#brand", data.allBrandNames, data.carData.brand);
+
+          populateCarname();
+
         // Rebind change event after updating dropdown values
-        $("#OfficeCountry, #OfficeCity").on("change", function () {
-          // Handle change event
+        $("#OfficeCountry").change(function () {
+          var selectedCountry = $(this).val();
+
+          // Make an AJAX request to fetch cities for the selected country
+          $.ajax({
+            type: "GET",
+            url:
+              "http://localhost/final_db_admin/backend/office_controller/get_cities.php?country=" +
+              selectedCountry,
+            dataType: "json",
+            success: function (data) {
+              console.log(data);
+              // Populate city dropdown
+              populateDropdownCity2("#OfficeCity", data, 0);
+            },
+            error: function (xhr, status, error) {
+              console.error(xhr.responseText);
+              alert("Error loading cities: " + xhr.responseText);
+            },
+          });
         });
 
         // Populate other input fields
-        $("#Brand").val(data.carData.brand);
-        $("#CarName").val(data.carData.carname);
         $("#Year").val(data.carData.Year);
         $("#rentValue").val(data.carData.rentvalue);
         $("#ImageUrl").val(data.carData.imageUrl);
         $("#carStatus").val(data.carData.carStatus);
       },
       error: function (xhr, status, error) {
+        console.log(xhr);
         // console.log(xhr.responseText);
         // Handle error
       },
     });
   }
 
+  function populateDropdown(selector, options, selectedValue) {
+    var dropdown = $(selector);
+    dropdown.empty();
 
-      function populateDropdown(selector, options, selectedValue) {
-        var dropdown = $(selector);
-        dropdown.empty();
-
-        $.each(options, function (index, option) {
-          var optionElement = $("<option></option>")
-            .attr("value", option)
-            .text(option);
-          if (option === selectedValue) {
-            optionElement.prop("selected", true);
-          }
-          dropdown.append(optionElement);
-        });
+    $.each(options, function (index, option) {
+      var optionElement = $("<option></option>")
+        .attr("value", option)
+        .text(option);
+      if (option === selectedValue) {
+        optionElement.prop("selected", true);
       }
+      dropdown.append(optionElement);
+    });
+  }
 
   function populateDropdownCity(selector, options, selectedValue) {
     // Filter out undefined values
@@ -100,34 +170,31 @@ $(document).ready(function () {
     }
   }
 
-  $("#OfficeCountry").change(function () {
-    // console.log("ddd");
-    var selectedCountry = $(this).val();
-    $.ajax({
-      type: "GET",
-      url:
-        "http://localhost/final_db_admin/backend/office_controller/get_cities.php?country=" +
-        selectedCountry,
-      dataType: "json",
-      success: function (data) {
-        // Populate city dropdown
-        var cityDropdown = $("#OfficeCity");
-        cityDropdown.empty();
-        $.each(data, function (key, value) {
-          cityDropdown.append(
-            '<option value="' + value.id + '">' + value.name + "</option>"
-          );
-        });
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-        alert("Error loading cities: " + xhr.responseText);
-      },
+  function populateDropdownCity2(selector, options, selectedValue) {
+    // Filter out undefined values
+    options = options.filter(function (option) {
+      return option !== undefined;
     });
-  });
-function removeDuplicates(arr) {
-  return [...new Set(arr)];
-}
+    // console.log(options);
+    // Populate dropdown with filtered options
+    var cityDropdown = $(selector);
+    cityDropdown.empty();
+    $.each(options, function (key, value) {
+      // console.log(value);
+
+      cityDropdown.append(
+        '<option value="' + value.id + '">' + value.name + "</option>"
+      );
+    });
+
+    // Set the selected value
+    if (selectedValue) {
+      // console.log(selectedValue);
+
+      cityDropdown.val(selectedValue);
+    }
+  }
+
   // Function to populate a dropdown
   // Function to populate a dropdown
   // Function to populate a dropdown for countries
@@ -141,13 +208,11 @@ function removeDuplicates(arr) {
       return option !== undefined;
     });
 
-  options = removeDuplicates(options);
+    options = removeDuplicates(options);
     // Populate dropdown with filtered options
     $.each(options, function (index, option) {
       dropdown.append(
-        $("<option></option>")
-          .attr("value", option)
-          .text(option)
+        $("<option></option>").attr("value", option).text(option)
       );
     });
 
@@ -156,10 +221,12 @@ function removeDuplicates(arr) {
       dropdown.val(selectedValue);
     }
   }
+  function removeDuplicates(array) {
+    return array.filter((value, index, self) => self.indexOf(value) === index);
+  }
 
   // Initial fetch when the page loads
   fetchCarData();
-
 
   $("#editCarForm").submit(function (e) {
     e.preventDefault(); // prevent the form from submitting traditionally
@@ -194,23 +261,37 @@ function removeDuplicates(arr) {
     // Get the carId from the URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const carId = urlParams.get("carId");
+  var input = document.getElementById("imageId");
 
-    // Send the data using AJAX
-    $.ajax({
-      type: "POST",
-      url: "http://localhost/final_db_admin/backend/admin_car_controller/admin_edit_car.php", // Replace with the actual file path
-      data: formData + "&carId=" + carId, // Include carId in the data
-      success: function (response) {
-        // Handle success
-        console.log(response);
-        alert("Record updated successfully");
-      },
-      error: function (xhr, status, error) {
-        // Handle errors
-        console.error(xhr.responseText);
-        alert("Error: " + xhr.responseText);
-      },
-    });
+  
+  var form_data = new FormData();
+  form_data.append("carId", carId); // Replace 'yourCarIdValue' with the actual carId value
+  form_data.append("image", input.files[0]);
+
+// Add other form fields as needed
+form_data.append("OfficeCity", $("#OfficeCity").val());
+form_data.append("Year", $("#Year").val());
+form_data.append("rentValue", $("#rentValue").val());
+form_data.append("carStatus", $("#carStatus").val());
+form_data.append("brand", $("#brand").val());
+form_data.append("CarName", $("#CarName").val());
+console.log($("#CarName").val());
+$.ajax({
+  url: "http://localhost/final_db_admin/backend/admin_car_controller/admin_edit_car.php",
+  dataType: "text",
+  cache: false,
+  contentType: false,
+  processData: false,
+  data: form_data,
+  type: "post",
+  success: function (php_script_response) {
+    console.log(php_script_response);
+    alert("Record updated successfully");
+  },
+  error: function (xhr, status, error) {
+    console.error(xhr.responseText);
+    alert("Error: " + xhr.responseText);
+  },
+});
   });
-
 });

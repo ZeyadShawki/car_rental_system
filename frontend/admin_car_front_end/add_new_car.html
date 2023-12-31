@@ -38,10 +38,10 @@
                 <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a
                             href="../admin_office_front_end/add_new_office.html">Add Office</a></span></div>
 
-                                <div class="nav-button"><i class="fas fa-bookmark"></i><span><a
-                                            href="../admin_car_front_end/add_new_car_category.html">Add Category</a></span></div>
+                <div class="nav-button"><i class="fas fa-bookmark"></i><span><a
+                            href="../admin_car_front_end/add_new_car_category.html">Add Category</a></span></div>
 
-                            <hr />
+                <hr />
 
 
                 <div class="nav-button"><i class="fas fa-search"></i><span><a
@@ -69,8 +69,8 @@
 
 
 
-                                            <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
-                                                        log out</a></span></div>
+                <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
+                            log out</a></span></div>
 
                 <div id="nav-content-highlight"></div>
             </div>
@@ -100,7 +100,7 @@
 
             <div class="container mt-4 text-start">
                 <h3>Add new Car</h3>
-                <form id="addCarForm" method="POST" enctype='multipart/form-data'>
+                <form id="addCarForm" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="OfficeCountry" class="form-label">Office Country</label>
                         <select class="form-select" id="OfficeCountry" name="OfficeCountry">
@@ -117,19 +117,19 @@
 
 
 
-<div class="mb-3">
-    <label for="Brand" class="form-label">Brand</label>
-    <select class="form-select" id="Brand" name="Brand">
-        <!-- Options will be loaded dynamically via AJAX -->
-    </select>
-</div>
+                    <div class="mb-3">
+                        <label for="Brand" class="form-label">Brand</label>
+                        <select class="form-select" id="Brand" name="Brand">
+                            <!-- Options will be loaded dynamically via AJAX -->
+                        </select>
+                    </div>
 
-<div class="mb-3">
-    <label for="carName" class="form-label">Car Name</label>
-    <select class="form-select" id="carName" name="carName">
-        <!-- Options will be loaded dynamically via AJAX -->
-    </select>
-</div>
+                    <div class="mb-3">
+                        <label for="carName" class="form-label">Car Name</label>
+                        <select class="form-select" id="carName" name="carName">
+                            <!-- Options will be loaded dynamically via AJAX -->
+                        </select>
+                    </div>
 
 
                     <!-- <div class="mb-3">
@@ -151,10 +151,24 @@
                         <input type="number" class="form-control" id="rentValue" name="rentValue" min="0">
                     </div>
 
+
+
                     <div class="mb-3">
-                        <label for="ImageUrl" class="form-label">Image Url</label>
-                        <input type="text" class="form-control" id="ImageUrl" name="ImageUrl">
+                        <img src="http://localhost/final_db_admin/backend/uploaded_images/Image_not_available (1).png"
+                            style="width: 300px; height: 300px; display: block;
+  margin-left: auto;
+  margin-right: auto;" alt="Car Image" id="carImage" class="img-fluid">
                     </div>
+
+
+
+                    <input id="imageId" type="file" class="form-control" name="image" accept="image/*">
+
+                    <!-- <div class="mb-3">
+                        <a onClick="openFileInput()" style="display: block;
+  margin-left: auto;
+  margin-right: auto;" class="btn btn-primary w-50 p-3 mb-5">Add car image</a>
+                    </div> -->
 
                     <div class="mb-3">
                         <label for="carStatus" class="form-label">Car Status</label>
