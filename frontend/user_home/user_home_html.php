@@ -114,5 +114,6 @@
     </div>
 
 </body>
+<script src="../footer/footer.js" defer></script>
 
 </html>

@@ -19,3 +19,17 @@
     width: calc(100% - 25%); /* Adjusted width */
     overflow-x: hidden;
 }
+
+
+
+.btn-primary {
+    background-color: #364352 !important; /* Set background color to #364352 */
+    border-color: #364352 !important; /* Set border color to match background color */
+    color: #ffffff !important; /* Set text color to white */
+}
+
+/* Hover effect for the .btn-primary */
+.btn-primary:hover {
+    background-color: #003161 !important; /* Change background color on hover to #003161 */
+    border-color: #003161 !important; /* Change border color on hover to match background color */
+}

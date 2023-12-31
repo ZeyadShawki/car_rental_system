@@ -5,6 +5,7 @@
     <title>Register</title>
     <!--css code-->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/button_scroll.css">
 
     <!--php file to check if is set session email-->
     <?php

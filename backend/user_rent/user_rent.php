@@ -52,13 +52,30 @@ function get_data( $plate_id ) {
     if ( mysqli_num_rows( $result ) > 0 ) {
         // Loop through each row and print the data
         while ( $row = mysqli_fetch_assoc( $result ) ) {
-            echo 'Country: ' . $row[ 'country' ] . '<br>';
-            echo 'Brand: ' . $row[ 'brand' ] . '<br>';
-            echo 'Car Name: ' . $row[ 'carname' ] . '<br>';
-            echo 'Plate ID: ' . $row[ 'plateID' ] . '<br>';
-            echo 'Rent Value per day: ' . $row[ 'rentvalue' ] . '<br>';
-            echo '------------------------<br>';
-        }
+            // echo 'Country: ' . $row[ 'country' ] . '<br>';
+            // echo 'Brand: ' . $row[ 'brand' ] . '<br>';
+            // echo 'Car Name: ' . $row[ 'carname' ] . '<br>';
+            // echo 'Plate ID: ' . $row[ 'plateID' ] . '<br>';
+            // echo 'Rent Value per day: ' . $row[ 'rentvalue' ] . '<br>';
+            // echo '------------------------<br>';
+
+            echo '<div class="form-control">';
+            echo '<h2>' . $row['brand'] . '</h2>';
+            echo '<p>';
+            echo '<strong>Country:</strong> ' . $row['country'] . '<br>';
+            echo '<strong>Car Name:</strong> ' . $row['carname'] . '<br>';
+            echo '<strong>Plate ID:</strong> ' . $row['plateID'] . '<br>';
+            echo '<strong>Rent Value per day:</strong> <span id="priceperday">' . $row['rentvalue'] . '</span><br>';
+           
+            echo '<div class="row">';
+            echo '<div class="col-md-6"><strong>Total Price:</strong></div>';
+            echo '<div class="col-md-6 text-danger" id="totalprice">Select Dates To Calculate</div>';
+            echo '</div>';
+            
+            
+            echo '</p>';
+            echo '</div>';
+            }
     } else {
         echo 'No results found.';
     }

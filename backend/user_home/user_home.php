@@ -43,6 +43,8 @@ if ( isset( $_POST[ 'update_car_name' ] ) ) {
     $brand_name = $_POST[ 'name_of_new_brand' ];
     // session_start();
     $arr = $_SESSION[ 'array' ];
+    // echo json_encode( $arr );
+    // return;
 
     // Check if the brand exists in the array
     if ( isset( $arr[ $brand_name ] ) ) {
@@ -85,7 +87,7 @@ function retrive_all_data_required() {
 
     // echo '<p>Speces</p>';
     $result = mysqli_query( $conn, "SELECT DISTINCT cs.brand, c.carname FROM cars AS c 
-    JOIN category as cs
+    JOIN category as cs ON c.carname=cs.carname
     WHERE c.carStatus = 'active';" );
 
     // Check for query execution success
@@ -93,9 +95,7 @@ function retrive_all_data_required() {
         die( 'Query failed: ' . mysqli_error( $conn ) );
     }
 
-    // Fetch options and create HTML select options
-    // $optionsBrand = "<option value='Any'>Any</option>";
-    // $optionsCarName = "<option value='Any'>Any</option>";
+
 
     $optionsBrand = "<option value='Any' selected>Any</option>";
     // slected 3shan bn5li l any hya awl hga selected

@@ -19,6 +19,8 @@
     <!-- js file-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src="./js/show_all_customer_reservation.js"></script>
+    <script src="../footer/footer.js" defer></script>
+
     <title>Profile</title>
 </head>
 

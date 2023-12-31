@@ -25,16 +25,15 @@ function updateCarNames(selectedBrand) {
     dataType: "text",
     success: function (response) {
       // Parse the JSON response
+      console.log( response+ "arrayyy");
       var carNamesArray = JSON.parse(response);
       console.log('55555555');
-console.log(response);
+      console.log(response);
       // Get the select element
       var selectCarElement = document.getElementById("carNamesSelect");
 
       // Remove all existing options
       selectCarElement.innerHTML = "";
-
-
 
        // Create a new option element
        var option = document.createElement("option");

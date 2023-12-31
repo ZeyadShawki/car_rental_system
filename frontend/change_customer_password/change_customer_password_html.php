@@ -19,6 +19,7 @@
     <!-- js file-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src="./js/change_customer_password.js"></script>
+    <script src="../footer/footer.js" defer></script>
 
     <title>Chanege Password</title>
 </head>

@@ -35,7 +35,7 @@ function displayResults(data) {
   if (data.length > 0) {
     var table =
       '<table class="table table-bordered table-striped"><thead>' +
-      "<tr><th>Car Name</th><th>Brand</th><th>Reservation Date</th></tr></thead><tbody>";
+      "<tr><th>Car Name</th><th>Brand</th><th>Reservation Date</th><th>Pickup Date</th><th>Return Date</th></tr></thead><tbody>";
 
     for (var i = 0; i < data.length; i++) {
       let ReservationDate = "Not Reserved";
@@ -43,6 +43,7 @@ function displayResults(data) {
       if (data[i].ReservationDate) {
         ReservationDate = data[i].ReservationDate;
       }
+      console.log(data)
       table +=
         "<tr><td>" +
         data[i].carname +
@@ -50,7 +51,11 @@ function displayResults(data) {
         data[i].brand +
         "</td><td>" +
         ReservationDate +
-        "</td></tr>";
+        "</td> <td>" +
+        data[i].PickupDate +
+        "</td> <td>" +
+        data[i].ReservationDate +
+        "</td> </tr>" ;
     }
 
     table += "</tbody></table>";
