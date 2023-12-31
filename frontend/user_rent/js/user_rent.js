@@ -52,30 +52,54 @@ $(document).ready(function(){
   
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("gggg");
-  // Get the rent value per day from PHP (assuming it's stored in a JavaScript variable)
-  var rentValuePerDay = parseFloat(document.getElementById("priceperday").textContent);
 
-  // Add event listeners to both date input fields
+document.addEventListener('DOMContentLoaded', function() {
+  var rentValuePerDay = parseFloat(document.getElementById("priceperday").textContent);
+  
   document.getElementById('pickupDate').addEventListener('change', updateTotalPrice);
   document.getElementById('returnDate').addEventListener('change', updateTotalPrice);
 
   function updateTotalPrice() {
-      var pickupDate = new Date(document.getElementById('pickupDate').value);
-      var returnDate = new Date(document.getElementById('returnDate').value);
+    var pickupDateValue = document.getElementById('pickupDate').value;
+    var returnDateValue = document.getElementById('returnDate').value;
 
-      // Calculate the difference in days
-      var timeDifference = returnDate.getTime() - pickupDate.getTime();
-      var daysDifference = timeDifference / (1000 * 3600 * 24);
+    // Check if either pickupDate or returnDate is not set yet
+    if (!pickupDateValue || !returnDateValue) {
+      // Clear previous validation messages
+      // var validationMessages = document.getElementById('validation-messages');
+      // validationMessages.innerHTML = '<p>Please select both pickup and return dates.</p>';
+      return;
+    }
 
-      // Calculate total price
-      var totalPrice = daysDifference * rentValuePerDay;
+    var pickupDate = new Date(pickupDateValue);
+    var returnDate = new Date(returnDateValue);
+    var currentDate = new Date(); // Current date
 
-      // Update the text content of the element with id "totalprice"
-      document.getElementById('totalprice').textContent = totalPrice.toFixed(2) + ' (for ' + daysDifference + ' days)';
+    // Clear previous validation messages
+    var validationMessages = document.getElementById('validation-messages');
+    validationMessages.innerHTML = '';
+
+    // Validation: Check if pickupDate is in the future
+    if (pickupDate <= currentDate) {
+      validationMessages.innerHTML += '<p>Pickup date should be in the future.</p>';
+      return;
+    }
+
+    // Validation: Check if returnDate is after pickupDate
+    if (returnDate <= pickupDate) {
+      validationMessages.innerHTML += '<p>Return date should be after the pickup date.</p>';
+      return;
+    }
+
+    // Calculate the difference in days
+    var timeDifference = returnDate.getTime() - pickupDate.getTime();
+    var daysDifference = timeDifference / (1000 * 3600 * 24);
+
+    // Calculate total price
+    var totalPrice = daysDifference * rentValuePerDay;
+
+    // Update the text content of the element with id "totalprice"
+    document.getElementById('totalprice').textContent = totalPrice.toFixed(2) + ' (for ' + daysDifference + ' days)';
   }
 });
-
-
 

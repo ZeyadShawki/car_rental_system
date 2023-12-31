@@ -35,7 +35,7 @@ function updateCustomerImageLink($email, $imageLink)
     }
 
     // Use prepared statement to prevent SQL injection
-    $stmt = $conn->prepare("UPDATE Customers SET ImageLink = ? WHERE Email = ?");
+    $stmt = $conn->prepare("UPDATE Customers SET imageLink = ? WHERE Email = ?");
     $stmt->bind_param("ss", $imageLink, $email);
     $stmt->execute();
     $stmt->close();

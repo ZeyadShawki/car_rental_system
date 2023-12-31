@@ -68,8 +68,7 @@
         <div class="content-of-page">
             <div class="container col-sm mt-5">
                 <p>Rent A Car</p>
-                <p id='validation-messages'>
-                </p>
+
                 <?php
                 $plateID = isset($_POST['plateID']) ? $_POST['plateID'] : null;
                 if ($plateID !== null) {
@@ -80,11 +79,18 @@
                 }
                 ?>
 
+                
+                <div class="col text-start" >
                 <label for='pickupDate'>Pickup Date:</label>
-                <input type='date' id='pickupDate' name='pickupDate'>
+                <input type='date'class="form-control" id='pickupDate' name='pickupDate'>
+                </div>
                 <br>
+
+                <div class="col text-start" >
                 <label for='returnDate'>Return Date:</label>
                 <input type='date' id='returnDate' name='returnDate'>
+                </div>
+
 
                 <form action="" method="post" id="rent-form">
                     <!-- 3shan ab3t el plate id -->
