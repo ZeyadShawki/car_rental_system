@@ -72,3 +72,7 @@ CREATE TABLE Reservations (
     PickupDate DATE NOT NULL,
     ReturnDate DATE NOT NULL
 );
+
+
+ALTER TABLE customers
+ADD imageLink VARCHAR(255);

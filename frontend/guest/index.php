@@ -5,8 +5,8 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
   // to test this case, make it if ( true )
 } else if (isset($_SESSION['SESSION_ADMIN'])) {
   header('Location: ../../frontend/admin_dashboard/admin_dashboard.html');
-  // zeyad
 }
+
 include "connectdb.php"; // Using database connection file here
 $records = mysqli_query($conn, "SELECT c.plateID, c.OfficeID, c.carname, s.brand, c.Year, c.imageUrl, c.rentvalue 
 FROM cars AS c 

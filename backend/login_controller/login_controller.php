@@ -7,10 +7,6 @@ if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
     header( 'Location: ../../frontend/admin_dashboard/admin_dashboard.html' );
     // zeyad
 }
-
-// sheel comment a  jordi ama tegrab
-// require( 'c:/xampp/htdocs/final_db_admin/' );
-
 require( __DIR__ . '/../my_db_cred.php' );
 
 $conn = MyConnection::getConnection();

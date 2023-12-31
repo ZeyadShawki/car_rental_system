@@ -137,3 +137,50 @@ VALUES
   (12, 5, 12, '2023-04-18', '2023-04-23', '2023-04-30'),
   (13, 2, 13, '2023-04-20', '2023-04-25', '2023-05-02'),
   (14, 1, 14, '2023-04-23', '2023-04-28', '2023-05-05');
+
+
+
+
+
+
+
+
+
+UPDATE `cars`
+SET `imageUrl` = 
+    CASE 
+        WHEN `plateID` = 1 THEN 'http://localhost/final_db_admin/backend/uploaded_images/1.jpg'
+        WHEN `plateID` = 2 THEN 'http://localhost/final_db_admin/backend/uploaded_images/2.jpg'
+        WHEN `plateID` = 3 THEN 'http://localhost/final_db_admin/backend/uploaded_images/3.jpg'
+        WHEN `plateID` = 4 THEN 'http://localhost/final_db_admin/backend/uploaded_images/4.jpg'
+        WHEN `plateID` = 5 THEN 'http://localhost/final_db_admin/backend/uploaded_images/5.jpg'
+        WHEN `plateID` = 6 THEN 'http://localhost/final_db_admin/backend/uploaded_images/6.jpg'
+        WHEN `plateID` = 7 THEN 'http://localhost/final_db_admin/backend/uploaded_images/7.jpg'
+        WHEN `plateID` = 8 THEN 'http://localhost/final_db_admin/backend/uploaded_images/8.jpg'
+        WHEN `plateID` = 9 THEN 'http://localhost/final_db_admin/backend/uploaded_images/9.jpg'
+        WHEN `plateID` = 10 THEN 'http://localhost/final_db_admin/backend/uploaded_images/10.jpg'
+        WHEN `plateID` = 11 THEN 'http://localhost/final_db_admin/backend/uploaded_images/11.jpg'
+        WHEN `plateID` = 12 THEN 'http://localhost/final_db_admin/backend/uploaded_images/1.jpg'
+        -- ... Continue this for each plateID value ...
+        ELSE `imageUrl` -- This keeps the current value if the plateID does not match any of the above
+    END;
+
+
+UPDATE `cars`
+SET `imageUrl` = 
+    CASE 
+        WHEN `plateID` = 13 THEN 'http://localhost/final_db_admin/backend/uploaded_images/1.jpg'
+        WHEN `plateID` = 14 THEN 'http://localhost/final_db_admin/backend/uploaded_images/2.jpg'
+        WHEN `plateID` = 15 THEN 'http://localhost/final_db_admin/backend/uploaded_images/3.jpg'
+        WHEN `plateID` = 16 THEN 'http://localhost/final_db_admin/backend/uploaded_images/4.jpg'
+        WHEN `plateID` = 17 THEN 'http://localhost/final_db_admin/backend/uploaded_images/5.jpg'
+        WHEN `plateID` = 18 THEN 'http://localhost/final_db_admin/backend/uploaded_images/6.jpg'
+        WHEN `plateID` = 19 THEN 'http://localhost/final_db_admin/backend/uploaded_images/7.jpg'
+        WHEN `plateID` = 20 THEN 'http://localhost/final_db_admin/backend/uploaded_images/8.jpg'
+        WHEN `plateID` = 21 THEN 'http://localhost/final_db_admin/backend/uploaded_images/9.jpg'
+        WHEN `plateID` = 22 THEN 'http://localhost/final_db_admin/backend/uploaded_images/10.jpg'
+        WHEN `plateID` = 23 THEN 'http://localhost/final_db_admin/backend/uploaded_images/11.jpg'
+        WHEN `plateID` = 24 THEN 'http://localhost/final_db_admin/backend/uploaded_images/1.jpg'
+        ELSE `imageUrl` -- This will keep the current value if the plateID does not match any of the above
+    END
+WHERE `plateID` BETWEEN 13 AND 24;

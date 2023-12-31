@@ -236,7 +236,6 @@ if ( isset( $_POST[ 'search' ] ) ) {
             
             // Displaying additional details (plateID, OfficeID, Year, rentvalue)
             echo '<p>Plate ID: ' . $row['plateID'] . '</p>';
-            echo '<p>Office ID: ' . $row['OfficeID'] . '</p>';
             echo '<p>Year: ' . $row['Year'] . '</p>';
             echo '<p>Rent Value: ' . $row['rentvalue'] . '</p>';
             
