@@ -80,12 +80,20 @@
             <div class="container col-sm mt-5">
                 <div class="border2">
                     <!-- Display the current image -->
-                    
-                    <img id="avatarImage" alt="Avatar" style="height:200px
-                vertical-align: middle;
-  width: 330px;
-  height: 300px;
-  border-radius: 50%;" class="avatar" onclick="openFileInput()">
+
+                    <img id="avatarImage" 
+     alt="Avatar" 
+     style="height:200px;
+            vertical-align: middle;
+            width: 330px;
+            height: 300px;
+            border-radius: 50%;
+            border: 2px solid gray;
+            cursor: pointer;" 
+     class="avatar" 
+     onclick="openFileInput()">
+
+
 
                     <button type="submit" onclick="openFileInput()" class="btn btn-primary w-50 p-3 m-5 mb-5">Change
                         Profile Image</button>
