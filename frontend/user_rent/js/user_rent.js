@@ -49,14 +49,14 @@ $(document).ready(function(){
       }
   });
   });
+  
 });
 
-
-
 document.addEventListener('DOMContentLoaded', function() {
+  console.log("gggg");
   // Get the rent value per day from PHP (assuming it's stored in a JavaScript variable)
-  var rentValuePerDay = this.getElementById("priceperday").value;
-  console.log("hiii");
+  var rentValuePerDay = parseFloat(document.getElementById("priceperday").textContent);
+
   // Add event listeners to both date input fields
   document.getElementById('pickupDate').addEventListener('change', updateTotalPrice);
   document.getElementById('returnDate').addEventListener('change', updateTotalPrice);
@@ -73,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var totalPrice = daysDifference * rentValuePerDay;
 
       // Update the text content of the element with id "totalprice"
-      document.getElementById('totalprice').textContent = 'Total Price: ' + totalPrice.toFixed(2) + ' (for ' + daysDifference + ' days)';
+      document.getElementById('totalprice').textContent = totalPrice.toFixed(2) + ' (for ' + daysDifference + ' days)';
   }
 });
+
+
+
