@@ -54,7 +54,7 @@ function displayResults(data) {
         "</td> <td>" +
         data[i].PickupDate +
         "</td> <td>" +
-        data[i].ReservationDate +
+        data[i].ReturnDate +
         "</td> </tr>" ;
     }
 
