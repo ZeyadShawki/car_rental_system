@@ -1,48 +1,66 @@
 /* Make the nav-bar sticky to the right with a width of 100% */
 #nav-bar {
-    position: sticky; /* This will make it sticky */
-    top: 0; /* Stick it to the top */
-    right: auto; /* Stick it to the right */
-    width: fit-content; /* Set width to 100% */
+    position: sticky;
+    /* This will make it sticky */
+    top: 0;
+    /* Stick it to the top */
+    right: auto;
+    /* Stick it to the right */
+    width: fit-content;
+    /* Set width to 100% */
     height: 100vh;
-    z-index: 1000; /* To ensure it stays above other elements */
+    z-index: 1000;
+    /* To ensure it stays above other elements */
 }
+
 /* Existing CSS remains unchanged */
 /* Add this new CSS */
 .flex-container {
     display: flex;
     text-align: center;
 }
+
 .content-of-page {
 
     margin-left: 5%;
-    width: calc(100% - 25%); /* Adjusted width */
+    width: calc(100% - 25%);
+    /* Adjusted width */
     overflow-x: hidden;
 }
 
 
 
 .btn-primary {
-    background-color: #364352 !important; /* Set background color to #364352 */
-    border-color: #364352 !important; /* Set border color to match background color */
-    color: #ffffff !important; /* Set text color to white */
+    background-color: #364352 !important;
+    border-color: #003161 !important;
+    color: #ffffff !important;
 }
 
-/* Hover effect for the .btn-primary */
+/* Hover effect */
 .btn-primary:hover {
-    background-color: #003161 !important; /* Change background color on hover to #003161 */
-    border-color: #003161 !important; /* Change border color on hover to match background color */
+    background-color: #003161 !important;
+    border-color: #364352 !important;
+    
 }
 
-
-
-
-  .border2 {
+.border2 {
     /* border: 2px solid #eee; */
     padding: 20px;
     margin-top: 20px;
-    box-shadow: 0 0 10px 5px rgba(186, 186, 186, 0.853); /* Adjust the values as needed */
-  
-    /* You can add more styles if needed */
-  }
-  
+    box-shadow: 0 0 10px 5px rgba(186, 186, 186, 0.853);
+    /* Adjust the values as needed */
+}
+
+/*Scroll Bar*/
+html::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #003161;
+    border-radius: 5rem;
+}

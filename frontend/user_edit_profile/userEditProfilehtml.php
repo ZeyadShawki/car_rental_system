@@ -92,9 +92,6 @@
             cursor: pointer;" 
      class="avatar" 
      onclick="openFileInput()">
-
-
-
                     <button type="submit" onclick="openFileInput()" class="btn btn-primary w-50 p-3 m-5 mb-5">Change
                         Profile Image</button>
                     <!-- Hidden file input for selecting a new image -->

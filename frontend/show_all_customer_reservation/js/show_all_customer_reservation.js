@@ -3,10 +3,16 @@ const baseUrl = "http://localhost/final_db_admin/backend/";
 
 // Function to perform the search
 function search() {
-  // Get the search term from the input field
   var searchTerm = document.getElementById("searchTerm").value;
+  var resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
 
-  // AJAX request to the PHP script
+  // Clear the existing table content
+  var tbodyElement = document.querySelector(".table tbody");
+  if (tbodyElement) {
+    tbodyElement.innerHTML = "";
+  }
+
   $.ajax({
     type: "POST",
     url: `${baseUrl}/show_all_customer_reservation/show_all_customer_reservation.php`,
@@ -17,7 +23,6 @@ function search() {
         displayResults(data);
       } else {
         console.log("No results found.");
-        // Handle the case where no results are found
       }
     },
     error: function (error) {
@@ -26,11 +31,10 @@ function search() {
     },
   });
 }
-
-// Function to display search results
 function displayResults(data) {
   var resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = "";
+
 
   if (data.length > 0) {
     var table =
@@ -43,7 +47,7 @@ function displayResults(data) {
       if (data[i].ReservationDate) {
         ReservationDate = data[i].ReservationDate;
       }
-      console.log(data)
+      
       table +=
         "<tr><td>" +
         data[i].carname +
@@ -55,12 +59,17 @@ function displayResults(data) {
         data[i].PickupDate +
         "</td> <td>" +
         data[i].ReturnDate +
-        "</td> </tr>" ;
+        "</td> </tr>";
     }
 
     table += "</tbody></table>";
     resultsDiv.innerHTML = table;
   } else {
-    resultsDiv.innerHTML = "No results found.";
+    // Display a Bootstrap alert if no reservations are found
+    resultsDiv.innerHTML = `
+      <div class="alert alert-warning mt-3" role="alert">
+        No reservations found.
+      </div>
+    `;
   }
 }
