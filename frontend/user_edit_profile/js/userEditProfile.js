@@ -24,7 +24,17 @@ function populateFields(customerData) {
   $("#lastName").val(customerData.LastName);
   $("#phoneNumber").val(customerData.PhoneNumber);
   $("#bdate").val(customerData.bdate);
-  $("#avatarImage").attr("src", customerData.ImageLink);
+
+  if (customerData.imageLink){
+
+    $("#avatarImage").attr("src", customerData.imageLink);
+  }else{
+        $("#avatarImage").attr(
+          "src",
+          "http://localhost/final_db_admin/backend/uploaded_images/Image_not_available (1).png"
+        );
+
+  }
 }
 
 // Call the function to fetch all customer data when the page loads
@@ -105,6 +115,7 @@ async function editCustomerProfile() {
     success: function (response) {
       if (response.success) {
         console.log(response);
+        alert('changed success fulyyy')
         // Reload the page after a successful update
         // location.reload();
         // alert('Changed successs fully')

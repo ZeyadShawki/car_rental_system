@@ -15,7 +15,9 @@
   width: 330px;
   height: 300px;
   border-radius: 50%;
+  object-fit: cover; /* Optional: Maintain aspect ratio and cover the container */
 }
+
 
 * {
   font-family: "Poppins", sans-serif;

@@ -67,7 +67,6 @@
         <!--data of page starts from here -->
         <div class="content-of-page">
             <div class="container col-sm mt-5">
-                <p>Rent A Car</p>
 
                 <?php
                 $plateID = isset($_POST['plateID']) ? $_POST['plateID'] : null;
@@ -88,14 +87,14 @@
 
                 <div class="col text-start" >
                 <label for='returnDate'>Return Date:</label>
-                <input type='date' id='returnDate' name='returnDate'>
+                <input type='date' class="form-control"  id='returnDate' name='returnDate'>
                 </div>
 
 
                 <form action="" method="post" id="rent-form">
                     <!-- 3shan ab3t el plate id -->
                     <input type="text" id="plateid" value="<?php echo $plateID; ?>" hidden>
-                    <button type="submit">Rent</button>
+                    <button class="btn btn-primary w-100 p-3 mb-5 mt-5" type="submit">Rent</button>
                 </form>
                 <div id="reciveddata"> <!--if cannot rent car in this period-->
                 </div>

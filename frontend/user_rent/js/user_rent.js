@@ -8,21 +8,23 @@ $(document).ready(function(){
 
     var validationMessages = document.getElementById('validation-messages');
     validationMessages.innerHTML = ''; // Clear previous messages
-    
-    if (isNaN(pickupDate.getTime()) || isNaN(returnDate.getTime())) {
-      validationMessages.innerHTML += '<p>You must choose both pickup and return dates.</p>';
+  if (isNaN(pickupDate.getTime()) || isNaN(returnDate.getTime())) {
+    validationMessages.innerHTML +=
+      '<p class="text-danger">You must choose both pickup and return dates.</p>';
+    return;
+  } else {
+    if (pickupDate >= returnDate) {
+      validationMessages.innerHTML +=
+        '<p class="text-danger">Return date must be after the pickup date.</p>';
       return;
-    } else {
-        if (pickupDate >= returnDate) {
-            validationMessages.innerHTML += '<p>Return date must be after the pickup date.</p>';
-            return;
-        }
-    
-        if (pickupDate < currentDate) {
-            validationMessages.innerHTML += '<p>Pickup date must be in the future.</p>';
-            return;
-        }
     }
+
+    if (pickupDate < currentDate) {
+      validationMessages.innerHTML +=
+        '<p class="text-danger">Pickup date must be in the future.</p>';
+      return;
+    }
+  }
 
     // Format the date as 'YYYY-MM-DD' 3shan a3rf akrno bel f databases
     var formattedNewPickupDate = pickupDate.toISOString().split('T')[0];
@@ -33,21 +35,34 @@ $(document).ready(function(){
     console.log(plateid); 
 
     $.ajax({
-      type: "POST",// hb3t
-      url: "../../backend/user_rent/user_rent.php",// go to this php file
+      type: "POST", // hb3t
+      url: "../../backend/user_rent/user_rent.php", // go to this php file
       data: {
-        pickup_date : formattedNewPickupDate,
-        return_date : formattedNewReturnupDate,
-        plate_id : plateid,
-        rent_submit: true
+        pickup_date: formattedNewPickupDate,
+        return_date: formattedNewReturnupDate,
+        plate_id: plateid,
+        rent_submit: true,
       },
       dataType: "text",
-      success: function(response){
-      console.log("FROM AJAX")
-      console.log(response);
-      reciveddata.innerHTML = response;      
-      }
-  });
+      success: function (response) {
+  
+          console.log("FROM AJAX");
+          console.log(response);
+
+          reciveddata.innerHTML = response;
+        alert('reserved successfully')
+      },
+      error: function (xhr, status, error) {
+        console.error(xhr.responseText);
+        if (xhr.status === 400) {
+          // Handle specific error code (Bad Request)
+          alert("Reservation failed: " + JSON.parse(xhr.responseText).message);
+        } else {
+          // Handle other error codes or generic errors
+          alert("Reservation failed. Please try again later.");
+        }
+      },
+    });
   });
   
 });
@@ -99,7 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var totalPrice = daysDifference * rentValuePerDay;
 
     // Update the text content of the element with id "totalprice"
-    document.getElementById('totalprice').textContent = totalPrice.toFixed(2) + ' (for ' + daysDifference + ' days)';
+    document.getElementById("totalpriceId").textContent =
+      totalPrice.toFixed(2) + " (for " + daysDifference + " days)";
   }
 });
 
