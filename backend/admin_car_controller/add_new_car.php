@@ -5,22 +5,27 @@ $conn = MyConnection::getConnection();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $officeID = $_POST["OfficeCity"]; // Assuming OfficeCity is the ID of the selected office
     $carName = $_POST["carName"];
-    // $brand = $_POST["Brand"];
     $year = $_POST["Year"];
-    $rentValue = $_POST["rentValue"]; 
-    $imageUrl = $_POST["ImageUrl"];
+    $rentValue = $_POST["rentValue"];
     $carStatus = $_POST["carStatus"];
 
-    
-     $query = "INSERT INTO cars (OfficeID, carname,  Year, imageUrl, carStatus,rentvalue) VALUES ('$officeID', '$carName',  '$year', '$imageUrl', '$carStatus','$rentValue')";
+    // Handle image file upload
+    $uploadDir = '../../backend/uploaded_images/';
+    $uploadFile = $uploadDir . basename($_FILES['image']['name']);
 
 
-    // $query = "INSERT INTO cars (OfficeID, carname, brand, Year, imageUrl, carStatus,rentvalue) VALUES ('$officeID', '$carName', '$brand', '$year', '$imageUrl', '$carStatus','$rentValue')";
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+        $imageUrl = 'http://localhost/final_db_admin/backend/uploaded_images/' . basename($_FILES['image']['name']);
 
-    if ($conn->query($query) === TRUE) {
-        echo "Record inserted successfully";
+        $query = "INSERT INTO cars (OfficeID, carname, Year, imageUrl, carStatus, rentvalue) VALUES ('$officeID', '$carName', '$year', '$imageUrl', '$carStatus', '$rentValue')";
+
+        if ($conn->query($query) === TRUE) {
+            echo "Record inserted successfully";
+        } else {
+            echo "Error: " . $query . "<br>" . $conn->error;
+        }
     } else {
-        echo "Error: " . $query . "<br>" . $conn->error;
+        echo "Error moving the file";
     }
 } else {
     echo "Invalid request method";

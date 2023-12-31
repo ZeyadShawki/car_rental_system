@@ -5,22 +5,49 @@ $conn = MyConnection::getConnection();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get carId and new OfficeID from the POST data
     $carId = $_POST['carId'];
-    $newOfficeID = filter_var($_POST['OfficeCity'], FILTER_VALIDATE_INT);
+    $newOfficeID = $_POST['OfficeCity'];
 
     // Validate and sanitize other form data
-    $brand = filter_var($_POST['Brand'], FILTER_SANITIZE_STRING);
-    $carName = filter_var($_POST['CarName'], FILTER_SANITIZE_STRING);
-    $year = filter_var($_POST['Year'], FILTER_VALIDATE_INT);
-    $rentValue = filter_var($_POST['rentValue'], FILTER_VALIDATE_FLOAT);
-    $imageUrl = filter_var($_POST['ImageUrl'], FILTER_SANITIZE_URL);
-    $carStatus =$_POST['carStatus'];
+    $brand = $_POST['brand'];
+    $carName = $_POST['CarName'];
+    $year = $_POST['Year'];
+    $rentValue = $_POST['rentValue'];
+    $carStatus = $_POST['carStatus'];
 
-// Update the car in the database
-    $updateSql = "UPDATE Cars SET OfficeID=?, brand=?, carname=?, Year=?, rentvalue=?, imageUrl=?, carStatus=? WHERE plateID=?";
+    // Handle image upload
+    $imageUrl = ''; // Initialize imageUrl variable
+    if (!empty($_FILES['image']['name'])) {
+        if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            // File uploaded successfully
+            $uploadDir = '../uploaded_images/'; // Change this to your desired folder
+            $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+            $imageUrl = 'http://localhost/final_db_admin/backend/uploaded_images/' . basename($_FILES['image']['name']); // Set imageUrl to the path of the uploaded file
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+                // File moved successfully
+            } else {
+                // Failed to move file
+                echo json_encode(['status' => 'error', 'message' => 'Failed to move uploaded image']);
+                exit;
+            }
+        } else {
+            // Error in file upload
+            echo json_encode(['status' => 'error', 'message' => 'Error in file upload']);
+            exit;
+        }
+    } else {
+        // No file selected for upload, handle accordingly
+        echo "No file selected for upload";
+    }
+
+    // Update the car in the database
+    $updateSql = "UPDATE Cars SET OfficeID=?, carname=?, Year=?, rentvalue=?, imageUrl=?, carStatus=? WHERE plateID=?";
     $updateStmt = $conn->prepare($updateSql);
 
     if ($updateStmt) {
-$updateStmt->bind_param('issidssi', $newOfficeID, $brand, $carName, $year, $rentValue, $imageUrl, $carStatus, $carId);
+
+
+        $updateStmt->bind_param('isidssi', $newOfficeID, $carName, $year, $rentValue, $imageUrl, $carStatus, $carId);
         $updateStmt->execute();
 
         // Check if the update was successful

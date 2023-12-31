@@ -145,14 +145,16 @@ $(document).ready(function () {
     }
 
     // Get form data
-    var formData = $(this).serialize();
-    console.log('sdsds');
-console.log(formData);
+    var formData = new FormData(this); // Use FormData to handle files
+    console.log("Form Data:", formData);
+
     // Send the data using AJAX
     $.ajax({
       type: "POST",
-      url: "http://localhost/final_db_admin/backend/admin_car_controller/add_new_car.php", // Replace with the actual file path
+      url: "http://localhost/final_db_admin/backend/admin_car_controller/add_new_car.php",
       data: formData,
+      contentType: false, // Don't set contentType
+      processData: false, // Don't process data (needed for FormData)
       success: function (response) {
         // Handle success
         console.log(response);
@@ -165,4 +167,65 @@ console.log(formData);
       },
     });
   });
+
+
+      $("#imageId").on("change", function () {
+        var files = this.files;
+
+        if (files.length > 0) {
+          var imageUrl = URL.createObjectURL(files[0]);
+
+          // Update the "carImage" source and set the new image
+          $("#carImage").attr("src", imageUrl);
+
+          // Update the previousImageUrl variable
+          previousImageUrl = imageUrl;
+
+          // Append the file to the FormData object
+          formData.append("image", files[0]);
+        }
+      });
 });
+
+  // Function to open a file input dialog
+function openFileInput() {
+  var input = document.createElement("input");
+  input.type = "file";
+  input.name = "image"; // Make sure the name matches the expected key in your PHP script
+  input.accept = "image/*";
+
+  // Trigger a click event on the input
+  input.click();
+
+  // Listen for changes in the file input
+  $(input).on("change", function () {
+    var files = this.files;
+
+    if (files.length > 0) {
+      var imageUrl = URL.createObjectURL(files[0]);
+
+      // Update the "carImage" source and set the new image
+      $("#carImage").attr("src", imageUrl);
+
+      // Update the previousImageUrl variable
+      previousImageUrl = imageUrl;
+
+      // Append the file to the FormData object
+      formData.append("image", files[0]);
+    }
+  });
+}
+
+
+  // Attach the openFileInput function to a button click event
+  // $("#selectImageButton").click(function () {
+  //   openFileInput();
+
+  //   // Disable form submission while changing the image
+  //   $("#addCarForm").on("submit", function (e) {
+  //     e.preventDefault();
+  //   });
+  // });
+
+  // Change event for ImageUrl input
+

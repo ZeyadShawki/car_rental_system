@@ -32,7 +32,8 @@
             <div id="nav-content">
                 <div class="nav-button"><i class="fas fa-home"></i><span><a href="javascript:void(0);"
                             onclick="history.back();">Go back</a></span></div>
-                <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">Log out</a></span></div>
+                <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a
+                            href="../../backend/logout/logout.php">Log out</a></span></div>
             </div>
         </div>
 
@@ -56,13 +57,19 @@
 
 
                     <div class="mb-3">
-                        <label for="Brand" class="form-label">Brand</label>
-                        <input type="text" class="form-control" id="Brand" name="Brand">
+                        <label for="brand" class="form-label">Brand</label>
+                        <select class="form-select" id="brand" name="brand">
+                            <!-- Options will be loaded dynamically via AJAX -->
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="CarName" class="form-label">Car Name</label>
-                        <input type="text" class="form-control" id="CarName" name="CarName">
+                        <select class="form-select" id="CarName" name="CarName">
+                            <!-- Options will be loaded dynamically via AJAX -->
+                        </select>
                     </div>
+
+
 
                     <div class="mb-3">
                         <label for="Year" class="form-label">Year</label>
@@ -75,9 +82,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="ImageUrl" class="form-label">Image Url</label>
-                        <input type="text" class="form-control" id="ImageUrl" name="ImageUrl">
+                        <img src="http://localhost/final_db_admin/backend/uploaded_images/Image_not_available (1).png"
+                            style="width: 300px; height: 300px; display: block;
+                              margin-left: auto;
+                              margin-right: auto;" alt="Car Image" id="carImage" class="img-fluid">
                     </div>
+
+
+
+                    <input id="imageId" type="file" class="form-control" name="image" accept="image/*">
+
 
                     <div class="mb-3">
                         <label for="carStatus" class="form-label">Car Status</label>
