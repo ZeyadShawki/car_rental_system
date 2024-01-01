@@ -85,6 +85,16 @@
                 <div id="results_Resv"></div>
                 <table class="table">
                 </table>
+
+                <!-- Pagination -->
+                <div id="pagination" class="mt-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <!-- Pagination links will be dynamically generated here -->
+                        </ul>
+                    </nav>
+                </div>
+
             </div>
         </div>
     </div>
