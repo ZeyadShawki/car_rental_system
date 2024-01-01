@@ -46,7 +46,7 @@
             <hr>
             <button name="login" class="btn btn-primary w-100 p-3 mb-5" type="submit">Login</button>
         </form>
-        <p>Doen not have an account? <a href="../register_customer/register_html.php">Sign up</a>.</p>
+        <p>Do not have an account? <a href="../register_customer/register_html.php">Sign up</a>.</p>
 
     </div>
 </body>
