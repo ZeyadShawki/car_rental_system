@@ -27,7 +27,6 @@
 <body>
 
     <div class="flex-container">
-        <!-- Your nav-bar code remains unchanged -->
         <div id="nav-bar">
             <input id="nav-toggle" type="checkbox" />
             <div id="nav-header"><a id="nav-title" target="_blank"><i></i>Profile</a>
@@ -52,12 +51,9 @@
             <input id="nav-footer-toggle" type="checkbox" />
             <div id="nav-footer">
                 <div id="nav-footer-heading">
-    
-                    <!-- <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public"
-                            target="_blank">uahnbu</a><span id="nav-footer-subtitle">Admin</span></div> -->
                     <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
                 </div>
-                
+
             </div>
         </div>
 
@@ -65,12 +61,14 @@
         <div class="content-of-page">
             <div class="container col-sm mt-5">
                 <div class="row">
+
                     <div class="col-sm-8">
                         <input type="text" id="searchTerm" class="form-control" placeholder="Enter search term">
                     </div>
                     <div class="col-sm-4">
                         <button class="btn btn-primary" onclick="search()">Search</button>
                     </div>
+
                 </div>
 
 
@@ -83,9 +81,9 @@
 
                 <!-- Pagination -->
                 <div id="pagination" class="mt-3">
-                    <nav aria-label="Page navigation example">
+                    <nav aria-label="Page navigation">
                         <ul class="pagination">
-                            <!-- Pagination links will be dynamically generated here -->
+                            <!-- pagination links -->
                         </ul>
                     </nav>
                 </div>

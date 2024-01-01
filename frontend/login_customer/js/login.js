@@ -23,7 +23,7 @@ function validate() {
     showError(document.getElementById("password"), "Password cannot be empty");
     return;
   }
-console.log('sssssdsdsd');
+  console.log('sssssdsdsd');
   // AJAX request
   $.ajax({
     type: "POST",
@@ -35,8 +35,8 @@ console.log('sssssdsdsd');
     },
     dataType: "json", // Change the data type to JSON
     success: function (response) {
-        console.log('aaassas');
-      console.log(response);
+      console.log('aaassas');
+      console.log(response.status);
       if (response.status === "success") {
         console.log('aaaa');
         if (response.isAdmin) {
@@ -56,12 +56,12 @@ console.log('sssssdsdsd');
       } else {
         showError(document.getElementById("error-container"), "Error");
       }
-    },error: function (params) {
-        console.log(params);
-          showError(
-            document.getElementById("error-container"),
-            params.responseText
-          );
+    }, error: function (params) {
+      console.log(params);
+      showError(
+        document.getElementById("error-container"),
+        params.responseText
+      );
     }
   });
 }

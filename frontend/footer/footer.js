@@ -1,15 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-
-  // var fontAwesomeLink = document.createElement('link');
-  // fontAwesomeLink.rel = 'stylesheet';
-  // fontAwesomeLink.href = '../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
-  // document.head.appendChild(fontAwesomeLink);
-
   // Create a new footer element
   var footer = document.createElement('footer');
   footer.className = 'site-footer';
-
+  
   // Set the HTML content of the footer
   footer.innerHTML = `
     
