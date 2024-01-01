@@ -68,14 +68,17 @@ function validate() {
     }
   }
 
-  // // Add this event listener to handle password toggle  JORDI : T2rebn dy mlhash lzma
-  // $(document).on("click", ".toggle-password", function () {
-  //   const targetId = $(this).data("target");
-  //   const passwordInput = document.getElementById(targetId);
-  //   const type = passwordInput.type === "password" ? "text" : "password";
-  //   passwordInput.type = type;
-  //   $(this).text(type === "password" ? "Show" : "Hide");
-  // });
+  if (ContactNumber.length != 11 ) {
+    showError(
+      document.getElementById("ContactNumber"),
+      "please enter 11 digit number"
+    );
+    return;
+  } else {
+    removeError(document.getElementById("ContactNumber"));
+  }
+
+
 
   // Password and confirm password validation
   if (pass != confirmpassword) {
@@ -87,6 +90,33 @@ function validate() {
   } else {
     removeError(document.getElementById("confirmpassword"));
   }
+console.log("length")
+console.log(confirmpassword.length);
+
+  if (confirmpassword.length < 8 ) {
+    showError(
+      document.getElementById("confirmpassword"),
+      "confirm password must be at least 8 char xxxxx ."
+    );
+    return;
+  } else {
+    removeError(document.getElementById("confirmpassword"));
+  }
+
+
+
+  console.log("test pass");
+  if (pass.length < 8 ) {
+    showError(
+      document.getElementById("pass"),
+      "password must be at least 8 char  ."
+    );
+    return;
+  } else {
+    removeError(document.getElementById("pass"));
+  }
+
+
 
   // Email validation
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -143,7 +173,7 @@ function validate() {
        } else if (response === "email") {
          showError(document.getElementById("Email"), "Email Already Exists");
        } else if (response === "sqlfailure") {
-         error.innerText = "Error sql query failure";
+         showError(document.getElementById("Email"), "Email Already Exists");
        } else {
          // Custom status code for email duplication error
          error.innerText = "Email duplication error. Status code: " + response;
