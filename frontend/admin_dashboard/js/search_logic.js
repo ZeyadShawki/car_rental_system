@@ -63,3 +63,12 @@ function displayResults(data) {
     resultsDiv.innerHTML = "No results found.";
   }
 }
+// Define the clear function
+function clear() {
+  console.log("hiaiiaia");
+  // Get the table body element by its ID
+  var tableBody = document.getElementById("result");
+
+  // Set the innerHTML of the table body to an empty string
+  tableBody.innerHTML = "";
+}
