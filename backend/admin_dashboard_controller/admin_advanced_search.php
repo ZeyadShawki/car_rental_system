@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     LEFT JOIN Reservations ON Cars.plateID = Reservations.plateID
     LEFT JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
   left join category USING(carname)
-    WHERE carname LIKE 'sedan'
+    WHERE carname LIKE '%$searchTerm%'
        OR brand LIKE '%$searchTerm%'
        OR FirstName LIKE '%$searchTerm%'
        OR LastName LIKE '%$searchTerm%'

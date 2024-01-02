@@ -25,7 +25,7 @@
     margin-left: 5%;
     width: calc(100% - 25%);
     /* Adjusted width */
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 
@@ -53,8 +53,8 @@
 }
 
 /*Scroll Bar*/
-html::-webkit-scrollbar {
-    width: 0.5rem;
+html::-webkit-scrollbar:horizontal {
+    width: 0.3rem;
 }
 
 html::-webkit-scrollbar-track {
@@ -62,6 +62,14 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-    background: #003161;
+    background: #85909a;
     border-radius: 5rem;
+}
+html::-webkit-scrollbar-thumb:hover {
+    background-color: #364352; /* Change the hover color */
+}
+
+
+html::-webkit-scrollbar-button {
+    display: none;
 }
