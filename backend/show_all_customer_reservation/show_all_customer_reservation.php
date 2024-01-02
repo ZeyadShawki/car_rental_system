@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['SESSION_EMAIL'])) {
     header('Location: ../../frontend/guest/index.php');
 }
+$_SESSION['enterpage'] = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = MyConnection::getConnection();
@@ -15,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemsPerPage = 6; // Number of items(rows) to display per page (offset)
 
     // Check if total pages is stored in session
-    if (!isset($_SESSION['TOTAL_PAGES'])) {
+    if (($_SESSION['enterpage']) == true ) {
         // Calculate total count for pagination
         $totalCountQuery = "SELECT COUNT(*) as total FROM Reservations
         INNER JOIN Customers ON Reservations.CustomerID = Customers.CustomerID
@@ -33,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $totalPages = ceil($totalItems / $itemsPerPage); // ceil 3shan lw a5r page fyha items 22l mn items ber page ana still mhtag sfha lyhom
         // Store total pages in session
         $_SESSION['TOTAL_PAGES'] = $totalPages;
+        $_SESSION['enterpage'] = false;
+
     } else {
         // Retrieve total pages from session
         $totalPages = $_SESSION['TOTAL_PAGES'];

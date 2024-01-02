@@ -63,6 +63,7 @@ function displayResults(data) {
 
 
 
+
 function displayPagination(totalPages, currentPage) {
   const paginationDiv = document.getElementById("pagination");
   let paginationHTML = "";
@@ -92,87 +93,3 @@ function displayPagination(totalPages, currentPage) {
     });
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function displayPagination(totalPages, currentPage) {
-//   const paginationDiv = document.getElementById("pagination");
-//   let paginationHTML = "";
-
-//   for (let i = 1; i <= totalPages; i++) {
-//     paginationHTML += `
-//       <li class="page-item ${i === currentPage ? 'active' : ''}">
-//         <a class="page-link" href="#" data-page="${i}">${i}</a>
-//       </li>`;
-//   }
-
-//   paginationDiv.innerHTML = `
-//     <nav aria-label="Page navigation example">
-//       <ul class="pagination">
-//         ${paginationHTML}
-//       </ul>
-//     </nav>`;
-
-//   // Attach event listener to pagination links
-//   const paginationLinks = document.querySelectorAll('.page-link');
-//   paginationLinks.forEach(link => {
-//     link.addEventListener('click', function(event) {
-//       event.preventDefault();
-//       const page = this.getAttribute('data-page');
-//       search(page);  // Call the search function with the page number
-//     });
-//   });
-// }
-
-
-
-// // Function to perform the search  l function dy kant bt3ml refresh lel page
-// function search(page = 1) {
-//   console.log("Search function called for page:", page);  // Debugging line
-
-//   var searchTerm = document.getElementById("searchTerm").value;
-//   var resultsDiv = document.getElementById("results");
-//   resultsDiv.innerHTML = "";
-
-//   // Clear the existing table content
-//   var tbodyElement = document.querySelector(".table tbody");
-//   if (tbodyElement) {
-//     tbodyElement.innerHTML = "";
-//   }
-
-//   $.ajax({
-//     type: "POST",
-//     url: `${baseUrl}/show_all_customer_reservation/show_all_customer_reservation.php`,
-//     data: { searchTerm: searchTerm, page: page },
-//     dataType: "json",
-//     success: function (response) {
-//       if (response && response.data && response.data.length > 0) {
-//         displayResults(response.data);
-//         displayPagination(response.totalPages, page);
-//       } else {
-//         console.log("No results found.");
-//         resultsDiv.innerHTML = `
-//           <div class="alert alert-warning mt-3" role="alert">
-//             No reservations found.
-//           </div>
-//         `;
-//       }
-//     },
-//     error: function (error) {
-//       console.log(error.responseText);
-//       console.error("Error in search:", error);
-//     },
-//   });
-// }
