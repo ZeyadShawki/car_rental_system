@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="../../frontend/nav_jss/navbar-pure-css/dist/style.css">
     <link rel="stylesheet" href="../css/col_navbar.css">
     <link rel="stylesheet" href="../css/carbox.css">
-    <?php
+
+    <link rel="stylesheet" href="./customer_css/customer_css.css">
+
+<?php
     $filename = '../../backend/user_home/user_home.php';
     if (file_exists($filename)) {
         include $filename;
@@ -70,8 +73,87 @@
         <!--data of page starts from here -->
         <div class="content-of-page">
             <div class="container col-sm mt-5">
-                <p class="text-start bold" style="font-size: 30px; text-align: center; color: #003161;">Rent a car</p>
-                <div class="border2">
+             
+    
+            
+            <!-- <div class="container col-sm mt-5">
+    <div class="card">
+        <div style="text-align: center;">
+            <img style="
+                width: 100%; /* Make the image fill the entire width of the card */
+                height: auto; /* Maintain the aspect ratio */
+                display: block;
+                margin: 0 auto; /* Center the image horizontally */
+                " id="userImage" src="img.jpg" alt="John">
+            <div id="customerName">John Doe</div>
+        </div>
+
+        <p id="customerEmail" class="title">CEO & Founder, Example</p>
+        <p id="customerPhone">Harvard University</p>
+        <p><button>Contact</button></p>
+    </div>
+</div> -->
+
+
+<div class="card">
+  <div class="row d-flex align-items-center">
+    <div class="col-md-4">
+      <img style="
+                width: 100%; /* Make the image fill the entire width of the column */
+                height: auto; /* Maintain the aspect ratio */
+                display: block;
+                margin: 0 auto; /* Center the image horizontally */
+                " id="userImage" src="https://res.cloudinary.com/alexandracaulea/image/upload/v1582179610/user_fckc9f.jpg" alt="User image" class="card__image" />
+    </div>
+    <div class="col-md-8">
+      <div class="card__text pt-5">
+        <h2 id="customerName">Alexandra Caulea</h2>
+        <p style="
+        font-size= 30px;
+        color:Black
+        " id="customerEmail">I enjoy drinking a cup of coffee every day</p>
+        <p id="customerPhone">I enjoy drinking a cup of coffee every day</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="pt-5"></div>
+
+
+           <style>
+            .seven h1 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 300;
+  color: #222;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: 27px 0;
+  grid-gap: 20px;
+  align-items: center;
+  position: relative;
+}
+
+.seven h1:after,
+.seven h1:before {
+  content: " ";
+  display: block;
+  border-bottom: 1px solid #c50000;
+  border-top: 1px solid #c50000;
+  height: 5px;
+  background-color: #f8f8f8;
+}
+            </style>
+
+<div class="seven">
+  <h1>Rent a car</h1>
+</div>
+               <div class="border2">
                     <?php retrive_all_data_required() ?>
                     <!-- Before Year Selection -->
                     <label for="beforeYear">Before Year:</label>

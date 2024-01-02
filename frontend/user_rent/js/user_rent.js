@@ -5,7 +5,6 @@ $(document).ready(function(){
     var pickupDate = new Date(document.getElementById('pickupDate').value);
     var returnDate = new Date(document.getElementById('returnDate').value);
     var currentDate = new Date();
-
     var validationMessages = document.getElementById('validation-messages');
     validationMessages.innerHTML = ''; // Clear previous messages
   if (isNaN(pickupDate.getTime()) || isNaN(returnDate.getTime())) {
@@ -25,15 +24,10 @@ $(document).ready(function(){
       return;
     }
   }
-
-    // Format the date as 'YYYY-MM-DD' 3shan a3rf akrno bel f databases
     var formattedNewPickupDate = pickupDate.toISOString().split('T')[0];
     var formattedNewReturnupDate = returnDate.toISOString().split('T')[0];
-
-
     var plateid = document.getElementById("plateid").value;
     console.log(plateid); 
-
     $.ajax({
       type: "POST", // hb3t
       url: "../../backend/user_rent/user_rent.php", // go to this php file
@@ -50,7 +44,8 @@ $(document).ready(function(){
           console.log(response);
 
           reciveddata.innerHTML = response;
-        alert('reserved successfully')
+        alert('reserved successfully');
+        window.location.href = "http://localhost/final_db_admin/frontend/user_home/user_home_html.php"; 
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);
@@ -64,7 +59,6 @@ $(document).ready(function(){
       },
     });
   });
-  
 });
 
 
@@ -78,11 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var pickupDateValue = document.getElementById('pickupDate').value;
     var returnDateValue = document.getElementById('returnDate').value;
 
-    // Check if either pickupDate or returnDate is not set yet
-    if (!pickupDateValue || !returnDateValue) {
-      // Clear previous validation messages
-      // var validationMessages = document.getElementById('validation-messages');
-      // validationMessages.innerHTML = '<p>Please select both pickup and return dates.</p>';
+    if (!pickupDateValue || !returnDateValue) {   
       return;
     }
 

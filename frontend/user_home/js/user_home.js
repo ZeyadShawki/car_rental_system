@@ -1,3 +1,42 @@
+
+
+
+function getAllCustomerData() {
+  $.ajax({
+    url: "http://localhost/final_db_admin/backend/userEditProfile/userEditProfile.php",
+    method: "GET",
+    data: {
+      get_user_data: true,
+    },
+    dataType: "json",
+
+    success: function (data) {
+      // Update input values based on user interactions
+        document.getElementById(
+          "customerName"
+        ).innerText = `${data.FirstName} ${data.LastName}`;
+        
+            var userImageElement = document.getElementById("userImage");
+              userImageElement.src = data.imageLink;
+        document.getElementById("customerEmail").innerText = data.Email;
+        document.getElementById("customerPhone").innerText = data.PhoneNumber;
+
+      },
+    error: function (error) {
+      console.error("Error fetching customer data:", error);
+    },
+  });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // AJAX request
+ console.log('aaaaa');
+   getAllCustomerData();
+});
+
+
+
 function updateCarNames(selectedBrand) {
   // 3yz 2update el car name 3shan ghyrt fel brand
   console.log("22222");
@@ -108,6 +147,10 @@ function updateBrand(selectedCarName) {
   });
 }
 $(document).ready(function () {
+
+
+console.log('zzzzzzz');
+
   $("#search-form").submit(function (e) {
     e.preventDefault();
 
