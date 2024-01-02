@@ -54,8 +54,11 @@ $(document).ready(function () {
           row.append('<td>' + result.carname + '</td>');
           row.append('<td>' + result.brand + '</td>');
           row.append('<td>' + result.carYear + '</td>');
-          row.append('<td>' + result.carImageUrl + '</td>');
-          row.append('<td>' + result.carRentValue + '</td>');
+          row.append(
+            '<td><img src="' +
+              result.carImageUrl +
+              '" alt="Car Image" width="100" height="100"></td>'
+          );          row.append('<td>' + result.carRentValue + '</td>');
           row.append('<td>' + result.ReservationDate + '</td>');
           row.append('<td>' + result.PickupDate + '</td>');
           row.append('<td>' + result.ReturnDate + '</td>');

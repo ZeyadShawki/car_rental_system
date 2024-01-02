@@ -14,7 +14,7 @@
 
 
 /*Scroll Bar*/
-html::-webkit-scrollbar {
+/* html::-webkit-scrollbar {
     width: 0.5rem;
 }
 
@@ -25,4 +25,4 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
     background: #003161;
     border-radius: 5rem;
-}
+} */

@@ -8,7 +8,6 @@ if ( isset( $_SESSION[ 'SESSION_EMAIL' ] ) ) {
     // zeyad
 }
 require( __DIR__ . '/../my_db_cred.php' );
-
 $conn = MyConnection::getConnection();
 
 function authenticateUser( $email, $password ) {

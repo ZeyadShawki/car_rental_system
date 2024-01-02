@@ -1,6 +1,4 @@
 <?php
-//require('../my_db_cred.php');
-
 $servername = 'localhost';
 $username = 'root';
 $password = '';
@@ -14,7 +12,6 @@ if ($conn->connect_error) {
 
 header("Access-Control-Allow-Origin: *");
 
-// Modify the SQL query based on your database structure
 $sql="SELECT
 c.plateID,
 c.carname,
