@@ -1,6 +1,3 @@
-
-
-
 function getAllCustomerData() {
   $.ajax({
     url: "http://localhost/final_db_admin/backend/userEditProfile/userEditProfile.php",
@@ -12,30 +9,32 @@ function getAllCustomerData() {
 
     success: function (data) {
       // Update input values based on user interactions
-        document.getElementById(
-          "customerName"
-        ).innerText = `${data.FirstName} ${data.LastName}`;
-        
-            var userImageElement = document.getElementById("userImage");
-              userImageElement.src = data.imageLink;
-        document.getElementById("customerEmail").innerText = data.Email;
-        document.getElementById("customerPhone").innerText = data.PhoneNumber;
+      document.getElementById(
+        "customerName"
+      ).innerText = `${data.FirstName} ${data.LastName}`;
 
-      },
+      if (data.imageLink) {
+        var userImageElement = document.getElementById("userImage");
+        userImageElement.src = data.imageLink;
+      } else {
+           var userImageElement = document.getElementById("userImage");
+           userImageElement.src =
+             "http://localhost/final_db_admin/backend/uploaded_images/Image_not_available (1).png";
+      }
+      document.getElementById("customerEmail").innerText = data.Email;
+      document.getElementById("customerPhone").innerText = data.PhoneNumber;
+    },
     error: function (error) {
       console.error("Error fetching customer data:", error);
     },
   });
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
   // AJAX request
- console.log('aaaaa');
-   getAllCustomerData();
+  console.log("aaaaa");
+  getAllCustomerData();
 });
-
-
 
 function updateCarNames(selectedBrand) {
   // 3yz 2update el car name 3shan ghyrt fel brand
@@ -64,9 +63,9 @@ function updateCarNames(selectedBrand) {
     dataType: "text",
     success: function (response) {
       // Parse the JSON response
-      console.log( response+ "arrayyy");
+      console.log(response + "arrayyy");
       var carNamesArray = JSON.parse(response);
-      console.log('55555555');
+      console.log("55555555");
       console.log(response);
       // Get the select element
       var selectCarElement = document.getElementById("carNamesSelect");
@@ -74,15 +73,14 @@ function updateCarNames(selectedBrand) {
       // Remove all existing options
       selectCarElement.innerHTML = "";
 
-       // Create a new option element
-       var option = document.createElement("option");
-       console.log("jordiiii");
-       option.value = 'Any';
-       option.text = 'Any';
+      // Create a new option element
+      var option = document.createElement("option");
+      console.log("jordiiii");
+      option.value = "Any";
+      option.text = "Any";
 
-       // Append the option to the select element
-       selectCarElement.appendChild(option);
-
+      // Append the option to the select element
+      selectCarElement.appendChild(option);
 
       // Loop through the car names array and add options to the select element
       for (var i = 0; i < carNamesArray.length; i++) {
@@ -147,9 +145,7 @@ function updateBrand(selectedCarName) {
   });
 }
 $(document).ready(function () {
-
-
-console.log('zzzzzzz');
+  console.log("zzzzzzz");
 
   $("#search-form").submit(function (e) {
     e.preventDefault();
