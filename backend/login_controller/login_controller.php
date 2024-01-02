@@ -16,7 +16,7 @@ function authenticateUser( $email, $password ) {
 
     // Sanitize user inputs
     $email = mysqli_real_escape_string( $conn, $email );
-    $password = mysqli_real_escape_string( $conn, $password );
+    // $password = mysqli_real_escape_string( $conn, $password );
 
     // Prepare and bind SQL statement for customers table
     $stmt = $conn->prepare( 'SELECT * FROM customers WHERE Email = ?' );
@@ -32,7 +32,7 @@ function authenticateUser( $email, $password ) {
         $hashedPasswordFromDB = $row[ 'user_password' ];
 
         // Verify password
-        if ( $password === $hashedPasswordFromDB ) {
+        if ( md5($password) === $hashedPasswordFromDB ) {
 
             return array( 'is_admin' => false, 'user_data' => $row );
         } else {
