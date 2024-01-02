@@ -18,12 +18,12 @@ $stmt->fetch();
 $stmt->close();
 
 // Check if the provided old password matches the one stored in the database
-if ($_POST['oldPassword']===$user_password) {
+if (md5($_POST['oldPassword'])===$user_password) {
    
     // Old password is correct, update the new password
 
     // Hash the new password before storing it in the database
-    $hashedNewPassword = $_POST['newPassword'];
+    $hashedNewPassword = md5($_POST['newPassword']);
 
     // Update the new password in the database
     $updateQuery = "UPDATE Customers SET user_password = ? WHERE CustomerID = ?";

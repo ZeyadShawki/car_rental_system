@@ -23,7 +23,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
     $ContactNumber = $_POST[ 'ContactNumber' ];
     $sex = $_POST[ 'sex' ];
     $inputDate = $_POST[ 'inputDate' ];
-    $pass = $_POST[ 'pass' ];
+    $pass = md5($_POST[ 'pass' ]);
 
     // Hash the password for security
     $hashed_password = $pass;
