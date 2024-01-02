@@ -122,11 +122,6 @@ $(document).ready(function () {
           carTableBody.append(row);
         });
       },
-    //   error: function (xhr, status, error) {
-    //     console.log('errorrr');
-    //     console.error(xhr.responseText);
-    //     alert("Error loading cars: " + xhr.responseText);
-    //   },
     });
   }
 

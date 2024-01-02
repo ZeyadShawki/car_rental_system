@@ -65,10 +65,6 @@ function displayResults(data) {
 }
 // Define the clear function
 function clearResaults() {
-  console.log("hiaiiaia");
-  // Get the table body element by its ID
   var tableBody = document.getElementById("results");
-
-  // Set the innerHTML of the table body to an empty string
   tableBody.innerHTML = "";
 }
