@@ -39,10 +39,15 @@
                 <hr />
             </div>
             <div id="nav-content">
-                <!--../user_home/user_home_html.php-->
-                <!--msh hhot el link l fo2 da 3shan lma yrg3 yla2i nfs el choises el kan m5trha-->
-                <div class="nav-button"><i class="fas fa-home"></i><span><a href="javascript:void(0);"
-                            onclick="history.back();">Go back</a></span></div>
+                <div class="nav-button"><i class="fas fa-home"></i><span><a href="#">Home</a></span></div>
+                <div class="nav-button"><i class="fas fa-user"></i><span><a
+                            href="../user_edit_profile/userEditProfilehtml.php">Edit profile</a></span></div>
+                <div class="nav-button"><i class="fas fa-key"></i><span><a
+                            href="../../frontend/change_customer_password/change_customer_password_html.php">Change
+                            Password</a></span></div>
+                <div class="nav-button"><i class="fas fa-car"></i><span><a
+                            href="../../frontend/show_all_customer_reservation/show_all_customer_reservation.php">My
+                            reservation</a></span></div>
                 <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="../../backend/logout/logout.php">
                             log out</a></span></div>
                 <hr />
