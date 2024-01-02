@@ -107,6 +107,7 @@ header {
 }
 
 .home {
+    color:#ccc;
     width: 100%;
     min-height: 100vh;
     position: relative;
@@ -234,16 +235,18 @@ select:-moz-focusring {
 }
 
 .text h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     letter-spacing: 2px;
 }
 
 .text span {
-    color: var(--main-color);
+    
+    color:cornsilk;
 }
 
 .text p {
-    margin: 00.5rem 0 1rem;
+    color:#fff;
+    margin: 00.5rem 0 0.75rem;
 }
 
 .heading {

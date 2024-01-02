@@ -30,7 +30,7 @@
     <title>Home</title>
 </head>
 
-<body>
+<body >
 
     <div class="flex-container">
         <!-- Your nav-bar code remains unchanged -->

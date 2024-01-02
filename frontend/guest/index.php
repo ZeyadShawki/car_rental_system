@@ -56,7 +56,7 @@ mysqli_close($conn);
   <!--Home-->
   <section class="home" id="home">
     <div class="text">
-      <h1><span>Looking</span> to <br>rent a car</h1>
+      <h1><span>Looking</span> to<br>rent a car</h1>
       <p>High Quality Cars with Booking from everywhere in the world!</p>
     </div>
   </section>
