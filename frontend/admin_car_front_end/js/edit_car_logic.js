@@ -228,70 +228,65 @@ $("#imageId").change(function () {
   // Initial fetch when the page loads
   fetchCarData();
 
-  $("#editCarForm").submit(function (e) {
-    e.preventDefault(); // prevent the form from submitting traditionally
+$("#editCarForm").submit(function (e) {
+  e.preventDefault(); // prevent the form from submitting traditionally
 
-    // Check if any field is empty
-    var isValid = true;
-    $(this)
-      .find("select, input, textarea")
-      .each(function () {
-        if (!$(this).val()) {
-          isValid = false;
-          $(this).addClass("is-invalid");
-          $(this).next(".invalid-feedback").remove();
-          $(this).after(
-            '<div class="invalid-feedback">This field is required.</div>'
-          );
-        } else {
-          $(this).removeClass("is-invalid");
-          $(this).next(".invalid-feedback").remove();
-        }
-      });
+  // Check if any field is empty
+  var isValid = true;
+  $(this)
+    .find("select, input, textarea")
+    .each(function () {
+      if (!$(this).val() && $(this).attr("id") !== "imageId") {
+        // Skip checking the imageId field
+        isValid = false;
+        $(this).addClass("is-invalid");
+        $(this).next(".invalid-feedback").remove();
+        $(this).after(
+          '<div class="invalid-feedback">This field is required.</div>'
+        );
+      } else {
+        $(this).removeClass("is-invalid");
+        $(this).next(".invalid-feedback").remove();
+      }
+    });
 
-    if (!isValid) {
-      // If any field is empty, don't proceed with the AJAX request
-      return;
-    }
+  if (!isValid) {
+    // If any field is empty, don't proceed with the AJAX request
+    return;
+  }
 
-    // Get form data
-    var formData = $(this).serialize();
-    console.log(formData);
-
-    // Get the carId from the URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const carId = urlParams.get("carId");
+  // Get form data
+  var formData = new FormData();
   var input = document.getElementById("imageId");
 
-  
-  var form_data = new FormData();
-  form_data.append("carId", carId); // Replace 'yourCarIdValue' with the actual carId value
-  form_data.append("image", input.files[0]);
+  formData.append("carId", carId); // Replace 'yourCarIdValue' with the actual carId value
+  formData.append("image", input.files[0]);
 
-// Add other form fields as needed
-form_data.append("OfficeCity", $("#OfficeCity").val());
-form_data.append("Year", $("#Year").val());
-form_data.append("rentValue", $("#rentValue").val());
-form_data.append("carStatus", $("#carStatus").val());
-form_data.append("brand", $("#brand").val());
-form_data.append("CarName", $("#CarName").val());
-console.log($("#CarName").val());
-$.ajax({
-  url: "http://localhost/final_db_admin/backend/admin_car_controller/admin_edit_car.php",
-  dataType: "text",
-  cache: false,
-  contentType: false,
-  processData: false,
-  data: form_data,
-  type: "post",
-  success: function (php_script_response) {
-    console.log(php_script_response);
-    alert("Record updated successfully");
-  },
-  error: function (xhr, status, error) {
-    console.error(xhr.responseText);
-    alert("Error: " + xhr.responseText);
-  },
-});
+  // Add other form fields as needed
+  formData.append("OfficeCity", $("#OfficeCity").val());
+  formData.append("Year", $("#Year").val());
+  formData.append("rentValue", $("#rentValue").val());
+  formData.append("carStatus", $("#carStatus").val());
+  formData.append("brand", $("#brand").val());
+  formData.append("CarName", $("#CarName").val());
+
+  $.ajax({
+    url: "http://localhost/final_db_admin/backend/admin_car_controller/admin_edit_car.php",
+    dataType: "text",
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: formData,
+    type: "post",
+    success: function (php_script_response) {
+      console.log(php_script_response);
+      alert("Record updated successfully");
+    },
+    error: function (xhr, status, error) {
+      console.error(xhr.responseText);
+      alert("Error: " + xhr.responseText);
+    },
   });
+});
+
 });
