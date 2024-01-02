@@ -19,7 +19,7 @@
 
 /*Scroll Bar*/
 
-html::-webkit-scrollbar {
+/* html::-webkit-scrollbar {
     width: 0.5rem;
 }
 
@@ -30,7 +30,7 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
     background: var(--main-color);
     border-radius: 5rem;
-}
+} */
 
 section {
     padding: 50px 100px;

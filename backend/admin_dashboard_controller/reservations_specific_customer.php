@@ -1,21 +1,14 @@
 <?php
-//require('../my_db_cred.php');
-
 $servername = 'localhost';
 $username = 'root';
 $password = '';
 $dbname = 'car_rental_system';
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 header("Access-Control-Allow-Origin: *");
-
-// Modify the SQL query based on your database structure
-$sql="SELECT
+$sql = "SELECT
             r.ReservationID,
             c.CustomerID,
             c.FirstName AS CustomerFirstName,
@@ -42,25 +35,21 @@ $sql="SELECT
             inner join category cs on cs.carname=ca.carname
         WHERE
             c.CustomerID = ?";
-
-
 try {
     $customerId = $_POST['customer_id'];
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $customerId);
-$stmt->execute();
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $customerId);
+    $stmt->execute();
 
 
     $result = $stmt->get_result();
 
-    // Fetch the results as an associative array
     $data = array();
     while ($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
 
-    // Return the results as JSON
     echo json_encode($data);
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();

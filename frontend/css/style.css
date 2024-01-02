@@ -245,7 +245,7 @@
 
 
 /*Scroll Bar*/
-html::-webkit-scrollbar {
+/* html::-webkit-scrollbar {
   width: 0.5rem;
 }
 
@@ -255,7 +255,7 @@ html::-webkit-scrollbar-track {
 
 html::-webkit-scrollbar-thumb {
   background: var(--navbar-dark-primary);
-  border-radius: 5rem;}
+  border-radius: 5rem;} */
 
 
 
