@@ -235,19 +235,27 @@ select:-moz-focusring {
 }
 
 .text h1 {
+    padding: auto;
     font-size: 2.5rem;
-    letter-spacing: 2px;
+    letter-spacing: 3.5px;
+    line-height: 1.1;
+    font-style:initial;
 }
 
 .text span {
-    
+    padding: auto;
     color:cornsilk;
 }
 
 .text p {
-    color:#fff;
-    margin: 00.5rem 0 0.75rem;
+    line-height: 1.3;
+    padding: auto;
+    color:#a9a5a5;
+    font-weight: bold;
+    transform-style: preserve-3d;
+    margin: 00.5rem 0 1 rem;
 }
+
 
 .heading {
     text-align: center;

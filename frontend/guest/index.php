@@ -56,9 +56,9 @@ mysqli_close($conn);
   <!--Home-->
   <section class="home" id="home">
     <div class="text">
-      <h1><span>Looking</span> to<br>rent a car</h1>
-      <p>High Quality Cars with Booking from everywhere in the world!</p>
-    </div>
+    <h1><span>Looking</span> to<br>rent a car</h1>
+    <p>Booking <a href="../../frontend/login_customer/login_html.php">now</a>.</p>
+</div>
   </section>
   <!--Services-->
   <section class="services" id="services">
